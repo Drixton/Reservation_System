@@ -1,3 +1,5 @@
+
+<?php echo "//commit"; ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +28,7 @@
         / /* Justify the text */
     }
 </style>
-
+ 
 </head>
 <body>
 <?php include 'navbar.php'; ?> 
