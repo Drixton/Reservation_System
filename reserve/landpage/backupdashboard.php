@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
     body {
-        font-family: "Tilt Neon", sans-serif;
+        font-family: "Anton", sans-serif;
+  
         margin: 0;
         padding: 0;
     }
@@ -138,29 +139,57 @@
 
     /* Container styles */
     .container {
-        width: 100%; /* Set the width to 100% for responsiveness */
-        height: 200px; /* Adjusted height */
+    width: 16%; /* Set the width of each container */
+    height: 550px; /* Set the height of each container */
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    margin: 0; /* Adjusted margin to remove space */
+    border: 2px solid #fff; /* Add border */
+    border-radius: 10px; /* Add border-radius */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, filter 0.3s; /* Add transition for smooth effect */
+    filter: blur(2px); /* Add blur to make slightly blurred */
+}
+
+.container:hover {
+    transform: scale(1.1); /* Scale up by 10% when hovered over */
+    filter: none; /* Remove blur on hover */
+}
+
+.container:hover .random-text {
+    font-size: 50px; /* Enlarge the text size on hover */
+}
+
+    .container:nth-child(1) {
+        background: url('badminton.jpg'); /* Change background to the image */
         background-size: cover;
-        background-position: center;
-        display: block; /* Changed to block for stacking on mobile */
-        margin-bottom: 20px; /* Added margin bottom for spacing */
-        border: 2px solid #fff; /* Add border */
-        border-radius: 10px; /* Add border-radius */
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s; /* Add transition for smooth effect */
     }
 
-    .container:hover {
-        transform: scale(1.1); /* Scale up by 10% when hovered over */
+    .container:nth-child(2) {
+        background: url('dart.jpg'); /* */
+        background-size: cover;
     }
 
-    .container:nth-child(odd) {
-        background-color: #ff5733; /* Orange */
+    .container:nth-child(3) {
+        background: url('billiard.jpg'); /* en */
+        background-size: cover;
     }
 
-    .container:nth-child(even) {
-        background-color: #3498db; /* Blue */
+    .container:nth-child(4) {
+        background: url('tabletennis.jpg'); /* le */
+        background-size: cover;
+    }
+
+    .container:nth-child(5) {
+        background: url('sepak.jpeg'); 
+        background-size: cover;
+    }
+
+    .container:nth-child(6) {
+        background: url('taek.jpeg'); /* /* Yellow */
+        background-size: cover;
     }
 
     .random-text {
@@ -168,30 +197,18 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
-        color: #fff;
-        font-size: 20px;
+        color: #39FF14.; /* Change text color to green */
+        font-size: 40px;
+        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Add text shadow for glowing effect */
+        animation: glow 1.5s infinite alternate; /* Add animation for glowing effect */
     }
 
-    @media only screen and (min-width: 768px) {
-        .container {
-            width: 30%; /* Set a smaller width for larger screens */
-            height: 300px; /* Adjusted height for larger screens */
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Initial text shadow */
         }
-
-        .random-text {
-            font-size: 24px; /* Adjusted font size for larger screens */
-        }
-
-        .container:nth-child(odd),
-        .container:nth-child(even) {
-            float: left;
-            clear: none;
-            margin-right: 2%; /* Adjusted margin between containers */
-            width: 48%; /* Adjusted width to fit two containers in a row */
-        }
-
-        .container:nth-child(2n) {
-            margin-right: 0; /* Remove margin from even-indexed containers */
+        to {
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Final text shadow */
         }
     }
     </style>
@@ -201,22 +218,22 @@
     <main>
         <!-- Your main content here -->
         <div class="container">
-            <div class="random-text">SEPAK TAKRAW</div>
+            <div class="random-text">BADMINTON </div>
         </div>
         <div class="container">
-            <div class="random-text">BADMINTON</div>
-        </div>
-        <div class="container">
-            <div class="random-text">TAEKWONDO</div>
-        </div>
-        <div class="container">
-            <div class="random-text">ARNIS</div>
+            <div class="random-text">DART</div>
         </div>
         <div class="container">
             <div class="random-text">BILLIARD</div>
         </div>
         <div class="container">
             <div class="random-text">TABLE TENNIS</div>
+        </div>
+        <div class="container">
+            <div class="random-text">BILLIARD</div>
+        </div>
+        <div class="container">
+            <div class="random-text">TAEKWONDO</div>
         </div>
     </main>
 </body>
