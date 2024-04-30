@@ -195,22 +195,22 @@
     <main>
         <!-- Your main content here -->
         <div class="container">
-            <div class="random-text">Random Text 1</div>
+            <div class="random-text">SEPAK TAKRAW</div>
         </div>
         <div class="container">
-            <div class="random-text">Random Text 2</div>
+            <div class="random-text">BADMINTON</div>
         </div>
         <div class="container">
-            <div class="random-text">Random Text 3</div>
+            <div class="random-text">TAEKWONDO</div>
         </div>
         <div class="container">
-            <div class="random-text">Random Text 4</div>
+            <div class="random-text">ARNIS</div>
         </div>
         <div class="container">
-            <div class="random-text">Random Text 5</div>
+            <div class="random-text">BILLIARD</div>
         </div>
         <div class="container">
-            <div class="random-text">Random Text 6</div>
+            <div class="random-text">TABLE TENNIS</div>
         </div>
     </main>
 </body>
