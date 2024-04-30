@@ -50,7 +50,7 @@
 
         .centered-text {
             position: absolute;
-            top: 0;
+            top: 1;
             left: 50%;
             transform: translateX(-50%);
         }
