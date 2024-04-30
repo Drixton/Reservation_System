@@ -1,3 +1,11 @@
+<?php 
+
+session_start();
+
+echo "testing";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboardssss</title>
     <style>
     body {
         font-family: "Tilt Neon", sans-serif;
@@ -137,8 +145,8 @@
     }
 
     /* Container styles */
-    .container {
-    width: 16%; /* Set the width of each container */
+    .container1 {
+    width: 250px;
     height: 500px; /* Set the height of each container */
     background-size: cover;
     background-position: center;
@@ -148,35 +156,46 @@
     border-radius: 10px; /* Add border-radius */
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s; /* Add transition for smooth effect */
+    transition: transform 0.1s; /* Add transition for smooth effect */
+    max-width: 320px;
+
+   
+}
+.main{
+    max-width: 100%;
+    display: flex; 
+flex-wrap: wrap; 
+justify-content: space-evenly;
+align-items:center;
+min-width: 300px;
 }
 
-.container:hover {
+.container1:hover {
     transform: scale(1.1); /* Scale up by 10% when hovered over */
 }
 
 
-    .container:nth-child(1) {
+    .container1:nth-child(1) {
         background-color: #ff5733; /* Orange */
     }
 
-    .container:nth-child(2) {
+    .container1:nth-child(2) {
         background-color: #3498db; /* Blue */
     }
 
-    .container:nth-child(3) {
+    .container1:nth-child(3) {
         background-color: #27ae60; /* Green */
     }
 
-    .container:nth-child(4) {
+    .container1:nth-child(4) {
         background-color: #9b59b6; /* Purple */
     }
 
-    .container:nth-child(5) {
+    .container1:nth-child(5) {
         background-color: #e74c3c; /* Red */
     }
 
-    .container:nth-child(6) {
+    .container1:nth-child(6) {
         background-color: #f39c12; /* Yellow */
     }
 
@@ -188,30 +207,36 @@
         color: #fff;
         font-size: 20px;
     }
+    @media screen and (max-width: 520px) {
+        .container{
+            width:100%;
+        }
+}
     </style>
 </head>
 <body>
     <?php include '../navbar.php'; ?> 
-    <main>
+  <div class="main">
         <!-- Your main content here -->
-        <div class="container">
+
+        <div class="container1">
             <div class="random-text">SEPAK TAKRAW</div>
         </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">BADMINTON</div>
         </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">TAEKWONDO</div>
         </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">ARNIS</div>
         </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">BILLIARD</div>
         </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">TABLE TENNIS</div>
         </div>
-    </main>
+        </div>
 </body>
 </html>

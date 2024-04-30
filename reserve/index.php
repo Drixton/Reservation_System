@@ -1,21 +1,14 @@
 <?php
+require("connection/conn.php");
 session_start();
 if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';
   }
-echo $_SESSION['status'];
 
-if($_SESSION['status']=='valid'){
-    echo "<script> alert('You are already logged in');window.history.back() ;</script>";
-}
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
-$conn = new mysqli($servername, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if($_SESSION['status']=='valid'){
+//     echo "<script> alert('You are already logged in');window.history.back() ;</script>";
+// }
+$logged=false;
 if(isset($_POST['submit'])) {
 
     $email = $_POST['email'];
@@ -24,11 +17,10 @@ if(isset($_POST['submit'])) {
     $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        
-        echo "<script>alert('Success login');</script>";
+        $_SESSION['status']='valid';
+        echo "<script>window.location.href='index.php?logged=1';</script>";
         exit();
     } else {
-
         header("Location: index.php?error=email or password not found");
         exit();
     }
@@ -36,6 +28,9 @@ if(isset($_POST['submit'])) {
 
 
 
+}
+if(!empty($_GET['logged'])){
+    $logged=true;
 }
 
 
@@ -92,7 +87,7 @@ $conn->close();
             color: white;
         }
         .bg-sign-in {
-            background-image: url('../assets/img/logbg.jpg');
+            background-image: url('assets/img/logbg.jpg');
             background-size: cover; /* Ensure the background covers the entire container */
             background-repeat: no-repeat;
             background-position: center; /* Center the background image */
@@ -114,7 +109,11 @@ $conn->close();
             font-weight: bold; /* Optionally, make the text bold */
             color: lightgreen; 
         }
-
+.con{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
 
     </style>
 
@@ -122,12 +121,12 @@ $conn->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE,edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="\TRACK-WISE/asset/icon.png" type="image/x-icon">
-    <title>Sign-in</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="icon" href="TRACK-WISE/asset/icon.png" type="image/x-icon">
+    <title>Log in</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-    <link rel="icon" href="/TRACK-WISE/asset/icon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="icon" href="TRACK-WISE/asset/icon.png" type="image/x-icon">
 </head>
 <body>
 
@@ -163,7 +162,7 @@ $conn->close();
                 <div id="tooltip" style="display: none; color: blue;">Minimum 8 characters</div>
             </div>
             <div class="mb-3 text-start">
-                <a href="create.php" style="color: white;">Create Account</a>
+                <a href="userlog/create.php" style="color: white;">Create Account</a>
             </div>
 
 
@@ -189,6 +188,34 @@ $conn->close();
 <div class="firefly"></div>
 <div class="firefly"></div>
 <div class="firefly"></div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="con">
+        <h6>Login success! </h6> <img src="assets/icons/check.gif" alt="s">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='landpage/dashboard.php';">Okay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("signInForm");
@@ -214,7 +241,14 @@ $conn->close();
         return true;
     }
 </script>
-<script src="/js/bootstrap.bundle.js"></script>
+<?php if($logged): ?>
+<script type="text/javascript">
+    window.onload = () => {
+      const myModal = new bootstrap.Modal('#staticBackdrop');
+      myModal.show();
+    }
+</script>
+<?php endif?>
 <script src="./js/validation.js"></script>
 </body>
 </html>
