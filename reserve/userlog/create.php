@@ -105,59 +105,74 @@
         </form>
 
         <?php
-        // Handle registration form submission
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Database connection credentials
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "reservation";
+// Handle registration form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Database connection credentials
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "reservation";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $database);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-            // Retrieve username, email, and password from form
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    // Retrieve username, email, and password from form
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-            // Query to check if the email already exists
-            $check_query = "SELECT * FROM users WHERE email = '$email'";
-            $result = $conn->query($check_query);
+    // Check if password length is exactly 8 characters
+    if (strlen($password) !== 8) {
+        // Password does not meet the required length, display error message
+        echo '<div class="alert alert-danger" role="alert">Password must be exactly 8 characters long.</div>';
+        // Close database connection
+        $conn->close();
+        // Stop further execution
+        exit();
+    }
 
-            if ($result->num_rows > 0) {
-                // Email already exists, display error message
-                echo '<div class="alert alert-danger" role="alert">Account with this email already exists. Please use a different email.</div>';
-            } else {
-                // Email does not exist, proceed with registration
-                // Query to insert user into database
-                $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+    // Query to check if the email already exists
+    $check_query = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($check_query);
 
-                if ($conn->query($sql) === TRUE) {
-                    // Registration successful, display success message with JavaScript
-                    echo '<script>
-                            alert("Registration successful. You can now login.");
-                            window.location.href = "index.php";
-                          </script>';
-                } else {
-                    // Registration failed, display error message
-                    echo '<div class="alert alert-danger" role="alert">Registration failed. Please try again.</div>';
-                }
-            }
+    if ($result->num_rows > 0) {
+        // Email already exists, display error message
+        echo '<div class="alert alert-danger" role="alert">Account with this email already exists. Please use a different email.</div>';
+    } else {
+        // Email does not exist, proceed with registration
+        // Query to insert user into database
+        $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
 
-            // Close database connection
-            $conn->close();
+        if ($conn->query($sql) === TRUE) {
+            // Registration successful, display success message with JavaScript
+            echo '<script>
+                    alert("Registration successful. You can now login.");
+                    window.location.href = "index.php";
+                  </script>';
+        } else {
+            // Registration failed, display error message
+            echo '<div class="alert alert-danger" role="alert">Registration failed. Please try again.</div>';
         }
-        ?>
+    }
+
+    // Close database connection
+    $conn->close();
+}
+?>
+
 
     </div>
 </main>
 
 <script src="./js/bootstrap.bundle.js"></script>
+
+
+
+
 </body>
 </html>
