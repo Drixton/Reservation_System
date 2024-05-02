@@ -1,16 +1,23 @@
+<?php 
+
+session_start();
+
+echo "testing";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboardssss</title>
     <style>
     body {
-        font-family: "Anton", sans-serif;
-  
+        font-family: "Tilt Neon", sans-serif;
         margin: 0;
         padding: 0;
     }
@@ -138,9 +145,9 @@
     }
 
     /* Container styles */
-    .container {
-    width: 16%; /* Set the width of each container */
-    height: 550px; /* Set the height of each container */
+    .container1 {
+    width: 250px;
+    height: 500px; /* Set the height of each container */
     background-size: cover;
     background-position: center;
     display: inline-block;
@@ -149,47 +156,47 @@
     border-radius: 10px; /* Add border-radius */
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s, filter 0.3s; /* Add transition for smooth effect */
-    filter: blur(2px); /* Add blur to make slightly blurred */
+    transition: transform 0.1s; /* Add transition for smooth effect */
+    max-width: 320px;
+
+   
+}
+.main{
+    max-width: 100%;
+    display: flex; 
+flex-wrap: wrap; 
+justify-content: space-evenly;
+align-items:center;
+min-width: 300px;
 }
 
-.container:hover {
+.container1:hover {
     transform: scale(1.1); /* Scale up by 10% when hovered over */
-    filter: none; /* Remove blur on hover */
 }
 
-.container:hover .random-text {
-    font-size: 50px; /* Enlarge the text size on hover */
-}
 
-    .container:nth-child(1) {
-        background: url('badminton.jpg'); /* Change background to the image */
-        background-size: cover;
+    .container1:nth-child(1) {
+        background-color: #ff5733; /* Orange */
     }
 
-    .container:nth-child(2) {
-        background: url('dart.jpg'); /* */
-        background-size: cover;
+    .container1:nth-child(2) {
+        background-color: #3498db; /* Blue */
     }
 
-    .container:nth-child(3) {
-        background: url('billiard.jpg'); /* en */
-        background-size: cover;
+    .container1:nth-child(3) {
+        background-color: #27ae60; /* Green */
     }
 
-    .container:nth-child(4) {
-        background: url('tabletennis.jpg'); /* le */
-        background-size: cover;
+    .container1:nth-child(4) {
+        background-color: #9b59b6; /* Purple */
     }
 
-    .container:nth-child(5) {
-        background: url('sepak.jpeg'); 
-        background-size: cover;
+    .container1:nth-child(5) {
+        background-color: #e74c3c; /* Red */
     }
 
-    .container:nth-child(6) {
-        background: url('taek.jpeg'); /* /* Yellow */
-        background-size: cover;
+    .container1:nth-child(6) {
+        background-color: #f39c12; /* Yellow */
     }
 
     .random-text {
@@ -197,44 +204,39 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
-        color: #39FF14.; /* Change text color to green */
-        font-size: 40px;
-        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Add text shadow for glowing effect */
-        animation: glow 1.5s infinite alternate; /* Add animation for glowing effect */
+        color: #fff;
+        font-size: 20px;
     }
-
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Initial text shadow */
+    @media screen and (max-width: 520px) {
+        .container{
+            width:100%;
         }
-        to {
-            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Final text shadow */
-        }
-    }
+}
     </style>
 </head>
 <body>
     <?php include '../navbar.php'; ?> 
-    <main>
+  <div class="main">
         <!-- Your main content here -->
-        <div class="container">
-            <div class="random-text">BADMINTON </div>
+
+        <div class="container1">
+            <div class="random-text">SEPAK TAKRAW</div>
         </div>
-        <div class="container">
-            <div class="random-text">DART</div>
+        <div class="container1">
+            <div class="random-text">BADMINTON</div>
         </div>
-        <div class="container">
-            <div class="random-text">BILLIARD</div>
-        </div>
-        <div class="container">
-            <div class="random-text">TABLE TENNIS</div>
-        </div>
-        <div class="container">
-            <div class="random-text">BILLIARD</div>
-        </div>
-        <div class="container">
+        <div class="container1">
             <div class="random-text">TAEKWONDO</div>
         </div>
-    </main>
+        <div class="container1">
+            <div class="random-text">ARNIS</div>
+        </div>
+        <div class="container1">
+            <div class="random-text">BILLIARD</div>
+        </div>
+        <div class="container1">
+            <div class="random-text">TABLE TENNIS</div>
+        </div>
+        </div>
 </body>
 </html>

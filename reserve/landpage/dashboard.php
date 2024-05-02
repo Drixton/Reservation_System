@@ -1,11 +1,3 @@
-<?php 
-
-session_start();
-
-echo "testing";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,8 +137,10 @@ echo "testing";
     }
 
     /* Container styles */
-    .container1 {
-    width: 250px;
+  /* Container styles */
+.container1 {
+    position: relative; /* Add position relative */
+    width: 220px;
     height: 500px; /* Set the height of each container */
     background-size: cover;
     background-position: center;
@@ -154,89 +148,93 @@ echo "testing";
     margin: 0; /* Adjusted margin to remove space */
     border: 2px solid #fff; /* Add border */
     border-radius: 10px; /* Add border-radius */
-    position: relative;
     overflow: hidden;
     transition: transform 0.1s; /* Add transition for smooth effect */
     max-width: 320px;
-
-   
-}
-.main{
-    max-width: 100%;
-    display: flex; 
-flex-wrap: wrap; 
-justify-content: space-evenly;
-align-items:center;
-min-width: 300px;
 }
 
 .container1:hover {
     transform: scale(1.1); /* Scale up by 10% when hovered over */
 }
 
-
-    .container1:nth-child(1) {
-        background-color: #ff5733; /* Orange */
-    }
-
-    .container1:nth-child(2) {
-        background-color: #3498db; /* Blue */
-    }
-
-    .container1:nth-child(3) {
-        background-color: #27ae60; /* Green */
-    }
-
-    .container1:nth-child(4) {
-        background-color: #9b59b6; /* Purple */
-    }
-
-    .container1:nth-child(5) {
-        background-color: #e74c3c; /* Red */
-    }
-
-    .container1:nth-child(6) {
-        background-color: #f39c12; /* Yellow */
-    }
-
-    .random-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        color: #fff;
-        font-size: 20px;
-    }
-    @media screen and (max-width: 520px) {
-        .container{
-            width:100%;
-        }
+.container1:hover .random-text {
+    font-size: 50px; /* Enlarge text size on hover */
+    color: black; /* Change text color to white on hover */
 }
+
+.container1:hover img {
+    filter: blur(5px) brightness(0.5); /* Blur and darken image on hover */
+}
+
+.random-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    color: black; /* Change text color to green */
+    font-size: 40px;
+    text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black; /* Add text shadow for glowing effect */
+    animation: glow 1.5s infinite alternate; /* Add animation for glowing effect */
+    transition: font-size 0.3s; /* Add transition for smooth font-size change */
+    z-index: 1; /* Bring text to the forefront */
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Initial text shadow */
+    }
+    to {
+        text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Final text shadow */
+    }
+}
+
+/* Image styles */
+.container1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make sure the image covers the whole container */
+    display: block;
+    position: relative; /* Add position relative */
+    z-index: 0; /* Ensure image is behind text initially */
+}
+
+@media screen and (max-width: 520px) {
+    .container1 {
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
     <?php include '../navbar.php'; ?> 
-  <div class="main">
+    <div class="main">
         <!-- Your main content here -->
 
         <div class="container1">
-            <div class="random-text">SEPAK TAKRAW</div>
-        </div>
-        <div class="container1">
             <div class="random-text">BADMINTON</div>
+            <img src="badminton.jpg" alt="Badminton">
         </div>
         <div class="container1">
-            <div class="random-text">TAEKWONDO</div>
-        </div>
-        <div class="container1">
-            <div class="random-text">ARNIS</div>
+            <div class="random-text">DART</div>
+            <img src="dart.jpg" alt="Dart">
         </div>
         <div class="container1">
             <div class="random-text">BILLIARD</div>
+            <img src="billiard.jpg" alt="Billiard">
         </div>
         <div class="container1">
             <div class="random-text">TABLE TENNIS</div>
+            <img src="tabletennis.jpg" alt="Table Tennis">
         </div>
+        <div class="container1">
+            <div class="random-text">PICKLEBALL</div>
+            <img src="pickleball.jpg" alt="Pickleball">
         </div>
+        <div class="container1">
+            <div class="random-text">TAEKWONDO</div>
+            <img src="taekwondo.jpg" alt="Taekwondo">
+        </div>
+    </div>
 </body>
 </html>
