@@ -213,27 +213,31 @@
 
         <div class="container1">
             <div class="random-text">BADMINTON</div>
-            <img src="badminton.jpg" alt="Badminton">
+            <img src="../assets/img/badminton.jpg" alt="Badminton">
         </div>
         <div class="container1">
             <div class="random-text">DART</div>
-            <img src="dart.jpg" alt="Dart">
+            <img src="../assets/img/dart.jpg" alt="Dart">
         </div>
         <div class="container1">
             <div class="random-text">BILLIARD</div>
-            <img src="billiard.jpg" alt="Billiard">
+            <img src="../assets/img/billiard.jpg" alt="Billiard">
         </div>
         <div class="container1">
             <div class="random-text">TABLE TENNIS</div>
-            <img src="tabletennis.jpg" alt="Table Tennis">
+            <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
         </div>
         <div class="container1">
             <div class="random-text">PICKLEBALL</div>
-            <img src="pickleball.jpg" alt="Pickleball">
+            <img src="../assets/img/pickleball.jpg" alt="Pickleball">
         </div>
         <div class="container1">
             <div class="random-text">TAEKWONDO</div>
-            <img src="taekwondo.jpg" alt="Taekwondo">
+            <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
+        </div>
+        <div class="container1">
+            <div class="random-text">SEPAK TAKRAW</div>
+            <img src="../assets/img/sepaktakraw.jpg" alt="Taekwondo">
         </div>
     </div>
 </body>
