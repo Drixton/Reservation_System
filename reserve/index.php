@@ -162,12 +162,12 @@ $conn->close();
                 <div id="tooltip" style="display: none; color: blue;">Minimum 8 characters</div>
             </div>
             <div class="mb-3 text-start">
-                <a href="userlog/create.php" style="color: white;">Create Account</a>
-            </div>
+    <a href="userlog/create.php" style="color: white;" target="_blank">Create Account</a>
+</div>
 
 
             <button type="submit" name="submit" class="btn-like">Sign In</button>
-            <a class="btn-like" href="/reserve/userlog/index.php">Back</a>
+            <a class="btn-like" href="http://localhost/reservation_system/reserve/">Back</a>
             <br><br>
         </form>
     </div>

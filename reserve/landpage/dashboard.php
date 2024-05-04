@@ -140,7 +140,7 @@
   /* Container styles */
 .container1 {
     position: relative; /* Add position relative */
-    width: 220px;
+    width: 188px;
     height: 500px; /* Set the height of each container */
     background-size: cover;
     background-position: center;
