@@ -477,5 +477,6 @@ displayCurrentDate();
             timeBox.classList.add('selected');
         }
     </script>
+  
 </body>
 </html>

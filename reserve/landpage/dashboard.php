@@ -7,7 +7,7 @@
     <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboardssss</title>
+    <title>Sport list</title>
     <style>
     body {
         font-family: "Tilt Neon", sans-serif;
