@@ -10,100 +10,93 @@
 <link href="https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <title>AEP</title>
     <style>
-        body {
-            background-color: #000; /* Background color */
-            font-family: "Teachers", sans-serif;
+      /* Common styles */
+body {
+    background-color: #000; /* Background color */
+    font-family: "Teachers", sans-serif;
 }
-        header {
-            background-color: #040F13; /* Set header background color to black */
-            color: #fff;
-            padding: 1px 20px; /* Adjusted padding */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative; /* Position the profile icon relative to the header */
-            height: 120px; /* Set fixed height for the header */
-        }
-        header img {
-            height: 180px; /* Adjusted height */
-            transition: transform 0.3s; /* Add transition for smooth effect */
-        }
-        header img:hover {
-            transform: scale(1.5); /* Enlarge the logo on hover */
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: right;
-        }
-        nav ul li {
-            display: inline;
-            margin-left: 20px;
-            position: relative; /* Set position to relative for dropdown */
-        }
-        nav ul li:first-child {
-            margin-left: 0;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 20px; /* Adjust font size */
-        }
-        .profile-icon {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .centered-text {
-            position: absolute;
-            top: 1;
-            right: 20px; /* Adjust the right position */
-            transform: translateX(0%);
-        }
-    
-        /* Add this CSS to your existing styles */
-        nav ul li:nth-last-child(2) a {
-            text-decoration: underline; /* Remove underline from "Login" */
-        }
-        nav ul li:last-child a {
-            text-decoration: none; /* Remove underline from "Sign In" */
-            color: white; /* Change color of "Sign In" */
-        }
-        /* Style for Login button */
-        .login-button {
-            background-color: #00ff00; /* Yellow-green color */
-            color: #fff; /* White text color */
-            padding: 8px 16px; /* Adjust padding */
-            border-radius: 8px; /* Add border radius */
-        }
-        .login-button:hover {
-            background-color: #00ff00; /* Darker shade of yellow-green on hover */
-        }
-        .login-button a {
-            color: #fff; /* Set color of "Log In" link to white */
-            text-decoration: none; /* Remove underline */
-        }
-        /* Style for dropdown menus */
-        .dropdown-menu {
-            background-color: #000; /* Black background color */
-        }
-        /* Style for dropdown menu items */
-        .dropdown-menu a.dropdown-item {
-            color: #fff; /* White text color */
-        }
-        /* Style for dropdown menu items on hover */
-        .dropdown-menu a.dropdown-item:hover {
-            background-color: #333; /* Darker background color on hover */
-            color: #fff; /* White text color on hover */
-        }
-        #loginContainer {
-            margin-top: 20px;
-        }
-        /* Gray container style */
-       /* Define a keyframe animation */
+header {
+    background-color: #040F13; /* Set header background color to black */
+    color: #fff;
+    padding: 1px 20px; /* Adjusted padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Position the profile icon relative to the header */
+    height: 120px; /* Set fixed height for the header */
+}
+header img {
+    height: 180px; /* Adjusted height */
+    transition: transform 0.3s; /* Add transition for smooth effect */
+}
+header img:hover {
+    transform: scale(1.5); /* Enlarge the logo on hover */
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+    position: relative; /* Set position to relative for dropdown */
+}
+nav ul li:first-child {
+    margin-left: 0;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px; /* Adjust font size */
+}
+.profile-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    height: 40px;
+    border-radius: 50%;
+}
+/* Additional CSS */
+nav ul li:nth-last-child(2) a {
+    text-decoration: underline; /* Remove underline from "Login" */
+}
+nav ul li:last-child a {
+    text-decoration: none; /* Remove underline from "Sign In" */
+    color: white; /* Change color of "Sign In" */
+}
+/* Style for Login button */
+.login-button {
+    background-color: #00ff00; /* Yellow-green color */
+    color: #fff; /* White text color */
+    padding: 8px 16px; /* Adjust padding */
+    border-radius: 8px; /* Add border radius */
+}
+.login-button:hover {
+    background-color: #00ff00; /* Darker shade of yellow-green on hover */
+}
+.login-button a {
+    color: #fff; /* Set color of "Log In" link to white */
+    text-decoration: none; /* Remove underline */
+}
+/* Style for dropdown menus */
+.dropdown-menu {
+    background-color: #000; /* Black background color */
+}
+/* Style for dropdown menu items */
+.dropdown-menu a.dropdown-item {
+    color: #fff; /* White text color */
+}
+/* Style for dropdown menu items on hover */
+.dropdown-menu a.dropdown-item:hover {
+    background-color: #333; /* Darker background color on hover */
+    color: #fff; /* White text color on hover */
+}
+#loginContainer {
+    margin-top: 20px;
+}
+/* Gray container style */
 @keyframes fadeIn {
     from {
         opacity: 0; /* Start with opacity 0 */
@@ -112,8 +105,6 @@
         opacity: 1; /* End with opacity 1 */
     }
 }
-
-/* Apply the animation to the gray container */
 .gray-container {
     display: none; /* Initially hide the gray container */
     background-color: #040F13; /* Gray background color */
@@ -131,24 +122,23 @@
     padding-bottom: 20px; /* Adjust padding */
     animation: fadeIn 0.5s ease; /* Apply the animation */
 }
-
-        .text {
-            color: white; /* Change color of "Sign In" */
-        }
-        /* Reserve now button */
-        .reserve-now {
-            text-align: center; /* Center align text */
-            margin-top: 20px; /* Add margin top */
-        }
-        /* Audio icon */
-        .audio-icon {
-            position: absolute;
-            top: 10px; /* Adjust top position */
-            right: 10px; /* Adjust right position */
-            color: white; /* Icon color */
-            font-size: 24px; /* Icon size */
-        }
-        .reserve-now button {
+.text {
+    color: white; /* Change color of "Sign In" */
+}
+/* Reserve now button */
+.reserve-now {
+    text-align: center; /* Center align text */
+    margin-top: 20px; /* Add margin top */
+}
+/* Audio icon */
+.audio-icon {
+    position: absolute;
+    top: 10px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+    color: white; /* Icon color */
+    font-size: 24px; /* Icon size */
+}
+.reserve-now button {
     background-color: #00ff00;
     color: #fff; /* Set text color to white */
     border-radius: 8px;
@@ -157,8 +147,53 @@
     border: 2px solid #00ff00; /* Set border color to match button color */
 }
 
+/* Media query for screens smaller than 768px (Bootstrap's small breakpoint) */
+@media (max-width: 767.98px) {
+    header {
+        flex-direction: column; /* Stack items vertically */
+        height: auto; /* Allow header height to adjust based on content */
+        padding: 10px; /* Adjusted padding */
+    }
+    header img {
+        height: 100px; /* Adjusted height for logo */
+    }
+    .centered-text {
+        position: static; /* Reset position */
+        text-align: center; /* Center align text */
+        margin-top: 10px; /* Adjust margin */
+    }
+    nav ul {
+        text-align: center; /* Center align menu items */
+        margin-top: 10px; /* Adjust margin */
+    }
+    nav ul li {
+        display: block; /* Change to block display */
+        margin: 10px 0; /* Adjust margin */
+    }
+    nav ul li:first-child {
+        margin-top: 0; /* Reset margin */
+    }
+    .profile-icon {
+        position: static; /* Reset position */
+        margin-top: 10px; /* Adjust margin */
+    }
+    .gray-container {
+        position: static; /* Reset position */
+        top: auto; /* Reset top position */
+        right: auto; /* Reset right position */
+        transform: none; /* Reset transform */
+        width: 90%; /* Adjust width */
+        margin: 20px auto; /* Center horizontally with top margin */
+    }
+}
 
-   
+/* Media query for smaller tablets */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .gray-container {
+        width: 70%; /* Adjust width */
+    }
+}
+
 
     </style>
 </head>

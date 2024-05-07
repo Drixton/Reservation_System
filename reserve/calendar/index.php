@@ -4,34 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            margin: 0; /* Remove default margin */
+            padding-top: 40px; /* Adjusted padding-top */
+            background-color: black;
+        }
+        #navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: linear-gradient(to right, black, grey, green);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        #profile-tab img {
+            width: 60px; 
+        }
+
+        #logo img {
+            width: 100px; 
+        }
+        #logo {
+            flex: 1;
+            text-align: left;
+        }
+        #title {
+            flex: 1;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #profile-tab {
+            flex: 1;
+            text-align: right;
+            padding-right: 40px;
         }
         #header {
             text-align: left;
+            margin-top: 20px; /* Adjusted margin-top */
             margin-bottom: 20px;
             margin-left: 20px; /* Adjusted margin to align with "Wed" column */
+            display: flex;
+            align-items: center;
+            color: white;
         }
         table {
-            width: 50%;
+            width: 33%;
             float: left;
             margin-right: 20px;
             border-collapse: collapse;
         }
         th, td {
             padding: 5px;
-            border: 1px solid black;
             cursor: pointer;
-        }
-        th {
-            background-color: #f2f2f2;
+            color: white;
         }
         #navigation {
-            margin-top: 20px;
             clear: both;
+            display: flex;
+            align-items: center;
+            margin-left: 40px;
         }
         #time-list-container {
             width: 40%;
@@ -42,28 +86,220 @@
             float: left;
             margin-bottom: 20px;
         }
+        #time-list-container .time-column .time-container1 {
+            padding-left: 0px; /* Adjust this value to move the containers to the right */
+        }
+    
         .time-box {
             width: calc(50% - 10px);
             height: 30px;
-            border: 1px solid #ccc;
+            border: 1px solid black;
             margin: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: green;
+            background-color: grey;
             color: white;
-            border-radius: 5px;
+            border-radius: 2px;
+            cursor: pointer; /* Add cursor pointer */
+        }
+
+        .time-box.selected {
+            background-color: #00cc00; /* Highlight color for selected time */
+            color: white; /* Text color for selected time */
+        }
+
+        #button_1{
+            padding-top: 40px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        #select{
+            font-size: 18px;
+            text-align: left;
+            padding-left: 20px;
+            margin-top:20px;
+            color: #00cc00;
+        }
+
+        #ph{
+            font-size: 7px;
+            color: white;
+        }
+
+        /* Style for the line */
+        #ph-line {
+            margin-top: 8px; /* Adjust as needed */
+            width: 98%;
+            border-bottom: 1px solid white;
+            margin-left: 20px; /* Match the padding-left of the text */
+        }
+
+        #calendar-title{
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 30px;
+            font-weight:normal;
+        }
+
+        /* Style for the icon buttons */
+        .next-button, .prev-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white; /* Set button color to black */
+            margin-left:30px;
+            margin-right:30px;
+
+        }
+
+        .icon-button{
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* Style for the selected date indicator */
+        .selected-date {
+            background-color: #00cc00; /* Green background */
+            color: white; /* White text color */
+        }
+
+        #date1 {
+            display: flex;
+            justify-content: center;
+            padding-left: 15%;
+            font-weight: bold;
+            font-size: 25px;
+            padding-bottom: 5px;
+            color: white;
+        }
+
+        #text-link {
+            text-align: center; /* Center the text link */
+            padding-right: 140px;
+            color: green; /* Change font color to green */
+        }
+
+        #text-link a {
+            color: green; /* Change font color to green */
+        }
+        
+        
+
+
+        #button-container {
+            position: fixed;
+            top: 70%;
+            right: 120px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column; /* Arrange buttons vertically */
+            align-items: center; /* Align buttons to the right */
+        }
+
+        .text-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        #button_6 {
+            border: none; /* Remove existing border */
+            border-radius: 10px; /* Add rounded corners */
+            background-color: #00cc00; /* Green background */
+            color: white; /* White text color */
+            height: 50px; /* Adjust height as needed */
+            width: 200px; /* Adjust width as needed */
+            margin-top: 10px; /* Adjust margin as needed */
+            font-size: 20px; /* Set font size */
+        }
+        #button_2{
+            border-top: 2px solid white;
+            height: 40px;
+            padding-top: 10px;
+            width: 130%;
+            color: white;
+        }
+        #button_3{
+            border-top: 2px solid white;
+            height: 40px;
+            padding-top: 10px;
+            width: 130%;
+            color: white;
+        }
+        #button_4{
+            border-top: 2px solid white;
+            height: 40px;
+            padding-top: 10px;
+            width: 130%;
+            color: white;
+        }
+        #button_5 {
+            border-top: 2px solid white; /* Add a solid border on the top */
+            border-bottom: 2px solid white;
+            height: 50px;
+            width: 130%;
+            color: white;
+           
+        }
+
+        #duration{
+            font-size: 20px;
+            color:white;
         }
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1 id="calendar-title">April 2024</h1>
-        <div id="navigation">
-            <button id="prev-month">Previous Month</button>
-            <button id="next-month">Next Month</button>
+    <div id="navbar">
+        <div id="logo">
+            <img src="../assets/img/logo.png" alt="Logo">
+        </div>
+        <div id="title">
+            <h1 id="nav-title">Schedule and Time</h1>
+        </div>
+        <div id="profile-tab">
+            <img src="../assets/img/profile.png" alt="Profile">
         </div>
     </div>
+
+    <div id="button_1">
+        <button onclick="goBack()" style="margin-top: 50px;" class="icon-button"><i class="fas fa-arrow-left"></i></button>
+    </div>
+
+    <div id="select">
+        <h1>Select Date and Time</h1>  
+    </div>
+
+    <div id="ph">
+        <h1>Philippine Standard Time (GMT+8)</h1>
+        <!-- Horizontal line -->
+        <div id="ph-line"></div>
+    </div>
+
+    <div id="header">
+        <div id="navigation">
+            <button id="prev-month" class="prev-button"><i class="fas fa-chevron-left"></i></button>
+            <h1 id="calendar-title">April 2024</h1>
+            <button id="next-month" class="next-button"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div id="date1">
+            <h1></h1>  
+        </div>
+
+    </div>
+
+    
+
+
     <table>
         <thead>
             <tr>
@@ -79,20 +315,50 @@
         <tbody id="calendar-body"></tbody>
     </table>
 
+    
     <div id="time-list-container">
         <div class="time-column">
-            <h2>Available time</h2>
-            <div id="time-container1" class="time-container"></div>
+            <div id="time-container1" class="time-container">
+                <!-- Display available hours here -->
+                <div class="time-box" onclick="selectTime(this)">7:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">8:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">9:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">10:00 AM</div>
+            </div>
         </div>
         <div class="time-column">
-            <h2>Available time</h2>
-            <div id="time-container2" class="time-container"></div>
+            <div id="time-container2" class="time-container">
+                <!-- Display available hours here -->
+                <div class="time-box" onclick="selectTime(this)">7:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">8:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">9:00 AM</div>
+                <div class="time-box" onclick="selectTime(this)">10:00 AM</div>
+            </div>
         </div>
+
+        <div id="text-link">
+            <a href="#">See all sessions</a>
+        </div>
+    </div>
+
+    
+
+    <!-- Button container -->
+    <div id="button-container">
+
+        <div id="duration">
+            <h3>Duration</h3>  
+        </div>
+
+        <button id="button_2" class="text-button">1 hour</button>
+        <button id="button_3" class="text-button">2 hour</button>
+        <button id="button_4" class="text-button">3 hour</button>
+        <button id="button_5" class="text-button">Open hours</button>
+        <button id="button_6" class="text-button">Go to Payment</button>
     </div>
 
     <script>
         let currentYear, currentMonth;
-        let lastClickedDate = null;
 
         function generateCalendar(year, month) {
             const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -129,45 +395,43 @@
         }
 
         function showTimes(event) {
-            const selectedDate = event.target.dataset.date;
-            const timeContainer1 = document.getElementById('time-container1');
-            const timeContainer2 = document.getElementById('time-container2');
+    const selectedDate = new Date(event.target.dataset.date);
+    const week = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+    const month = selectedDate.toLocaleDateString('en-US', { month: 'long' });
+    const day = selectedDate.getDate();
 
-            if (selectedDate === lastClickedDate) {
-                timeContainer1.innerHTML = '';
-                timeContainer2.innerHTML = '';
-                lastClickedDate = null;
-                return;
-            }
+    // Remove the indicator class from the previously clicked cell, if any
+    const lastClickedDate = document.querySelector('.selected-date');
+    if (lastClickedDate) {
+        lastClickedDate.classList.remove('selected-date');
+    }
 
-            const hours = [
-                '7:00 AM', '8:00 AM',
-                '9:00 AM', '10:00 AM',
-                '11:00 AM', '12:00 PM',
-                '1:00 PM', '2:00 PM',
-                '3:00 PM', '4:00 PM'
-            ];
+    // Remove the selected class from all time boxes
+    const timeBoxes = document.querySelectorAll('.time-box');
+    timeBoxes.forEach(box => {
+        box.classList.remove('selected');
+    });
 
-            timeContainer1.innerHTML = '';
-            timeContainer2.innerHTML = '';
+    // Add the indicator class to the clicked cell
+    event.target.classList.add('selected-date');
 
-            for (let i = 0; i < hours.length; i++) {
-                const div = document.createElement('div');
-                div.className = 'time-box';
-                div.textContent = hours[i];
-                if (i % 2 === 0) {
-                    timeContainer1.appendChild(div);
-                } else {
-                    timeContainer2.appendChild(div);
-                }
-            }
+    // Display the selected date by week, month, and day in the "Date Now" element
+    document.getElementById('date1').textContent = `${week}, ${month} ${day}`;
+}
 
-            lastClickedDate = selectedDate;
-        }
+function displayCurrentDate() {
+    const now = new Date();
+    const week = now.toLocaleDateString('en-US', { weekday: 'long' });
+    const month = now.toLocaleDateString('en-US', { month: 'long' });
+    const day = now.getDate();
 
-        function updateCalendar() {
-            generateCalendar(currentYear, currentMonth);
-        }
+    // Display the current date in the "Date Now" element
+    document.getElementById('date1').textContent = `${week}, ${month} ${day}`;
+}
+
+// Call the function to display the current date when the page loads
+displayCurrentDate();
+
 
         function goToPreviousMonth() {
             currentMonth--;
@@ -175,7 +439,7 @@
                 currentMonth = 11;
                 currentYear--;
             }
-            updateCalendar();
+            generateCalendar(currentYear, currentMonth);
         }
 
         function goToNextMonth() {
@@ -184,7 +448,11 @@
                 currentMonth = 0;
                 currentYear++;
             }
-            updateCalendar();
+            generateCalendar(currentYear, currentMonth);
+        }
+
+        function goBack() {
+            window.history.back();
         }
 
         const now = new Date();
@@ -194,6 +462,20 @@
 
         document.getElementById('prev-month').addEventListener('click', goToPreviousMonth);
         document.getElementById('next-month').addEventListener('click', goToNextMonth);
+
+        // Display the current date when the page loads
+        displayCurrentDate();
+
+        function selectTime(timeBox) {
+            // Remove the selected class from all time boxes
+            const timeBoxes = document.querySelectorAll('.time-box');
+            timeBoxes.forEach(box => {
+                box.classList.remove('selected');
+            });
+
+            // Add the selected class to the clicked time box
+            timeBox.classList.add('selected');
+        }
     </script>
 </body>
 </html>
