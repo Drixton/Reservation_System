@@ -167,7 +167,7 @@ $conn->close();
 
 
             <button type="submit" name="submit" class="btn-like">Sign In</button>
-            <a class="btn-like" href="http://localhost/reservation_system/reserve/">Back</a>
+            <a class="btn-like" href="/reservation_system/reserve/index.php">Home</a>
             <br><br>
         </form>
     </div>

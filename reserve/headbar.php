@@ -223,7 +223,7 @@
     });
      // JavaScript to redirect to the specified page after clicking the Reserve Now button
      document.getElementById('reserveButton').addEventListener('click', function() {
-        window.location.href = 'http://localhost/reserve/userlog/index.php';
+        window.location.href = '/reservation_system/reserve/userlog/index.php';
     }); 
 </script>
 
