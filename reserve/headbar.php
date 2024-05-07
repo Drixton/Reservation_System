@@ -188,8 +188,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our location</a>
                     <ul class="dropdown-menu" aria-labelledby="locationDropdown">
-                        <li><a class="dropdown-item" href="#">Google Map</a></li>
-                        <li><a class="dropdown-item" href="#">Waze</a></li>
+                        <li><a class="dropdown-item" href="https://www.google.com/maps/@14.3917056,120.9532416,13z?entry=ttu">Google Map</a></li>
+                        <li><a class="dropdown-item" href="https://www.waze.com/live-map/">Waze</a></li>
                         <!-- Add more locations here -->
                     </ul>
                 </li>
