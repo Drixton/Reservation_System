@@ -71,7 +71,9 @@
 <body>
 
 <header>
-    <img src="../assets/img/logo.png" alt="Logo">
+<a href="http://localhost/reservation_system/reserve/">
+        <img src="../assets/img/logo.png" alt="Logo">
+    </a>
     <div class="dropdown">
     <img src="../assets/img/profile.png" alt="Logo2" class="prifle dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> 
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
