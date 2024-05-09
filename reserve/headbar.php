@@ -193,6 +193,23 @@ nav ul li:last-child a {
         width: 70%; /* Adjust width */
     }
 }
+ .audio-icon.playing::before {
+        content: '\f028'; /* FontAwesome speaker icon */
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        font-size: 24px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .speaker-icon {
+    position: absolute;
+    top: 5px; /* Adjust top position */
+    right: 5px; /* Adjust right position */
+    width: 60px; /* Adjust width */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 9999; /* Ensure it appears above other content */
+}
 
 
     </style>
@@ -236,31 +253,44 @@ nav ul li:last-child a {
 </header>
 
 <div id="loginContainer"> <!-- Gray container -->
-    <div class="gray-container" id="grayContainer"> <!-- Gray container -->
+    <div class="gray-container" id="grayContainer"> 
+    <img src="speakericon.gif" class="speaker-icon" alt="Speaker Icon"> <!-- Gray container -->
         <i class="fas fa-volume-up audio-icon"></i> <!-- Audio icon -->
         <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi impedit quam ipsam repudiandae, ab maxime provident? Quo porro voluptates saepe atque optio reiciendis facilis, tempore nam laboriosam et officiis quis expedita non ut doloribus aliquid molestias iure quae temporibus consequatur nihil. Aliquam sunt temporibus animi adipisci quae illo distinctio quisquam!.</p>
+        <audio id="audioPlayer" controls autoplay loop>
+            <source src="welcome.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         <div class="reserve-now"> <!-- Reserve now button -->
-        <button class="btn btn-primary" id="reserveButton">Reserve Now</button>
+            <button class="btn btn-primary" id="reserveButton">Reserve Now</button>
         </div>
     </div>
 </div>
 
+
+
 <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Font Awesome -->
 <script>
-    // JavaScript to toggle the visibility of the container when the login button is clicked
+    // JavaScript to toggle the visibility of the container and audio playback when the login button is clicked
     document.querySelector('.login-button').addEventListener('click', function() {
         var grayContainer = document.getElementById('grayContainer');
+        var audio = document.querySelector('audio'); // Select the audio element
+        
         if (grayContainer.style.display === 'block') {
             grayContainer.style.display = 'none';
+            audio.pause(); // Pause the audio
         } else {
             grayContainer.style.display = 'block';
+            audio.play(); // Play the audio
         }
     });
-     // JavaScript to redirect to the specified page after clicking the Reserve Now button
-     document.getElementById('reserveButton').addEventListener('click', function() {
+
+    // JavaScript to redirect to the specified page after clicking the Reserve Now button
+    document.getElementById('reserveButton').addEventListener('click', function() {
         window.location.href = '/reservation_system/reserve/userlog/index.php';
-    }); 
+    });
 </script>
+
 
 </body>
 </html>
