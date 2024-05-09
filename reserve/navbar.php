@@ -75,7 +75,7 @@
     <div class="dropdown">
     <img src="../assets/img/profile.png" alt="Logo2" class="prifle dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> 
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">View profle</a></li>
+    <li><a class="dropdown-item" href="#">View profile</a></li>
     <li><a class="dropdown-item" href="#">test</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="logout.php">Logout</a></li>
@@ -84,12 +84,23 @@
     <div class="centered-text">
         <nav>
             <ul>
-                <li><a href="#">CHOOSE YOUR SPORT</a></li>
+                <li><a href="#" id="sportText">CHOOSE YOUR SPORT</a></li>
             </ul>
         </nav>
     </div>
 
 </header>
+
+<script>
+    setInterval(changeColor, 1000);
+
+    function changeColor() {
+        var colors = ['#FF0000', '#FFA500', '#008000', '#0000FF']; // Red, Orange, Green, Blue
+        var sportText = document.getElementById('sportText');
+        var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        sportText.style.color = randomColor;
+    }
+</script>
 
 </body>
 </html>
