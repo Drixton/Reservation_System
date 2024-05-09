@@ -9,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sport list</title>
     <style>
+        
     body {
         font-family: "Tilt Neon", sans-serif;
         margin: 0;
         padding: 0;
+       
     }
     header {
         background-color: #000; /* Set header background color to black */
@@ -137,73 +139,112 @@
         }
     }
 
-    /* Container styles */
-  /* Container styles */
-.container1 {
-    position: relative; /* Add position relative */
-    width: 188px;
-    height: 500px; /* Set the height of each container */
-    background-size: cover;
-    background-position: center;
-    display: inline-block;
-    margin: 0; /* Adjusted margin to remove space */
-    border: 2px solid #fff; /* Add border */
-    border-radius: 10px; /* Add border-radius */
-    overflow: hidden;
-    transition: transform 0.1s; /* Add transition for smooth effect */
-    max-width: 320px;
-}
-
-.container1:hover {
-    transform: scale(1.1); /* Scale up by 10% when hovered over */
-}
-
-.container1:hover .random-text {
-    font-size: 50px; /* Enlarge text size on hover */
-    color: black; /* Change text color to white on hover */
-}
-
-.container1:hover img {
-    filter: blur(5px) brightness(0.5); /* Blur and darken image on hover */
-}
-
-.random-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    color: black; /* Change text color to green */
-    font-size: 40px;
-    text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black; /* Add text shadow for glowing effect */
-    animation: glow 1.5s infinite alternate; /* Add animation for glowing effect */
-    transition: font-size 0.3s; /* Add transition for smooth font-size change */
-    z-index: 1; /* Bring text to the forefront */
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0; /* Initial text shadow */
-    }
-    to {
-        text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Final text shadow */
-    }
-}
-
-/* Image styles */
-.container1 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Make sure the image covers the whole container */
-    display: block;
-    position: relative; /* Add position relative */
-    z-index: 0; /* Ensure image is behind text initially */
-}
-
-@media screen and (max-width: 520px) {
+    @media screen and (max-width: 520px) {
     .container1 {
-        width: 100%;
+        width: 100%; /* Adjust width for responsiveness */
+        height: auto; /* Adjust height to auto to maintain aspect ratio */
+        margin-bottom: 20px; /* Add margin at the bottom of each container */
+    }
+
+    .container1:hover {
+        width: 100%; /* Remove width expansion on hover */
+    }
+
+    .random-text {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+
+    .container1 img {
+        width: 100%; /* Set image width to 100% for responsiveness */
+        height: auto; /* Set image height to auto to maintain aspect ratio */
+        object-fit: cover; /* Maintain aspect ratio and cover container */
     }
 }
+
+@media screen and (min-width: 521px) {
+    .main {
+        display: flex; /* Use flexbox to arrange containers in a row */
+        flex-wrap: wrap; 
+        background-color: #000;/* Allow containers to wrap to the next line if needed */
+    /* Add gap between containers */
+    }
+
+    .container1 {
+        position: relative;
+        width: 123px; /* Set fixed width for each container */
+        height: 550px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 20px; /* Add margin at the bottom of each container */
+        border: 2px solid #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: width 0.3s ease;
+    }
+
+    .container1:hover {
+        width: 240px; /* Expand width on hover */
+    }
+
+    .container1:hover .random-text {
+        font-size: 50px;
+        color: black;
+    }
+
+    .container1:hover img {
+        filter: blur(5px) brightness(0.5);
+    }
+
+    .random-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        color: black;
+        font-size: 25px;
+        text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black;
+        animation: glow 1.5s infinite alternate;
+        transition: font-size 0.3s;
+        z-index: 1;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+        }
+        to {
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+        }
+    }
+
+    .container1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        position: relative;
+        z-index: 0;
+    }
+}
+.button-slide {
+        position: absolute;
+        bottom: 10px; /* Adjusted initial position */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color:#00ff00;
+        color: white;
+        padding: 8px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: opacity 0.3s ease, bottom 0.3s ease; /* Added opacity transition */
+        opacity: 0; /* Initially hidden */
+    }
+
+    .container1:hover .button-slide {
+        bottom: 30px; /* Slide up on hover */
+        opacity: 1; /* Show button on hover */
+    }
 
     </style>
 </head>
@@ -215,30 +256,52 @@
         <div class="container1">
             <div class="random-text">BADMINTON</div>
             <img src="../assets/img/badminton.jpg" alt="Badminton">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">DART</div>
             <img src="../assets/img/dart.jpg" alt="Dart">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">BILLIARD</div>
             <img src="../assets/img/billiard.jpg" alt="Billiard">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">TABLE TENNIS</div>
             <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">PICKLEBALL</div>
             <img src="../assets/img/pickleball.jpg" alt="Pickleball">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">TAEKWONDO</div>
             <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
+            <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
             <div class="random-text">SEPAK TAKRAW</div>
-            <img src="../assets/img/sepaktakraw.jpg" alt="Taekwondo">
+            <img src="../assets/img/sepaktakraw.jpg" alt="Sepak Takraw">
+            <button class="button-slide">Click Here</button>
+        </div>
+        <div class="container1">
+            <div class="random-text">Cornhole</div>
+            <img src="../assets/img/cornhole.jpg" alt="Cornhole">
+            <button class="button-slide">Click Here</button>
+        </div>
+        <div class="container1">
+            <div class="random-text">Chess</div>
+            <img src="../assets/img/chess.jpg" alt="Chess">
+            <button class="button-slide">Click Here</button>
+        </div>
+        <div class="container1">
+            <div class="random-text">Arnis</div>
+            <img src="../assets/img/arnis.jpg" alt="Arnis">
+            <button class="button-slide">Click Here</button>
         </div>
     </div>
 </body>

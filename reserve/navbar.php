@@ -8,7 +8,7 @@
     <title>Header with Profile Icon</title>
     <style>
         header{
-            background-color: #000; /* Set header background color to black */
+            background-color: #040F13;/* Set header background color to black */
             color: #fff;
             padding: 1px 20px; /* Adjusted padding */
             display: flex;

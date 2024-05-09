@@ -16,7 +16,7 @@ body {
     font-family: "Teachers", sans-serif;
 }
 header {
-    background-color: #040F13; /* Set header background color to black */
+    background-color:  #040F13; /* Set header background color to black */
     color: #fff;
     padding: 1px 20px; /* Adjusted padding */
     display: flex;
