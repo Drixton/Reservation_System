@@ -18,11 +18,26 @@ session_start();
 </head>
 <body>
 <?php 
-// Include navbar
-include '../navbar.php'; 
-
-
-?>  
+    // Include navbar
+    include '../navbar.php'; 
+    
+    // Check if user is logged in
+    if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
+        // Connect to the database
+        require("../connection/conn.php");
+        
+        // Get current user's email and username
+        $email = $_SESSION['email'];
+        $username = $_SESSION['username'];
+        
+        // Display email and username
+        echo "<p>Welcome, $username! Your email is: $email</p>";
+    } else {
+        // If user is not logged in, redirect to login page
+        header("Location: ../index.php");
+        exit();
+    }
+    ?> 
     <div class="main">
 
 
