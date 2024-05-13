@@ -144,11 +144,7 @@ nav ul li:last-child a {
     header img {
         height: 100px; /* Adjusted height for logo */
     }
-    .centered-text {
-        position: static; /* Reset position */
-        text-align: center; /* Center align text */
-        margin-top: 10px; /* Adjust margin */
-    }
+
     nav ul {
         text-align: center; /* Center align menu items */
         margin-top: 10px; /* Adjust margin */
