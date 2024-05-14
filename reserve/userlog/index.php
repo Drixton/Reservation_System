@@ -160,7 +160,7 @@ $conn->close();
                 <div id="tooltip" style="display: none; color: blue;">Minimum 8 characters</div>
             </div>
             <div class="mb-3 text-start">
-    <a href="userlog/create.php" style="color: white;" target="_blank">Create Account</a>
+    <a href="create.php" style="color: white;" target="_blank">Create Account</a>
 </div>
 
 

@@ -77,7 +77,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid' && isset($_COOK
     .centered-text {
         position: absolute;
         top: 50%; /* Move the text to the vertical center of the header */
-        left: 520px; /* Push the text to the right */
+        left: 250px; /* Push the text to the right */
         transform: translateY(-50%); /* Center vertically */
         font-size: -50px;
     }
