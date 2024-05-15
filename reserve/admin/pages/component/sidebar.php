@@ -40,8 +40,8 @@ if ($result->num_rows > 0) {
     }
 </style>
 
-<div class="bg-sidebar vh-100% w-50 position-fixed" style="background-color: #4d4855;
-background-image: linear-gradient(147deg, #4d4855 0%, #000000 74%);
+<div class="bg-sidebar vh-100% w-50 position-fixed" style="background-color: black;
+background-image: linear-gradient(147deg, black 0%, green 80%);
 ">
     <div class="log d-flex justify-content-between" id="dash-text">
         <h1 class="E-classe text-start ms-3 ps-1 mt-3 h6 fw-bold">Administrator</h1>
