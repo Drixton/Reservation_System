@@ -131,7 +131,7 @@
                     <div class="form-group">
                         <label for="user_type">User Type</label>
                         <select name="user_type" required>
-                            <option value="adminlogs">Sub-Admin</option>
+                            <option value="adminlogs">Admin</option>
                             <option value="users">client</option>
                       
                         </select>

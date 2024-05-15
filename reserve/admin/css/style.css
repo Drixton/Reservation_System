@@ -45,7 +45,7 @@ background-image: linear-gradient(147deg, #000000 0%, #035a16 74%);
     transition: 1s ease-out;
 }
 button[type="submit"]{
-    background-color: #00C1FE;
+    background-color: white;
 }
 .E-classe {
     border-left:solid 6px #00C1FE;

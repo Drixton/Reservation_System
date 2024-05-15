@@ -69,8 +69,8 @@ background-image: linear-gradient(147deg, black 0%, green 80%);
                                 class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text"> Unit Log 303 Archives</span></a></li>-->
 								<li class="h7"><a class=" nav-link text-dark" href="Sportlist.php"><i
                                 class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Sport list</span></a></li>
-								<li class="h7"><a class=" nav-link text-dark" href="/track-wise/admin/pages/Genereateunitqr/"><i
-                                class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Generate Unit Qr</span></a></li>
+								<li class="h7"><a class=" nav-link text-dark" href="records.php"><i
+                                class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Records</span></a></li>
 					
                     <li class="h7"><a class=" nav-link text-dark" href="adminlogs.php"><i
                                 class="fas fa-user-shield me-2"id="dash-text"></i> <span id="dash-text">Admin accounts</span></a></li>
