@@ -221,7 +221,7 @@ button:hover {
         }
 
         function goBack() {
-            window.location.href = "/reservation_system/reserve/admin2/pages/dashboard.php";
+            window.location.href = "/reservation_system/reserve/admin/pages/dashboard.php";
         }
     </script>
 </body>

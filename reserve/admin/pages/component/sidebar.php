@@ -67,9 +67,9 @@ background-image: linear-gradient(147deg, #4d4855 0%, #000000 74%);
                                 class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text"> Unit Log 302 Archives</span></a></li>
 								<li class="h7"><a class=" nav-link text-dark" href="unitsave303.php"><i
                                 class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text"> Unit Log 303 Archives</span></a></li>-->
-								<li class="h7"><a class=" nav-link text-dark" href="unitreports.php"><i
-                                class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">UNIT Reports</span></a></li>
-								<li class="h7"><a class=" nav-link text-dark" href="/track-wise/admin2/pages/Genereateunitqr/"><i
+								<li class="h7"><a class=" nav-link text-dark" href="Sportlist.php"><i
+                                class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Sport list</span></a></li>
+								<li class="h7"><a class=" nav-link text-dark" href="/track-wise/admin/pages/Genereateunitqr/"><i
                                 class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Generate Unit Qr</span></a></li>
 					
                     <li class="h7"><a class=" nav-link text-dark" href="adminlogs.php"><i
@@ -79,7 +79,7 @@ background-image: linear-gradient(147deg, #4d4855 0%, #000000 74%);
 								<li class="h7"><a class=" nav-link text-dark" href="studentlogs.php"><i
                                 class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text">Student accounts</span></a></li>
 									
-								  <li class="h7"><a class=" nav-link text-dark" href="\track-wise/admin2/pages/schedulesystem/home.php"><i
+								  <li class="h7"><a class=" nav-link text-dark" href="\track-wise/admin/pages/schedulesystem/home.php"><i
                                 class="fas fa-calendar-plus me-2" id="dash-text"></i> <span id="dash-text">Add Schedules</span></a></li>
 								 <li class="h7"><a class=" nav-link text-dark" href="adminregistration.php"><i
                                 class="fas fa-user-plus me-2"id="dash-text"></i> <span id="dash-text">Registration</span></a></li>
