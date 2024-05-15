@@ -81,47 +81,49 @@
             <!-- start student list table -->
 
             <?php
-            $host = "localhost";  // Your MySQL host
-            $username = "root";  // Your MySQL username
-            $password = "";  // Your MySQL password
-            $database = "qrcode";  // Your database name
+$host = "localhost";  // Your MySQL host
+$username = "root";  // Your MySQL username
+$password = "";  // Your MySQL password
+$database = "reservation";  // Your database name
 
-            $conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect($host, $username, $password, $database);
 
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-            $full_name = $email = $password = $user_type = "";
-            $success_message = "";
+$full_name = $email = $password = $user_type = "";
+$success_message = "";
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $full_name = $_POST["full_name"];
-                $email = $_POST["email"];
-                $password = $_POST["password"];
-                $user_type = $_POST["user_type"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = $_POST["full_name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $user_type = $_POST["user_type"];
 
-                // Validate the password with a regular expression
-                $password_pattern = "/^[a-zA-Z0-9]{8,32}$/"; // Only letters and digits allowed, and length between 8 to 32 characters
-                if (preg_match($password_pattern, $password)) {
-                    // Use prepared statement to prevent SQL injection
-                    $stmt = $conn->prepare("INSERT INTO facultylogs (full_name, email, password) VALUES (?, ?, ?)");
-                    $stmt->bind_param("sss", $full_name, $email, $password);
+    // Validate the password with a regular expression
+    $password_pattern = "/^[a-zA-Z0-9]{8,32}$/"; // Only letters and digits allowed, and length between 8 to 32 characters
+    if (preg_match($password_pattern, $password)) {
+        // Use prepared statement to prevent SQL injection
+        $created_at = date("Y-m-d H:i:s"); // Current datetime
+        $stmt = $conn->prepare("INSERT INTO users (email, username, password, created_at) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $email, $full_name, $password, $created_at);
 
-                    if ($stmt->execute()) {
-                        $success_message = "Registration successful!";
-                    } else {
-                        echo "Error: " . $stmt->error;
-                    }
+        if ($stmt->execute()) {
+            $success_message = "Registration successful!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
 
-                    $stmt->close();
-                } else {
-                    $error_message = "Password must be between 8 to 32 characters and should not contain special characters.";
-                }
-            }
-            ?>
+        $stmt->close();
+    } else {
+        $error_message = "Password must be between 8 to 32 characters and should not contain special characters.";
+    }
+}
+?>
+
             <div class="container">
-                <h2>Registration Form</h2>
+                <h2>Client Registration Form</h2>
                 <?php if (!empty($success_message)): ?>
                     <div class="alert-success">
                         <?php echo $success_message; ?>
@@ -131,9 +133,9 @@
                     <div class="form-group">
                         <label for="user_type">User Type</label>
                         <select name="user_type" required>
-                    <option value="facultylogs">Faculty</option>
-                            <option value="Studentlogs">Student</option>
-							     <option value="adminlogs">Sub-Admin</option>
+                    <option value="users">client</option>
+                            
+							     <option value="adminlogs">Admin</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -159,27 +161,30 @@
     <script src="../js/script.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
 
-    <!-- Add this script at the end of your HTML file -->
-   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the user_type dropdown element
-        var userTypeDropdown = document.getElementsByName("user_type")[0];
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the user_type dropdown element
+    var userTypeDropdown = document.getElementsByName("user_type")[0];
 
-        // Add event listener for the change event
-        userTypeDropdown.addEventListener("change", function () {
-            // Get the selected value
-            var selectedValue = userTypeDropdown.value;
+    // Add event listener for the change event
+    userTypeDropdown.addEventListener("change", function () {
+        // Get the selected value
+        var selectedValue = userTypeDropdown.value;
 
-            // Redirect based on the selected value
-            if (selectedValue === "facultylogs") {
-                window.location.href = "facultyregistration.php";
-            } else if (selectedValue === "Studentlogs") {
-                window.location.href = "studentregistration.php";
-            }
-            // Add other conditions for different user types if needed
-        });
+        // Redirect based on the selected value
+        if (selectedValue === "users") {
+            // Redirect to the client registration page
+            window.location.href = "clientregistration.php";
+        } else if (selectedValue === "adminlogs") {
+            // Redirect to the admin registration page
+            window.location.href = "adminregistration.php";
+        }
+        // Add other conditions for different user types if needed
     });
+});
 </script>
+
+
 
 </body>
 

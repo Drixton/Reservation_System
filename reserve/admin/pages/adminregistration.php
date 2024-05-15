@@ -121,7 +121,7 @@
             }
             ?>
             <div class="container">
-                <h2>Registration Form</h2>
+                <h2>Admin Registration Form</h2>
                 <?php if (!empty($success_message)): ?>
                     <div class="alert-success">
                         <?php echo $success_message; ?>
@@ -132,8 +132,8 @@
                         <label for="user_type">User Type</label>
                         <select name="user_type" required>
                             <option value="adminlogs">Sub-Admin</option>
-                            <option value="facultylogs">Faculty</option>
-                            <option value="Studentlogs">Student</option>
+                            <option value="users">client</option>
+                      
                         </select>
                     </div>
                     <div class="form-group">
@@ -159,32 +159,30 @@
     <script src="../js/script.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
 
-    <!-- Add this script at the end of your HTML file -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the user_type dropdown element
-        var userTypeDropdown = document.getElementsByName("user_type")[0];
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the user_type dropdown element
+    var userTypeDropdown = document.getElementsByName("user_type")[0];
 
-        // Add event listener for the change event
-        userTypeDropdown.addEventListener("change", function () {
-            // Get the selected value
-            var selectedValue = userTypeDropdown.value;
+    // Add event listener for the change event
+    userTypeDropdown.addEventListener("change", function () {
+        // Get the selected value
+        var selectedValue = userTypeDropdown.value;
 
-            // Redirect based on the selected value
-            if (selectedValue === "facultylogs") {
-                window.location.href = "facultyregistration.php";
-            } else if (selectedValue === "Studentlogs") {
-                window.location.href = "studentregistration.php";
-            }
-            // Add other conditions for different user types if needed
-        });
+        // Redirect based on the selected value
+        if (selectedValue === "adminlogs") {
+            // Redirect to the admin registration page
+            window.location.href = "adminregistration.php";
+        } else if (selectedValue === "users") {
+            // Redirect to the client registration page
+            window.location.href = "clientregistration.php";
+        }
+        // Add other conditions for different user types if needed
     });
-    function validateInput(input) {
-    // Remove any non-alphabetic characters (including numbers)
-    input.value = input.value.replace(/[^A-Za-z\s]/g, '');
-}
+});
 </script>
 
+   
 </body>
 
 </html>
