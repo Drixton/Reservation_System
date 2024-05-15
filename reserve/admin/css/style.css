@@ -45,10 +45,10 @@ background-image: linear-gradient(147deg, #000000 0%, #035a16 74%);
     transition: 1s ease-out;
 }
 button[type="submit"]{
-    background-color: white;
+    background-color: #00C1FE;
 }
 .E-classe {
-    border-left:solid 6px #00C1FE;
+    border-left:solid 6px #eda60d;
 }
 .bg-sign-in p,.bg-sign-in label{
     font-size: 14px;
