@@ -109,7 +109,7 @@ input[type="email"]::placeholder,input[type="password"]::placeholder{
     color:#00C1FE;
 }
 .card__items--gradient{
-    background: linear-gradient(110.42deg, #00C1FE 18.27%, #FAFFC1 91.84%);
+    background: linear-gradient(110.42deg, #0f8315 18.27%, #FAFFC1 91.84%);
 }
 .card__items--gradient i{
     color:#FFFFFF;
