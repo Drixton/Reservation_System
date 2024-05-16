@@ -4034,11 +4034,14 @@ textarea.form-control-lg {
 .navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  margin-right: 1rem;
+  margin-right: auto; /* This will push the brand to the left edge */
+  margin-left: auto; /* This will push the brand to the right edge */
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  text-align: center; /* This centers the text */
 }
+
 .navbar-nav {
   display: flex;
   flex-direction: column;
