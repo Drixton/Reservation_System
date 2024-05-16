@@ -22,6 +22,7 @@
 
         .navbar {
             margin-bottom: 20px;
+            border-radius: 10px;
         }
 
         .card {

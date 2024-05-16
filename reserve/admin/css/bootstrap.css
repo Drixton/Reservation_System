@@ -635,7 +635,9 @@ progress {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+  border-radius: 10px; /* This sets the border radius */
 }
+
 
 @media (min-width: 576px) {
   .container-sm, .container {
@@ -7297,7 +7299,7 @@ textarea.form-control-lg {
 }
 
 .mt-4 {
-  margin-top: 1.5rem !important;
+  margin-top: 3.5rem !important;
 }
 
 .mt-5 {
