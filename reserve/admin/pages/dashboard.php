@@ -121,7 +121,7 @@
                 <div class="card card__items card__items--gradient col-md-3 position-relative animated fadeInUp">
                     <div class="card__users d-flex flex-column gap-2 mt-3">
                         <i class="fas fa-chalkboard-teacher me-2"></i>
-                        <span>Faculty</span>
+                        <span>Sportlist</span>
                     </div>
                     <div class="card__nbr-students">
                         <span class="h5 fw-bold nbr"><?php echo $nbr_fac; ?></span>
