@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the user is logged in and the session ID matches the one stored in cookies
+if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid' && isset($_COOKIE['session_id']) && $_COOKIE['session_id'] === session_id()) {
+    // If logged in and session ID matches, display welcome message with username
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    echo "<p class='welcome-message'>Welcome, $username!</p>";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +19,82 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <title>AEP</title>
-    <style>
-      /* Common styles */
-body {
+<link rel="stylesheet" href="assets/css/landpage.css">   
+<title>AEP</title>
+
+<style>
+    header{
+        background-color: #040F13;
+        color: #fff;
+        padding: 1px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: 120px;
+        position: relative; /* Ensure the header is positioned relatively */
+    }
+
+    header img {
+        height: 100px;
+        transition: transform 0.3s;
+    }
+    header img:hover {
+        transform: scale(1.5);
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+    }
+    nav ul li {
+        display: inline;
+        margin-left: 20px;
+        position: relative;
+    }
+
+    nav ul li:first-child {
+        margin-left: 0;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 40px;
+    }
+
+    .profile-icon {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .centered-text {
+        position: absolute;
+        top: 50%; /* Move the text to the vertical center of the header */
+        left: 250px; /* Push the text to the right */
+        transform: translateY(-50%); /* Center vertically */
+        font-size: -50px;
+    }
+    .prifle{
+        width:80px;
+        height:50px
+    }
+
+    /* Echoing welcome message style */
+    .welcome-message {
+        position: absolute;
+        bottom: 0;
+        right: 20px;
+        color: white;
+        margin-bottom: 5px;
+    }
+    body {
     background-color: #000; /* Background color */
     font-family: "Teachers", sans-serif;
 }
@@ -53,7 +136,7 @@ nav ul li a {
 }
 .profile-icon {
     position: absolute;
-    top: 10px;
+    top: 35px;
     right: 20px;
     height: 40px;
     border-radius: 50%;
@@ -157,11 +240,7 @@ nav ul li:last-child a {
     header img {
         height: 100px; /* Adjusted height for logo */
     }
-    .centered-text {
-        position: static; /* Reset position */
-        text-align: center; /* Center align text */
-        margin-top: 10px; /* Adjust margin */
-    }
+
     nav ul {
         text-align: center; /* Center align menu items */
         margin-top: 10px; /* Adjust margin */
@@ -193,11 +272,58 @@ nav ul li:last-child a {
         width: 70%; /* Adjust width */
     }
 }
+ .audio-icon.playing::before {
+        content: '\f028'; /* FontAwesome speaker icon */
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        font-size: 24px;    
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .speaker-icon {
+    position: absolute;
+    top: 5px; /* Adjust top position */
+    right: 5px; /* Adjust right position */
+    width: 60px; /* Adjust width */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 9999; /* Ensure it appears above other content */
+}
+@media (max-width: 575.98px) {
+            header img {
+                height: 80px; /* Decrease logo size */
+            }
+            .centered-text {
+                left: 50%; /* Center the text horizontally */
+                transform: translateX(-50%) translateY(-50%); /* Center vertically and horizontally */
+            }
+            .profile-icon {
+                /* Reset position */
+                margin-top: 200px; /* Adjust margin */
+                margin-left: 380px;
+                left: 520px;
+                
+            }
+            .gray-container {
+                position: static; /* Reset position */
+                top: auto; /* Reset top position */
+                right: auto; /* Reset right position */
+                transform: none; /* Reset transform */
+                width: 90%; /* Adjust width */
+                margin: 20px auto; /* Center horizontally with top margin */
+            }
+            .welcome-message {
+                bottom: auto; /* Reset position */
+                top: 10px; /* Adjust top position */
+                right: 10px; /* Adjust right position */
+            }
+        }
 
-
-    </style>
+</style>
 </head>
 <body>
+
+
 <header>
     <img src="assets/img/logo.png" alt="Logo">
     <div class="centered-text">
@@ -206,7 +332,7 @@ nav ul li:last-child a {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" id="sportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Available sports</a>
                     <ul class="dropdown-menu" aria-labelledby="sportsDropdown">
-                    <li><a class="dropdown-item" href="#">Arnis</a></li>
+                        <li><a class="dropdown-item" href="#">Arnis</a></li>
                         <li><a class="dropdown-item" href="#">badminton</a></li>
                         <li><a class="dropdown-item" href="#">Billiard</a></li>
                         <li><a class="dropdown-item" href="#">Cornhole</a></li>
@@ -233,34 +359,70 @@ nav ul li:last-child a {
             </ul>
         </nav>
     </div>
+    <!-- Add profile image here -->
+    <div >
+        <img src="assets/img/profile.png" alt="Profile" class="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">View profile</a></li>
+            <li><a class="dropdown-item" href="#">test</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="landpage/logout.php">Logout</a></li>
+        </ul>
+    </div>
+   
+</div>
+
+</div>
+    <!-- Check if user is logged in -->
+    <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid'): ?>
+        <!-- If logged in, display welcome message with username -->
+        <p class="welcome-message">Welcome, <?php echo $_SESSION['username']; ?>!</p>
+        <!-- Display user email -->
+        
+    <?php endif; ?>
 </header>
 
 <div id="loginContainer"> <!-- Gray container -->
-    <div class="gray-container" id="grayContainer"> <!-- Gray container -->
+    <div class="gray-container" id="grayContainer"> 
+    <img src="assets/icons/speakericon.gif" class="speaker-icon" alt="Speaker Icon"> <!-- Gray container -->
         <i class="fas fa-volume-up audio-icon"></i> <!-- Audio icon -->
         <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi impedit quam ipsam repudiandae, ab maxime provident? Quo porro voluptates saepe atque optio reiciendis facilis, tempore nam laboriosam et officiis quis expedita non ut doloribus aliquid molestias iure quae temporibus consequatur nihil. Aliquam sunt temporibus animi adipisci quae illo distinctio quisquam!.</p>
+        <audio id="audioPlayer" controls autoplay loop>
+            <source src="assets/audio/welcome.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         <div class="reserve-now"> <!-- Reserve now button -->
-        <button class="btn btn-primary" id="reserveButton">Reserve Now</button>
+            <button class="btn btn-primary" id="reserveButton">Reserve Now</button>
         </div>
-    </div>
+    </div
+ 
 </div>
+
+
+
 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Font Awesome -->
 <script>
-    // JavaScript to toggle the visibility of the container when the login button is clicked
+    // JavaScript to toggle the visibility of the container and audio playback when the login button is clicked
     document.querySelector('.login-button').addEventListener('click', function() {
         var grayContainer = document.getElementById('grayContainer');
+        var audio = document.querySelector('audio'); // Select the audio element
+        
         if (grayContainer.style.display === 'block') {
             grayContainer.style.display = 'none';
+            audio.pause(); // Pause the audio
         } else {
             grayContainer.style.display = 'block';
+            audio.play(); // Play the audio
         }
     });
-     // JavaScript to redirect to the specified page after clicking the Reserve Now button
-     document.getElementById('reserveButton').addEventListener('click', function() {
+
+    // JavaScript to redirect to the specified page after clicking the Reserve Now button
+    document.getElementById('reserveButton').addEventListener('click', function() {
         window.location.href = '/reservation_system/reserve/userlog/index.php';
-    }); 
+    });
 </script>
+
 
 </body>
 </html>

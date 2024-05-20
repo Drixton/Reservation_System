@@ -1,482 +1,459 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Calendar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
-
+    <title>Navbar Example</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0; /* Remove default margin */
-            padding-top: 40px; /* Adjusted padding-top */
-            background-color: black;
-        }
-        #navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: linear-gradient(to right, black, grey, green);
+        /* CSS for styling the navbar */
+        .navbar {
+            /*background: linear-gradient(to right, black, grey, green);*/
+            background-color: #17202A;
+            overflow: hidden;
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-        }
-        
-        #profile-tab img {
-            width: 60px; 
+            height: 75px;
+            z-index: 1000; /* Ensure navbar is on top of other content */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        #logo img {
-            width: 100px; 
-        }
-        #logo {
-            flex: 1;
-            text-align: left;
-        }
-        #title {
-            flex: 1;
+        .navbar-brand,
+        .navbar-text,
+        .navbar-account {
             color: white;
-            font-size: 20px;
+            font-size: 30px;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        .navbar-brand img {
+            height: 140px;
+            vertical-align: middle;
+        }
+
+        .account-icon {
+            margin-right: 5px;
+        }
+
+        .account-name {
+            font-size: 15px;
+            text-align: center; /* Center align account name */
+        }
+
+        .account-picture {
+            width: 30px; /* Set width for the profile picture */
+            height: 30px; /* Set height for the profile picture */
+            display: block; /* Make profile picture a block element */
+            margin: 0 auto; /* Center profile picture */
+            padding-top: 10px;
+        }
+
+        .back-button-container {
             display: flex;
             align-items: center;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left:30px;
+            margin-top: 20px;
         }
-        #profile-tab {
-            flex: 1;
-            text-align: right;
-            padding-right: 40px;
-        }
-        #header {
-            text-align: left;
-            margin-top: 20px; /* Adjusted margin-top */
-            margin-bottom: 20px;
-            margin-left: 20px; /* Adjusted margin to align with "Wed" column */
-            display: flex;
-            align-items: center;
+
+        .back-button {
             color: white;
-        }
-        table {
-            width: 33%;
-            float: left;
-            margin-right: 20px;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
+            font-size: 24px;
             cursor: pointer;
-            color: white;
         }
-        #navigation {
-            clear: both;
+
+        .back-text {
+            color: white;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        .back-description{
+            color: green;
+            padding-left: 30px;
+            padding-top: 10px;
+            font-size: 30px;
+        }
+
+        .ph-description{
+            color: white;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .ph-line {
+            border: 1px solid white;
+            width: 98%;
+            margin: 0 auto; /* Center the line */
+            margin-top: 10px; /* Adjust spacing between the line and text */
+        }
+
+        /* CSS for styling the calendar */
+        .calendar {
+            position: fixed;
+            left: 0;
+            top: 190px; /* Adjust this value to position the calendar below the ph-line */
+            width: 410px;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .calendar h2 {
+            text-align: center;
+            margin-top: 0;
             display: flex;
+            justify-content: space-between;
             align-items: center;
             margin-left: 40px;
         }
-        #time-list-container {
-            width: 40%;
-            float: left;
-        }
-        .time-column {
-            width: 50%;
-            float: left;
-            margin-bottom: 20px;
-        }
-        #time-list-container .time-column .time-container1 {
-            padding-left: 0px; /* Adjust this value to move the containers to the right */
-        }
-    
-        .time-box {
-            width: calc(50% - 10px);
-            height: 30px;
-            border: 1px solid black;
-            margin: 5px;
-            display: flex;
-            justify-content: center;
+
+        .calendar h2 .month-nav {
             align-items: center;
-            background-color: grey;
-            color: white;
-            border-radius: 2px;
-            cursor: pointer; /* Add cursor pointer */
-        }
-
-        .time-box.selected {
-            background-color: #00cc00; /* Highlight color for selected time */
-            color: white; /* Text color for selected time */
-        }
-
-        #button_1{
-            padding-top: 40px;
-            text-align: left;
-            padding-left: 20px;
-        }
-
-        #select{
-            font-size: 18px;
-            text-align: left;
-            padding-left: 20px;
-            margin-top:20px;
-            color: #00cc00;
-        }
-
-        #ph{
-            font-size: 7px;
-            color: white;
-        }
-
-        /* Style for the line */
-        #ph-line {
-            margin-top: 8px; /* Adjust as needed */
-            width: 98%;
-            border-bottom: 1px solid white;
-            margin-left: 20px; /* Match the padding-left of the text */
-        }
-
-        #calendar-title{
             padding-left: 10px;
-            padding-right: 10px;
-            font-size: 30px;
-            font-weight:normal;
         }
 
-        /* Style for the icon buttons */
-        .next-button, .prev-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: white; /* Set button color to black */
-            margin-left:30px;
-            margin-right:30px;
-
+        .calendar table {
+            width: 450px;
+            height: 400px;
+            border-collapse: collapse; /* Remove default table border */
         }
 
-        .icon-button{
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
+        .calendar th,
+        .calendar td {
+            padding: 5px;
+            text-align: center;
+            cursor: pointer; /* Add cursor pointer to indicate selectability */
+        }
+
+        .calendar th {
             color: white;
         }
 
-        /* Style for the selected date indicator */
-        .selected-date {
-            background-color: #00cc00; /* Green background */
-            color: white; /* White text color */
+        .calendar td {
+            color: white;
         }
 
-        #date1 {
+        .selected {
+            background-color: green; /* Change background color for selected date */
+            color: black; /* Change text color for selected date */
+        }
+
+        .current-date {
+            background-color: #444; /* Change background color for current date */
+        }
+
+        /* CSS for styling the time buttons */
+        .time-buttons-container {
             display: flex;
             justify-content: center;
-            padding-left: 15%;
-            font-weight: bold;
-            font-size: 25px;
-            padding-bottom: 5px;
-            color: white;
         }
 
-        #text-link {
-            text-align: center; /* Center the text link */
-            padding-right: 140px;
-            color: green; /* Change font color to green */
-        }
-
-        #text-link a {
-            color: green; /* Change font color to green */
-        }
-        
-        
-
-
-        #button-container {
-            position: fixed;
-            top: 70%;
-            right: 120px;
-            transform: translateY(-50%);
+        .time-column {
             display: flex;
-            flex-direction: column; /* Arrange buttons vertically */
-            align-items: center; /* Align buttons to the right */
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
         }
 
-        .text-button {
-            background: none;
+        .time-button {
+            background-color: #333;
+            color: white;
             border: none;
-            cursor: pointer;
-            font-size: 20px;
-            color: black;
+            border-radius: 5px;
+            padding: 10px 20px;
             margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 17px;
+            width: 110%;
         }
 
-        #button_6 {
-            border: none; /* Remove existing border */
-            border-radius: 10px; /* Add rounded corners */
-            background-color: #00cc00; /* Green background */
-            color: white; /* White text color */
-            height: 50px; /* Adjust height as needed */
-            width: 200px; /* Adjust width as needed */
-            margin-top: 10px; /* Adjust margin as needed */
-            font-size: 20px; /* Set font size */
+        .time-button:hover {
+            background-color: #555;
         }
-        #button_2{
-            border-top: 2px solid white;
-            height: 40px;
-            padding-top: 10px;
-            width: 130%;
+
+        .time-button.selected {
+            background-color: green;
+        }
+
+        .current-date-display{
+            color: white; 
+            text-align: center; 
+            font-size: 25px;
+        }
+
+        .session-link {
+            color: green;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .additional-options-container {
+            position: fixed;
+            top: 175px;
+            right: 20px;
+            padding: 15px 5em 0 0;
+            border-radius: 20px;
             color: white;
+            text-align: center;
+            width: 20%;
+            
         }
-        #button_3{
-            border-top: 2px solid white;
-            height: 40px;
-            padding-top: 10px;
-            width: 130%;
-            color: white;
-        }
-        #button_4{
-            border-top: 2px solid white;
-            height: 40px;
-            padding-top: 10px;
-            width: 130%;
-            color: white;
-        }
-        #button_5 {
-            border-top: 2px solid white; /* Add a solid border on the top */
+
+        .additional-option {
             border-bottom: 2px solid white;
-            height: 50px;
-            width: 130%;
             color: white;
-           
+            padding: 20px 20px;
+            cursor: pointer;
+            font-size: 22px;
         }
 
-        #duration{
-            font-size: 20px;
-            color:white;
+        .additional-option:hover {
+            background-color: green;
         }
+
+        .payment-option{
+            border-radius: 10px; /* Add rounded corners */
+            background-color: green;
+            color: white; /* White text color */
+            height: 30px; /* Adjust height as needed */
+            width: 200px; /* Adjust width as needed */
+            font-size: 18px;
+            padding-top: 7px;
+            margin-top: 50px;
+            margin-left: 15%;
+        }
+
+        .duration-text{
+            padding-top: 20px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid white;
+            font-size: 25px;
+            width: 100%;
+        }
+
+        body {
+            background-color: black; /* Set background color to black */
+            margin: 0; /* Remove default margin */
+            padding-top: 60px; /* Adjust padding to account for the navbar */
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar-brand,
+            .navbar-text,
+            .navbar-account {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        /* Adjust font size for smaller screens */
+        @media screen and (max-width: 480px) {
+            .navbar-brand img {
+                height: 20px;
+            }
+        }
+        
     </style>
 </head>
 <body>
-    <div id="navbar">
-        <div id="logo">
-            <img src="../assets/img/logo.png" alt="Logo">
-        </div>
-        <div id="title">
-            <h1 id="nav-title">Schedule and Time</h1>
-        </div>
-        <div id="profile-tab">
-            <img src="../assets/img/profile.png" alt="Profile">
-        </div>
-    </div>
 
-    <div id="button_1">
-        <button onclick="goBack()" style="margin-top: 50px;" class="icon-button"><i class="fas fa-arrow-left"></i></button>
-    </div>
-
-    <div id="select">
-        <h1>Select Date and Time</h1>  
-    </div>
-
-    <div id="ph">
-        <h1>Philippine Standard Time (GMT+8)</h1>
-        <!-- Horizontal line -->
-        <div id="ph-line"></div>
-    </div>
-
-    <div id="header">
-        <div id="navigation">
-            <button id="prev-month" class="prev-button"><i class="fas fa-chevron-left"></i></button>
-            <h1 id="calendar-title">April 2024</h1>
-            <button id="next-month" class="next-button"><i class="fas fa-chevron-right"></i></button>
-        </div>
-
-        <div id="date1">
-            <h1></h1>  
-        </div>
-
-    </div>
-
+<div class="navbar">
+    <!-- Logo Image -->
+    <a href="/reservation_system/reserve/" class="navbar-brand"><img src="../assets/img/logo.png" alt="Logo"></a>
     
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>Sun</th>
-                <th>Mon</th>
-                <th>Tue</th>
-                <th>Wed</th>
-                <th>Thu</th>
-                <th>Fri</th>
-                <th>Sat</th>
-            </tr>
-        </thead>
-        <tbody id="calendar-body"></tbody>
-    </table>
-
+ 
+    <!-- Text in the Middle -->
+    <a href="#" class="navbar-text">Schedule and Time</a>
     
-    <div id="time-list-container">
-        <div class="time-column">
-            <div id="time-container1" class="time-container">
-                <!-- Display available hours here -->
-                <div class="time-box" onclick="selectTime(this)">7:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">8:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">9:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">10:00 AM</div>
-            </div>
-        </div>
-        <div class="time-column">
-            <div id="time-container2" class="time-container">
-                <!-- Display available hours here -->
-                <div class="time-box" onclick="selectTime(this)">7:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">8:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">9:00 AM</div>
-                <div class="time-box" onclick="selectTime(this)">10:00 AM</div>
-            </div>
-        </div>
-
-        <div id="text-link">
-            <a href="#">See all sessions</a>
-        </div>
+    <!-- Account Icon and Name -->
+    <div class="navbar-account">
+        <span class="account-icon"><img src="../assets/img/profile.png" alt="icon-account" class="account-picture"></span> 
+        <span class="account-name">Your Account Name</span>
     </div>
+</div>
 
-    
+<!-- Back button icon -->
+<div class="back-button-container">
+    <div class="back-button" onclick="goBack()">&#8249;</div>
+    <div class="back-text">Back</div>
+</div>
 
-    <!-- Button container -->
-    <div id="button-container">
+<div class="back-description">Select a Date and Time</div>
 
-        <div id="duration">
-            <h3>Duration</h3>  
-        </div>
+<div class="phlippine">
+    <div class="ph-description">Philippine Standard Time (GMT+8)</div>
+    <hr class="ph-line">
+</div>
 
-        <button id="button_2" class="text-button">1 hour</button>
-        <button id="button_3" class="text-button">2 hour</button>
-        <button id="button_4" class="text-button">3 hour</button>
-        <button id="button_5" class="text-button">Open hours</button>
-        <button id="button_6" class="text-button">Go to Payment</button>
+<!-- Calendar -->
+<div class="calendar" id="calendar"></div>
+
+<!-- Current date display -->
+<div class="current-date-display" id="currentDateDisplay">
+    <p></p>
+</div>
+
+<!-- Time buttons -->
+<div class="time-buttons-container">
+    <div class="time-column">
+        <button class="time-button" onclick="selectTime(this)">8:00 AM</button>
+        <button class="time-button" onclick="selectTime(this)">8:30 AM</button>
+        <button class="time-button" onclick="selectTime(this)">9:00 AM</button>
+        <button class="time-button" onclick="selectTime(this)">9:30 AM</button>
+        <button class="time-button" onclick="selectTime(this)">10:00 AM</button>
+        <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
+        <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
     </div>
+    <div class="time-column">
+        <button class="time-button" onclick="selectTime(this)">1:00 AM</button>
+        <button class="time-button" onclick="selectTime(this)">1:30 AM</button>
+        <button class="time-button" onclick="selectTime(this)">2:00 PM</button>
+        <button class="time-button" onclick="selectTime(this)">2:30 PM</button>
+        <button class="time-button" onclick="selectTime(this)">3:00 AM</button>
+        <button class="time-button" onclick="selectTime(this)">3:30 AM</button>
+        <button class="time-button" onclick="selectTime(this)">4:00 PM</button>
+    </div>
+</div>
 
-    <script>
-        let currentYear, currentMonth;
+<!-- Session link -->
+<a href="#" class="session-link">See all Sessions</a>
 
-        function generateCalendar(year, month) {
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const firstDayIndex = new Date(year, month, 1).getDay();
-            const tbody = document.getElementById('calendar-body');
-            tbody.innerHTML = '';
+<!-- Additional Options -->
+<div class="additional-options-container">
+    <div class="duration-text">Duration</div>
+    <div class="additional-option">1 hour</div>
+    <div class="additional-option">2 hours</div>
+    <div class="additional-option">3 hours</div>
+    <div class="additional-option">Open hours</div>
+    <div class="payment-option">Go to payment</div>
+</div>
 
-            let date = 1;
-
-            for (let i = 0; i < 6; i++) {
-                const row = document.createElement('tr');
-
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDayIndex) {
-                        const cell = document.createElement('td');
-                        row.appendChild(cell);
-                    } else if (date > daysInMonth) {
-                        break;
-                    } else {
-                        const cell = document.createElement('td');
-                        cell.textContent = date;
-                        cell.dataset.date = `${year}-${month + 1}-${date}`;
-                        cell.addEventListener('click', showTimes);
-                        row.appendChild(cell);
-                        date++;
-                    }
-                }
-
-                tbody.appendChild(row);
-            }
-
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            document.getElementById('calendar-title').textContent = `${monthNames[month]} ${year}`;
-        }
-
-        function showTimes(event) {
-    const selectedDate = new Date(event.target.dataset.date);
-    const week = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
-    const month = selectedDate.toLocaleDateString('en-US', { month: 'long' });
-    const day = selectedDate.getDate();
-
-    // Remove the indicator class from the previously clicked cell, if any
-    const lastClickedDate = document.querySelector('.selected-date');
-    if (lastClickedDate) {
-        lastClickedDate.classList.remove('selected-date');
+<script>
+    // JavaScript function to go back
+    function goBack() {
+        window.history.back();
     }
 
-    // Remove the selected class from all time boxes
-    const timeBoxes = document.querySelectorAll('.time-box');
-    timeBoxes.forEach(box => {
-        box.classList.remove('selected');
-    });
+    // Function to generate a calendar
+    function generateCalendar(year, month) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
+        const currentDay = currentDate.getDate();
+        const calendarDiv = document.getElementById('calendar');
 
-    // Add the indicator class to the clicked cell
-    event.target.classList.add('selected-date');
-
-    // Display the selected date by week, month, and day in the "Date Now" element
-    document.getElementById('date1').textContent = `${week}, ${month} ${day}`;
-}
-
-function displayCurrentDate() {
-    const now = new Date();
-    const week = now.toLocaleDateString('en-US', { weekday: 'long' });
-    const month = now.toLocaleDateString('en-US', { month: 'long' });
-    const day = now.getDate();
-
-    // Display the current date in the "Date Now" element
-    document.getElementById('date1').textContent = `${week}, ${month} ${day}`;
-}
-
-// Call the function to display the current date when the page loads
-displayCurrentDate();
-
-
-        function goToPreviousMonth() {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
+        let html = '<h2>';
+        html += '<div onclick="previousMonth()" style="cursor: pointer;">&#8249;</div>'; // Previous month button
+        html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
+        html += '<div onclick="nextMonth()" style="cursor: pointer;">&#8250;</div>'; // Next month button
+        html += '</h2>';
+        html += '<table>';
+        html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+        
+        let dayCounter = 1;
+        for (let i = 0; i < 6; i++) {
+            html += '<tr>';
+            for (let j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDayOfMonth) {
+                    html += '<td></td>';
+                } else if (dayCounter > daysInMonth) {
+                    html += '<td></td>';
+                } else {
+                    let cellClass = '';
+                    if (year === currentYear && month === currentMonth && dayCounter === currentDay) {
+                        cellClass = 'current-date';
+                    }
+                    html += '<td class="' + cellClass + '" onclick="selectDate(this)">' + dayCounter + '</td>';
+                    dayCounter++;
+                }
             }
-            generateCalendar(currentYear, currentMonth);
+            html += '</tr>';
         }
 
-        function goToNextMonth() {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            generateCalendar(currentYear, currentMonth);
-        }
+        html += '</table>';
+        calendarDiv.innerHTML = html;
+    }
 
-        function goBack() {
-            window.history.back();
-        }
+    // Call generateCalendar function with current year and month
+    const currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth();
+    generateCalendar(currentYear, currentMonth);
 
-        const now = new Date();
-        currentYear = now.getFullYear();
-        currentMonth = now.getMonth();
+    // Function to select the date
+    function selectDate(cell) {
+        const selectedCells = document.querySelectorAll('.selected');
+        selectedCells.forEach(selectedCell => {
+            selectedCell.classList.remove('selected');
+        });
+        cell.classList.add('selected');
+
+        // Get the selected date
+        const selectedDate = new Date(currentYear, currentMonth, parseInt(cell.textContent));
+
+        // Update the current date display with the selected date
+        const currentDateDisplay = document.getElementById('currentDateDisplay');
+        currentDateDisplay.children[0].textContent = formatDate(selectedDate);
+
+        // Get the current month and week
+        const currentMonthWeekDisplay = document.getElementById('currentDateDisplay');
+        const selectedMonth = selectedDate.toLocaleString('default', { month: 'long' });
+        const selectedWeek = Math.ceil(cell.textContent / 7);
+        currentMonthWeekDisplay.children[1].textContent = selectedMonth + ' Week ' + selectedWeek;
+    }
+
+    // Function to go to the previous month
+    function previousMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
         generateCalendar(currentYear, currentMonth);
+    }
 
-        document.getElementById('prev-month').addEventListener('click', goToPreviousMonth);
-        document.getElementById('next-month').addEventListener('click', goToNextMonth);
-
-        // Display the current date when the page loads
-        displayCurrentDate();
-
-        function selectTime(timeBox) {
-            // Remove the selected class from all time boxes
-            const timeBoxes = document.querySelectorAll('.time-box');
-            timeBoxes.forEach(box => {
-                box.classList.remove('selected');
-            });
-
-            // Add the selected class to the clicked time box
-            timeBox.classList.add('selected');
+    // Function to go to the next month
+    function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
         }
-    </script>
-  
+        generateCalendar(currentYear, currentMonth);
+    }
+
+    // Function to format date
+    function formatDate(date) {
+        const options = { weekday: 'short', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    // Function to select time
+    function selectTime(button) {
+        // Deselect all buttons
+        const timeButtons = document.querySelectorAll('.time-button');
+        timeButtons.forEach(btn => {
+            btn.classList.remove('selected');
+        });
+
+        // Select the clicked button
+        button.classList.add('selected');
+    }
+
+    // Display current date
+    const currentDateDisplay = document.getElementById('currentDateDisplay');
+    currentDateDisplay.children[0].textContent = formatDate(currentDate);
+    
+</script>
+
+<!-- Your page content here -->
+
 </body>
 </html>

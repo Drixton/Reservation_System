@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <style>
         /* Remove margin and padding from body and html */
         body, html {
@@ -101,7 +102,7 @@
             </div>
 
             <button type="submit" name="submit" class="btn-like">Register</button>
-            <a class="btn-like" href="http://localhost/reservation_system/reserve/">Back</a>
+            <a class="btn-like" href="/reservation_system/reserve/userlog/index.php">Back</a>
             <br><br>
         </form>
 

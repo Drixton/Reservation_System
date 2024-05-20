@@ -3,12 +3,12 @@ require("../connection/conn.php");
 session_start();
 if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';
-  }
+}
 
 // if($_SESSION['status']=='valid'){
 //     echo "<script> alert('You are already logged in');window.history.back() ;</script>";
 // }
-$logged=false;
+$logged = false;
 if(isset($_POST['submit'])) {
 
     $email = $_POST['email'];
@@ -17,25 +17,23 @@ if(isset($_POST['submit'])) {
     $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        $_SESSION['status']='valid';
+        $row = $result->fetch_assoc();
+        $_SESSION['status'] = 'valid';
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['username'] = $row['username'];
         echo "<script>window.location.href='index.php?logged=1';</script>";
         exit();
     } else {
         header("Location: index.php?error=email or password not found");
         exit();
     }
-
-
-
-
 }
 if(!empty($_GET['logged'])){
-    $logged=true;
+    $logged = true;
 }
-
-
 $conn->close();
 ?>
+
     
 
 
@@ -162,7 +160,7 @@ $conn->close();
                 <div id="tooltip" style="display: none; color: blue;">Minimum 8 characters</div>
             </div>
             <div class="mb-3 text-start">
-    <a href="userlog/create.php" style="color: white;" target="_blank">Create Account</a>
+    <a href="create.php" style="color: white;" target="_blank">Create Account</a>
 </div>
 
 
