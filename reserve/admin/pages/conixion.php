@@ -2,7 +2,7 @@
 $hostName = "localhost";
 $dbUser = "root";
 $dbPassword = "";
-$dbName = "qrcode";
+$dbName = "reservation";
 
 try {
     $con = new PDO("mysql:host=$hostName;dbname=$dbName", $dbUser, $dbPassword);
