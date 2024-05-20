@@ -60,7 +60,7 @@
         .centered-text {
             position: absolute;
             top: 50%; /* Move the text to the vertical center of the header */
-            left: 520px; /* Push the text to the right */
+            left: 600px; /* Push the text to the right */
             transform: translateY(-50%); /* Center vertically */
         }
         .prifle{

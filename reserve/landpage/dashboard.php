@@ -32,10 +32,7 @@ header {
     align-items: center;
 }
 
-/* Rest of your CSS styles */
 
-
-/* Rest of your CSS styles */
 
 
     header img {
