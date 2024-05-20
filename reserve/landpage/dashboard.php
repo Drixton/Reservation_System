@@ -15,20 +15,29 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sport list</title>
    <style>
-     body {
-        font-family: "Tilt Neon", sans-serif;
-        margin: 0;
-        padding: 0;
-       
-    }
-    header {
-        background-color: #000; /* Set header background color to black */
-        color: #fff;
-        padding: 1px 20px; /* Adjusted padding */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+body, html {
+    font-family: "Tilt Neon", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Set height to cover the entire viewport */
+    background: linear-gradient(to bottom, #000, #008000); /* Gradient from black to green */
+}
+
+header {
+    background-color: #000; /* Set header background color to black */
+    color: #fff;
+    padding: 1px 20px; /* Adjusted padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Rest of your CSS styles */
+
+
+/* Rest of your CSS styles */
+
+
     header img {
         height: 100px; /* Adjusted height */
     }
@@ -167,96 +176,89 @@ session_start();
 }
 
 @media screen and (min-width: 521px) {
+    @media screen and (min-width: 521px) {
     .main {
-    display: flex; /* Use flexbox to arrange containers in a row */
-    flex-wrap: wrap; 
-    background-color: #000; /* Allow containers to wrap to the next line if needed */
-}
-
-.container1 {
-    position: relative;
-    width: 123px; /* Set fixed width for each container */
-    height: 550px;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px; /* Add margin at the bottom of each container */
-    border: 2px solid #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: width 0.3s ease, transform 0.3s ease; /* Added transform transition */
-}
-
-.container1:first-child {
-    margin-left: 200px; /* Add desired left margin */
-}
-
-.container1:hover {
-    width: 240px; /* Expand width on hover */
-}
-
-.container1:first-child:hover {
-    transform: translateX(-20px); /* Move to the left by the same amount as the margin */
-}
-
-.container1:hover .random-text {
-    font-size: 50px;
-    color: black;
-}
-
-.container1:hover img {
-    filter: blur(5px) brightness(0.5);
-}
-
-.random-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    color: black;
-    font-size: 25px;
-    text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black;
-    animation: glow 1.5s infinite alternate;
-    transition: font-size 0.3s;
-    z-index: 1;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+        display: flex; /* Use flexbox to arrange containers in a row */
+        flex-wrap: nowrap; /* Prevent containers from wrapping */
+        overflow-x: auto; /* Enable horizontal scrolling if containers exceed viewport width */
+        background: linear-gradient(to bottom, #000, #008000); /* Gradient from black to green */
     }
-    to {
-        text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+
+    .container1 {
+        position: relative;
+        width: 23%; /* Set percentage width for each container */
+        max-width: 240px; /* Set max-width for larger screens */
+        height: 600px; /* Set height to auto to maintain aspect ratio */
+        background-size: cover;
+        background-position: center;
+        margin: 0 1%; /* Add margin between containers */
+        margin-bottom: 20px; /* Add margin at the bottom of each container */
+        border: 2px solid #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: width 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    }
+
+    .container1:first-child {
+        margin-left: 0; /* Remove left margin from the first container */
+    }
+
+    .container1:hover {
+        width: 46%; /* Expand width on hover */
+    }
+
+    .container1:hover .random-text {
+        font-size: 50px;
+        color: black;
+    }
+
+    .container1:hover img {
+        filter: blur(5px) brightness(0.5);
+    }
+
+    .random-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        color: black;
+        font-size: 25px;
+        text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black;
+        animation: glow 1.5s infinite alternate;
+        transition: font-size 0.3s;
+        z-index: 1;
+    }
+
+    .container1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        position: relative;
+        z-index: 0;
+    }
+
+    .button-slide {
+        position: absolute;
+        bottom: 10px; /* Adjusted initial position */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color:#00ff00;
+        color: white;
+        padding: 8px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: opacity 0.3s ease, bottom 0.3s ease; /* Added opacity transition */
+        opacity: 0; /* Initially hidden */
+    }
+
+    .container1:hover .button-slide {
+        bottom: 30px; /* Slide up on hover */
+        opacity: 1; /* Show button on hover */
     }
 }
 
-.container1 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    position: relative;
-    z-index: 0;
-}
-
-.button-slide {
-    position: absolute;
-    bottom: 10px; /* Adjusted initial position */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color:#00ff00;
-    color: white;
-    padding: 8px 20px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: opacity 0.3s ease, bottom 0.3s ease; /* Added opacity transition */
-    opacity: 0; /* Initially hidden */
-}
-
-.container1:hover .button-slide {
-    bottom: 30px; /* Slide up on hover */
-    opacity: 1; /* Show button on hover */
-}
 
 
 
