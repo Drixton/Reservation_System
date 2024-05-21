@@ -6,7 +6,7 @@
         /* CSS for styling the navbar */
         .navbar {
             /*background: linear-gradient(to right, black, grey, green);*/
-            background-color: #17202A;
+            background-color: black;
             overflow: hidden;
             position: fixed;
             top: 0;
@@ -192,17 +192,54 @@
             text-align: center;
         }
 
-        .additional-options-container {
+        .text-link-container {
             position: fixed;
-            top: 175px;
-            right: 20px;
-            padding: 15px 5em 0 0;
+            top: 155px;
+            right: 30px;
+            padding: 15px 5px 0 0; /* Adjust padding for vertical orientation */
             border-radius: 20px;
             color: white;
             text-align: center;
             width: 20%;
-            
+            display: flex; /* Change display to flex */
+            flex-direction: column; /* Set flex direction to column */
+            align-items: flex-start; /* Align items to the end of the container */
+            margin-top: 40px;
+            margin-right: 200px;
         }
+
+        .text-link {
+            color: white;
+            padding: 10px 10px;
+            font-size: 25px;
+            padding-left: 12px;
+            text-decoration: none; /* Remove underline */
+            border: 1px solid white;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .text-link:hover {
+            background-color: green;
+        }
+
+        .court-text{
+            padding-bottom: 25px;
+            border-bottom: 2px solid white;
+            font-size: 25px;
+        }
+
+        .additional-options-container {
+            position: fixed;
+            top: 175px;
+            right: 10px;
+            padding: 15px 5em 0 0; /* Adjust padding for vertical orientation */
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            margin-left: 100px; /* Adjust margin-right to move the container to the right */
+        }
+
 
         .additional-option {
             border-bottom: 2px solid white;
@@ -214,6 +251,7 @@
 
         .additional-option:hover {
             background-color: green;
+            border-radius: 10px;
         }
 
         .payment-option{
@@ -225,7 +263,7 @@
             font-size: 18px;
             padding-top: 7px;
             margin-top: 50px;
-            margin-left: 15%;
+            box-shadow: 1px 1px 2px rgba(0, 1, 0, 1); /* Add shadow */
         }
 
         .duration-text{
@@ -237,26 +275,29 @@
         }
 
         body {
-            background-color: black; /* Set background color to black */
+            background: linear-gradient(to right, black,green); /* Set background gradient */
             margin: 0; /* Remove default margin */
             padding-top: 60px; /* Adjust padding to account for the navbar */
         }
 
-        @media screen and (max-width: 768px) {
-            .navbar-brand,
-            .navbar-text,
-            .navbar-account {
-                font-size: 16px;
-                padding: 10px;
-            }
-        }
+        @media screen and (max-width: 1024px) {
+    /* Adjust navbar text size and padding for smaller screens */
+    .navbar-brand,
+    .navbar-text,
+    .navbar-account {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
 
-        /* Adjust font size for smaller screens */
-        @media screen and (max-width: 480px) {
-            .navbar-brand img {
-                height: 20px;
-            }
-        }
+/* Adjust logo image height for smaller screens */
+@media screen and (max-width: 480px) {
+    .navbar-brand img {
+        height: 20px;
+    }
+}
+
+        
         
     </style>
 </head>
@@ -264,9 +305,8 @@
 
 <div class="navbar">
     <!-- Logo Image -->
-    <a href="/reservation_system/reserve/" class="navbar-brand"><img src="../assets/img/logo.png" alt="Logo"></a>
+    <a href="#" class="navbar-brand"><img src="../assets/img/logo.png" alt="Logo"></a>
     
- 
     <!-- Text in the Middle -->
     <a href="#" class="navbar-text">Schedule and Time</a>
     
@@ -324,13 +364,24 @@
 <a href="#" class="session-link">See all Sessions</a>
 
 <!-- Additional Options -->
+<div class="text-link-container">
+    <div class="court-text">Court Number</div>
+    <a href="#" class="text-link" onclick="selectCourt(this)">Court No. 1</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 2</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 3</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 4</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 5</a>
+
+</div>
+
+<!-- Additional Options -->
 <div class="additional-options-container">
     <div class="duration-text">Duration</div>
-    <div class="additional-option">1 hour</div>
-    <div class="additional-option">2 hours</div>
-    <div class="additional-option">3 hours</div>
-    <div class="additional-option">Open hours</div>
-    <div class="payment-option">Go to payment</div>
+    <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
+    <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
+    <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
+    <div class="additional-option" onclick="selectDuration(this)">Open hours</div>
+    <div class="payment-option" onclick="goToPayment()">Go to payment</div>
 </div>
 
 <script>
@@ -381,12 +432,6 @@
         calendarDiv.innerHTML = html;
     }
 
-    // Call generateCalendar function with current year and month
-    const currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth();
-    generateCalendar(currentYear, currentMonth);
-
     // Function to select the date
     function selectDate(cell) {
         const selectedCells = document.querySelectorAll('.selected');
@@ -402,11 +447,14 @@
         const currentDateDisplay = document.getElementById('currentDateDisplay');
         currentDateDisplay.children[0].textContent = formatDate(selectedDate);
 
-        // Get the current month and week
-        const currentMonthWeekDisplay = document.getElementById('currentDateDisplay');
-        const selectedMonth = selectedDate.toLocaleString('default', { month: 'long' });
-        const selectedWeek = Math.ceil(cell.textContent / 7);
-        currentMonthWeekDisplay.children[1].textContent = selectedMonth + ' Week ' + selectedWeek;
+        // Store the selected date for redirection
+        window.selectedFullDate = formatDate(selectedDate); // Store the formatted date string
+    }
+
+    // Function to format date
+    function formatDate(date) {
+        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }; // Include day, month, and year
+        return date.toLocaleDateString('en-US', options);
     }
 
     // Function to go to the previous month
@@ -429,12 +477,6 @@
         generateCalendar(currentYear, currentMonth);
     }
 
-    // Function to format date
-    function formatDate(date) {
-        const options = { weekday: 'short', month: 'short', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-    }
-
     // Function to select time
     function selectTime(button) {
         // Deselect all buttons
@@ -443,14 +485,56 @@
             btn.classList.remove('selected');
         });
 
-        // Select the clicked button
+        // Select the clicked button 
         button.classList.add('selected');
     }
 
-    // Display current date
-    const currentDateDisplay = document.getElementById('currentDateDisplay');
+    // Function to select court number
+    function selectCourt(courtLink) {
+        // Deselect all court links
+        const courtLinks = document.querySelectorAll('.text-link');
+        courtLinks.forEach(link => {
+            link.classList.remove('selected');
+        });
+
+        // Select the clicked court link
+        courtLink.classList.add('selected');
+    }
+
+    // Function to select duration
+    function selectDuration(durationOption) {
+        // Deselect all duration options
+        const durationOptions = document.querySelectorAll('.additional-option');
+        durationOptions.forEach(option => {
+            option.classList.remove('selected');
+        });
+
+        // Select the clicked duration option
+        durationOption.classList.add('selected');
+    }
+
+    // Function to redirect to payment page
+    function goToPayment() {
+        // Get selected date, time, court number, and duration
+        const selectedDate = window.selectedFullDate; // Use the stored full date string
+        const selectedTime = document.querySelector('.time-button.selected').textContent;
+        const selectedCourt = document.querySelector('.text-link.selected').textContent;
+        const selectedDuration = document.querySelector('.additional-option.selected').textContent;
+
+        // Redirect to payment.php with query parameters
+        window.location.href = "http://localhost/reservation_system/reserve/payment/payment.php" + 
+                                "?date=" + encodeURIComponent(selectedDate) + 
+                                "&time=" + encodeURIComponent(selectedTime) + 
+                                "&court=" + encodeURIComponent(selectedCourt) + 
+                                "&duration=" + encodeURIComponent(selectedDuration);
+    }
+
+    // Initialize the calendar with the current date
+    const currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth();
+    generateCalendar(currentYear, currentMonth);
     currentDateDisplay.children[0].textContent = formatDate(currentDate);
-    
 </script>
 
 <!-- Your page content here -->

@@ -162,7 +162,8 @@ header {
     }
 
     .random-text {
-        font-size: 20px; /* Adjust font size for smaller screens */
+        font-size: 20px; 
+        color: white;/* Adjust font size for smaller screens */
     }
 
     .container1 img {
@@ -218,7 +219,7 @@ header {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
-        color: black;
+        color: orange;
         font-size: 25px;
         text-shadow: 0 0 5px black, 0 0 10px #0f0, 0 0 15px black;
         animation: glow 1.5s infinite alternate;
@@ -264,7 +265,7 @@ header {
 <body>
 <?php 
 // Include navbar
-include '../navbar.php'; 
+include '../header/navbar.php'; 
 
 
 ?>  

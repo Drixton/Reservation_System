@@ -113,7 +113,7 @@
     </style>
 </head>
 <body>
-<?php include 'headbar.php'; ?> 
+<?php include 'header/headbar.php'; ?> 
 
 <nav>
     <a href="#badminton">Badminton</a>
