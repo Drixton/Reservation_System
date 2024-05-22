@@ -276,7 +276,7 @@ include '../header/navbar.php';
     <div class="container1">
     <div class="random-text">BADMINTON</div>
     <img src="../assets/img/badminton.jpg" alt="Badminton">
-    <a href="/  reservation_system/reserve/calendar/" class="button-slide">Click Here</a>
+    <a href="/reservation_system/reserve/calendar/index.php" class="button-slide">Click Here</a>
 </div>
 
         <div class="container1">
