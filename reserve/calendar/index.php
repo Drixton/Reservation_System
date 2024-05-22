@@ -80,6 +80,7 @@
             color: white;
             text-align: center;
             font-size: 15px;
+            margin-left: 150px;
         }
 
         .ph-line {
@@ -148,13 +149,14 @@
         .time-buttons-container {
             display: flex;
             justify-content: center;
+      
         }
 
         .time-column {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-right: 20px;
+            margin-right: -65px;
         }
 
         .time-button {
@@ -163,10 +165,11 @@
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
+            margin-left: 68px;
             margin-bottom: 10px;
             cursor: pointer;
             font-size: 17px;
-            width: 110%;
+          
         }
 
         .time-button:hover {
@@ -180,22 +183,23 @@
         .current-date-display{
             color: white; 
             text-align: center; 
+            margin-left: 145px;
             font-size: 25px;
         }
-
         .session-link {
-            color: green;
-            text-decoration: none;
-            font-size: 16px;
-            margin-top: 10px;
-            display: block;
-            text-align: center;
-        }
+    color: green;
+    text-decoration: none;
+    font-size: 16px;
+    position: fixed;
+    margin-left: 850px;
+
+}
+
 
         .text-link-container {
             position: fixed;
             top: 155px;
-            right: 30px;
+            right: -100px;
             padding: 15px 5px 0 0; /* Adjust padding for vertical orientation */
             border-radius: 20px;
             color: white;
@@ -232,12 +236,12 @@
         .additional-options-container {
             position: fixed;
             top: 175px;
-            right: 10px;
+            right: -76px;
             padding: 15px 5em 0 0; /* Adjust padding for vertical orientation */
             border-radius: 20px;
             color: white;
             text-align: center;
-            margin-left: 100px; /* Adjust margin-right to move the container to the right */
+            margin-left: 120px; /* Adjust margin-right to move the container to the right */
         }
 
 
@@ -366,11 +370,11 @@
 <!-- Additional Options -->
 <div class="text-link-container">
     <div class="court-text">Court Number</div>
-    <a href="#" class="text-link" onclick="selectCourt(this)">Court No. 1</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 2</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 3</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 4</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Court No. 5</a>
+    <a href="#" class="text-link" onclick="selectCourt(this)">Court 1</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">court 2</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">court 3</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">court 4</a>
+<a href="#" class="text-link" onclick="selectCourt(this)">court 5</a>
 
 </div>
 

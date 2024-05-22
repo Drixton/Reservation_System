@@ -242,7 +242,8 @@ header {
         left: 50%;
         transform: translateX(-50%);
         background-color:#00ff00;
-        color: white;
+        color: inherit; /* Ensures that text color matches its parent */
+    text-decoration: none;
         padding: 8px 20px;
         border: none;
         border-radius: 5px;
@@ -272,11 +273,12 @@ include '../header/navbar.php';
     <div class="main">
 
 
-        <div class="container1">
-            <div class="random-text">BADMINTON</div>
-            <img src="../assets/img/badminton.jpg" alt="Badminton">
-            <button class="button-slide">Click Here</button>
-        </div>
+    <div class="container1">
+    <div class="random-text">BADMINTON</div>
+    <img src="../assets/img/badminton.jpg" alt="Badminton">
+    <a href="/  reservation_system/reserve/calendar/" class="button-slide">Click Here</a>
+</div>
+
         <div class="container1">
             <div class="random-text">DART</div>
             <img src="../assets/img/dart.jpg" alt="Dart">
