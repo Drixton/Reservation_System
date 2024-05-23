@@ -289,45 +289,41 @@ include '../header/navbar.php';
 <div class="container1">
             <div class="random-text">Chess</div>
             <img src="../assets/img/chess.jpg" alt="Chess">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/chess.php" class="button-slide">Click Here</a>
         </div>
         
         <div class="container1">
             <div class="random-text">DART</div>
             <img src="../assets/img/dart.jpg" alt="Dart">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/dart.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">PICKLEBALL</div>
             <img src="../assets/img/pickleball.jpg" alt="Pickleball">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/pickleball.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">SEPAK TAKRAW</div>
             <img src="../assets/img/sepaktakraw.jpg" alt="Sepak Takraw">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/sepaktakraw.php" class="button-slide">Click Here</a>
         </div>
-        <div class="container1">
-            <div class="random-text">TAEKWONDO</div>
-            <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
-            <button class="button-slide">Click Here</button>
-        </div>
+   
         <div class="container1">
             <div class="random-text">TABLE TENNIS</div>
             <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/tabletennis.php" class="button-slide">Click Here</a>
         </div>
       
         <div class="container1">
             <div class="random-text">TAEKWONDO</div>
             <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/taekwondo.php" class="button-slide">Click Here</a>
         </div>
       
         <div class="container1">
             <div class="random-text">Cornhole</div>
             <img src="../assets/img/cornhole.jpg" alt="Cornhole">
-            <button class="button-slide">Click Here</button>
+            <a href="/reservation_system/reserve/calendar/cornhole.php" class="button-slide">Click Here</a>
         </div>
       
     </div>
