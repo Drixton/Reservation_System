@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2024 at 10:23 AM
+-- Generation Time: May 22, 2024 at 09:24 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,7 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-05-23 16:06:27', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-05-21 11:46:45', '12345678', '2024-05-14 06:38:59', 'profile_pictures/photo1712557113.jpeg');
 
 -- --------------------------------------------------------
 
@@ -54,11 +54,10 @@ INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `tim
 CREATE TABLE `reservation_payments` (
   `id` int(11) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `sports` varchar(255) NOT NULL,
   `date` varchar(255) DEFAULT NULL,
   `time` time DEFAULT NULL,
   `court_number` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
   `promo_code` varchar(255) DEFAULT NULL,
   `reference_no` varchar(255) DEFAULT NULL,
   `gcash_qrcode` varchar(255) DEFAULT NULL,
@@ -70,19 +69,11 @@ CREATE TABLE `reservation_payments` (
 -- Dumping data for table `reservation_payments`
 --
 
-INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(37, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:06:25'),
-(38, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:07:44'),
-(39, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:09:23'),
-(40, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:09:49'),
-(41, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:14:47'),
-(42, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:16:07'),
-(43, 'phosclay', 'badminton', 'Fri, May 10, 2024', '01:30:00', 'court 2', '2 hours', '', '', '', '0.00', '2024-05-23 07:20:49'),
-(44, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', '', '0.00', '2024-05-23 07:21:20'),
-(45, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 155058.png', '0.00', '2024-05-23 07:21:34'),
-(46, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 123752.png', '0.00', '2024-05-23 07:21:45'),
-(47, 'phosclay', 'badminton', 'Fri, May 17, 2024', '08:00:00', 'court 2', '2 hours', '2343', '2323333', 'Screenshot 2024-05-20 160145.png', '23455.00', '2024-05-23 07:23:05'),
-(48, 'phosclay', 'Arnis', 'Thu, May 2, 2024', '08:00:00', 'court 4', '2 hours', '', '', '', '0.00', '2024-05-23 07:25:53');
+INSERT INTO `reservation_payments` (`id`, `username`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(31, 'phosclay', 'Wed, May 29, 2024', '02:30:00', 'court 3', 0, '23', '23', 'Screenshot 2024-05-20 160341.png', '45.00', '2024-05-22 07:21:21'),
+(32, 'phosclay', 'Fri, May 31, 2024', '01:00:00', 'Court 1', 3, '133333', '1333', 'Screenshot 2024-05-21 123752.png', '100.00', '2024-05-22 07:22:16'),
+(33, 'phosclay', 'Fri, May 31, 2024', '01:00:00', 'Court 1', 3, '133333', '1333', 'Screenshot 2024-05-21 123752.png', '100.00', '2024-05-22 07:24:07'),
+(34, 'phosclay', 'Fri, May 31, 2024', '01:00:00', 'Court 1', 3, '45555', '45555', 'Screenshot 2024-05-21 161342.png', '99999999.99', '2024-05-22 07:24:20');
 
 -- --------------------------------------------------------
 
@@ -174,7 +165,7 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `users`
