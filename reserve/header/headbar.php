@@ -6,8 +6,12 @@ if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid' && isset($_COOK
     // If logged in and session ID matches, display welcome message with username
     $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
     echo "<p class='welcome-message'>Welcome, $username!</p>";
+    $profileDisabled = ""; // Profile is enabled
+} else {
+    $profileDisabled = "disabled"; // Profile is disabled
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -360,15 +364,18 @@ nav ul li:last-child a {
         </nav>
     </div>
     <!-- Add profile image here -->
-    <div >
-        <img src="assets/img/profile.png" alt="Profile" class="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">View profile</a></li>
-            <li><a class="dropdown-item" href="#">test</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="landpage/logout.php">Logout</a></li>
-        </ul>
-    </div>
+    <div>
+    <img src="assets/img/profile.png" alt="Profile" class="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" <?php echo isset($_SESSION['status']) && $_SESSION['status'] === 'valid' ? '' : 'disabled'; ?>>
+    <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid'): ?>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="#">View profile</a></li>
+        <li><a class="dropdown-item" href="#">test</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="landpage/logout.php">Logout</a></li>
+    </ul>
+    <?php endif; ?>
+</div>
+
    
 </div>
 

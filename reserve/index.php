@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/landpage.css">     
     <style>
         body {
-            background-color: #040F13; /* Background color */
+            background-color: #040F13;
             margin: 0;
             padding: 0;
             height: 100%;
@@ -107,8 +107,8 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            display: none; /* Initially hide the footer */
-            z-index: 999; /* Ensure the footer appears above other content */
+            display: none;
+            z-index: 999;
         }
     </style>
 </head>
@@ -180,7 +180,8 @@
 
     <a href="#chess" class="category">Chess</a>
     <div id="chess" class="image-container">
-        <img src="assets/img/chess.jpg" alt="Chess Image 1">
+       
+    <img src="assets/img/chess.jpg" alt="Chess Image 1">
         <img src="assets/img/chess.jpg" alt="Chess Image 2">
         <img src="assets/img/chess.jpg" alt="Chess Image 3">
     </div>
@@ -198,25 +199,22 @@
         <img src="assets/img/dart.jpg" alt="Dart Image 2">
         <img src="assets/img/dart.jpg" alt="Dart Image 3">
     </div>
-    <!-- Your main content goes here -->
 </main>
-<footer id="footer">
+<footer>
     <p>Email: example@example.com</p>
     <p>Contact: +1234567890</p>
 </footer>
 
 <script>
-    // JavaScript to show the footer when the user scrolls to the bottom of the page
     window.addEventListener('scroll', function() {
         var footer = document.getElementById('footer');
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            footer.style.display = 'block'; // Show the footer
+            footer.style.display = 'block';
         } else {
-            footer.style.display = 'none'; // Hide the footer
+            footer.style.display = 'none';
         }
     });
 </script>
 
 </body>
-
 </html>
