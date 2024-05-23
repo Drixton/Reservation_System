@@ -94,7 +94,7 @@ input[type="email"]::placeholder,input[type="password"]::placeholder{
     background-color:#F0F9FF;
 }
 .card__items--blue i{
-    color: #74C1ED;
+    color: #eda60d;
 }
 .card__items--rose{
     background-color:#FEF6FB;
@@ -112,7 +112,7 @@ input[type="email"]::placeholder,input[type="password"]::placeholder{
     background: linear-gradient(110.42deg, #0f8315 18.27%, #FAFFC1 91.84%);
 }
 .card__items--gradient i{
-    color:#FFFFFF;
+    color:#eda60d;
 }
 .nbr{
     position: absolute;

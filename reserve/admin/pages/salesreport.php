@@ -57,7 +57,7 @@
         }
 
         .sales-table th {
-            background-color: #4CAF50;
+            background-color: #2e8b57;
             color: white;
         }
 

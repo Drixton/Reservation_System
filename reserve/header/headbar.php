@@ -143,7 +143,7 @@ nav ul li a {
 }
 /* Additional CSS */
 nav ul li:nth-last-child(2) a {
-    text-decoration: underline; /* Remove underline from "Login" */
+    text-decoration: none; /* Remove underline from "Login" */
 }
 nav ul li:last-child a {
     text-decoration: none; /* Remove underline from "Sign In" */
@@ -354,7 +354,7 @@ nav ul li:last-child a {
                         <!-- Add more locations here -->
                     </ul>
                 </li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="/reservation_system/reserve/userlog/create.php">Sign up</a></li>
                 <li><a href="#" class="login-button">Log In</a></li>
             </ul>
         </nav>
@@ -388,7 +388,7 @@ nav ul li:last-child a {
         <i class="fas fa-volume-up audio-icon"></i> <!-- Audio icon -->
         <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi impedit quam ipsam repudiandae, ab maxime provident? Quo porro voluptates saepe atque optio reiciendis facilis, tempore nam laboriosam et officiis quis expedita non ut doloribus aliquid molestias iure quae temporibus consequatur nihil. Aliquam sunt temporibus animi adipisci quae illo distinctio quisquam!.</p>
         <audio id="audioPlayer" controls autoplay loop>
-            <source src="assets/audio/welcome.mp3" type="audio/mpeg">
+            <source src="assets/audio/aepsong.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="reserve-now"> <!-- Reserve now button -->

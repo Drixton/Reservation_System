@@ -1,3 +1,37 @@
+<?php
+// Database configuration
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "reservation";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Queries to count records
+$query_adminlogs = "SELECT COUNT(*) as count FROM adminlogs";
+$query_reservation_payments = "SELECT COUNT(*) as count FROM reservation_payments";
+$query_users = "SELECT COUNT(*) as count FROM users";
+
+// Execute queries and fetch results
+$result_adminlogs = $conn->query($query_adminlogs);
+$result_reservation_payments = $conn->query($query_reservation_payments);
+$result_users = $conn->query($query_users);
+
+// Fetch the counts
+$count_adminlogs = $result_adminlogs->fetch_assoc()['count'];
+$count_reservation_payments = $result_reservation_payments->fetch_assoc()['count'];
+$count_users = $result_users->fetch_assoc()['count'];
+
+// Close connection
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,8 +71,6 @@
             overflow-y: auto;
         }
 
-        
-
         .animated {
             animation-duration: 1s;
             animation-fill-mode: both;
@@ -59,46 +91,71 @@
         .animated.fadeInUp {
             animation-name: fadeInUp;
         }
+
         .bg-content {
             background-color: #c3cbdc;
             background-image: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
-
         }
 
+        .container-fluid {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .card__items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card__items--blue {
+            background: linear-gradient(to right, #1e2023, #2e8140);
+    color: #fff;
+        }
+
+        .card__items--gradient {
+            background: linear-gradient(to right, #1e2023, #2e8140);
+            color: #fff;
+        }
+
+        .card__students,
+        .card__users,
+        .card__payments {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .card__nbr-students,
+        .card__nbr-course,
+        .card__nbr-students span {
+            font-size: 24px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body class="bg-content">
     <main class="dashboard d-flex">
         <!-- start sidebar -->
-
         <?php
-        include "component/sidebar.php";
-        include 'conixion.php';
-        $nbr_students = $con->query("SELECT * FROM allowed_student_numbers");
-        $nbr_students = $nbr_students->rowCount();
-
-        $nbr_sched = $con->query("SELECT * FROM addtable");
-        $nbr_sched = $nbr_sched->rowCount();
-
-        $nbr_dev = $con->query("SELECT * FROM units");
-        $nbr_dev = $nbr_dev->rowCount();
-
-        $nbr_fac = $con->query("SELECT * FROM facultylogs");
-        $nbr_fac = $nbr_fac->rowCount();
-
-        $nbr_adm = $con->query("SELECT * FROM facultylogs");
-        $nbr_adm = $nbr_adm->rowCount();
-
-        $nbr_subadm = $con->query("SELECT * FROM adminlogs");
-        $nbr_subadm = $nbr_subadm->rowCount();
+         include "component/sidebar.php";
         ?>
         <!-- end sidebar -->
 
         <!-- start content page -->
         <div class="container-fluid px">
-          
-
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark wow fadeInUp">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Home</a>
@@ -109,78 +166,43 @@
             <div class="row gap-3 justify-content-center mt-5">
                 <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
                     <div class="card__students d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-user-graduate me-2"></i>
-                        <span>Student</span>
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Admin Logs</span>
                     </div>
                     <div class="card__nbr-students">
-                        <span class="h5 fw-bold nbr"><?php echo $nbr_students; ?></span>
+                        <span><?php echo $count_adminlogs; ?></span>
                     </div>
                 </div>
-          
-                
+
                 <div class="card card__items card__items--gradient col-md-3 position-relative animated fadeInUp">
                     <div class="card__users d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-chalkboard-teacher me-2"></i>
-                        <span>Sportlist</span>
+                        <i class="fas fa-money-bill-alt"></i>
+                        <span>Reserve Payments</span>
                     </div>
                     <div class="card__nbr-students">
-                        <span class="h5 fw-bold nbr"><?php echo $nbr_fac; ?></span>
+                        <span><?php echo $count_reservation_payments; ?></span>
                     </div>
                 </div>
 
                 <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
                     <div class="card__students d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-user-shield me-2"></i>
-                        <span>Admin</span>
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
                     </div>
                     <div class="card__nbr-students">
-                        <span class="h5 fw-bold nbr"><?php echo $nbr_adm; ?></span>
-                    </div>
-                </div>
-
-                <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
-                    <div class="card__students d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-user-shield me-2"></i>
-                        <span>sub-Admin</span>
-                    </div>
-                    <div class="card__nbr-students">
-                        <span class="h5 fw-bold nbr"><?php echo $nbr_subadm; ?></span>
-                    </div>
-                </div>
-
-				 <div class="card card__items card__items--rose col-md-3 position-relative animated fadeInUp">
-                    <div class="card__Course d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-calendar-plus me-2" style="color:  #00C1FE;"></i>
-                        <span  >Schedules</span>
-                    </div>
-                    <div class="card__nbr-course">
-                        <span class="h5 fw-bold nbr"><?php echo $nbr_sched; ?></span>
-                    </div>
-                </div>
-				 <div class="card card__items card__items--yellow col-md-3 position-relative animated fadeInUp">
-                    <div class="card__payments d-flex flex-column gap-2 mt-3">
-                        <i class="fas fa-cube me-2"></i>
-                        <span>UNIT</span>
-                    </div>
-                    <div class="card__payments">
-                        <div class="card__nbr-students">
-                            <span class="h5 fw-bold nbr"><?php echo $nbr_dev; ?></span>
-                        </div>
+                        <span><?php echo $count_users; ?></span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end contentpage -->
-
-        <!-- Add your footer content here -->
-      
+        <!-- end content page -->
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/wow.min.js"></script>
-        <script>
-            new WOW().init();
-        </script>
+    <script>
+        new WOW().init();
+    </script>
     <script src="../js/script.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>
 </body>
