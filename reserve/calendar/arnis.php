@@ -301,7 +301,9 @@
     }
 }
 
-        
+.back-icon svg {
+        fill: #ffffff; /* White color */
+    }     
         
     </style>
 </head>
@@ -323,9 +325,17 @@
 
 <!-- Back button icon -->
 <div class="back-button-container">
-    <div class="back-button" onclick="goBack()">&#8249;</div>
-    <div class="back-text">Back</div>
+    <a href="#" onclick="goBack()">
+        <div class="back-icon"> 
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </div>
+    </a>
 </div>
+
+
 
 <div class="back-description">Select a Date and Time</div>
 
@@ -370,9 +380,7 @@
 <!-- Additional Options -->
 <div class="text-link-container">
     <div class="court-text">Court Number</div>
-    <a href="#" class="text-link" onclick="selectCourt(this)">Court 1</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">court 2</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">court 3</a>
+ 
 <a href="#" class="text-link" onclick="selectCourt(this)">court 4</a>
 <a href="#" class="text-link" onclick="selectCourt(this)">court 5</a>
 
@@ -526,7 +534,7 @@
         const selectedDuration = document.querySelector('.additional-option.selected').textContent;
 
         // Redirect to payment.php with query parameters
-        window.location.href = "http://localhost/reservation_system/reserve/payment/payment.php" + 
+        window.location.href = "http://localhost/reservation_system/reserve/payment/arnispayment.php" + 
                                 "?date=" + encodeURIComponent(selectedDate) + 
                                 "&time=" + encodeURIComponent(selectedTime) + 
                                 "&court=" + encodeURIComponent(selectedCourt) + 
@@ -540,7 +548,15 @@
     generateCalendar(currentYear, currentMonth);
     currentDateDisplay.children[0].textContent = formatDate(currentDate);
 </script>
+<script>
+    // JavaScript function to navigate back to the specified page
+    function goBack() {
+        // Redirect to the desired page
+        window.location.href = "http://localhost/reservation_system/reserve/landpage/dashboard.php";
+    }
 
+    // Your existing JavaScript functions...
+</script>
 <!-- Your page content here -->
 
 </body>

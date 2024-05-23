@@ -271,27 +271,30 @@ include '../header/navbar.php';
 
 ?>  
     <div class="main">
-
-
     <div class="container1">
-    <div class="random-text">BADMINTON</div>
-    <img src="../assets/img/badminton.jpg" alt="Badminton">
-    <a href="/reservation_system/reserve/calendar/index.php" class="button-slide">Click Here</a>
-</div>
-
-        <div class="container1">
-            <div class="random-text">DART</div>
-            <img src="../assets/img/dart.jpg" alt="Dart">
-            <button class="button-slide">Click Here</button>
+            <div class="random-text">Arnis</div>
+            <img src="../assets/img/arnis.jpg" alt="Arnis">
+            <a href="/reservation_system/reserve/calendar/arnis.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">BILLIARD</div>
             <img src="../assets/img/billiard.jpg" alt="Billiard">
+            <a href="/reservation_system/reserve/calendar/billiard.php" class="button-slide">Click Here</a>
+        </div>
+    <div class="container1">
+    <div class="random-text">BADMINTON</div>
+    <img src="../assets/img/badminton.jpg" alt="Badminton">
+    <a href="/reservation_system/reserve/calendar/badminton.php" class="button-slide">Click Here</a>
+</div>
+<div class="container1">
+            <div class="random-text">Chess</div>
+            <img src="../assets/img/chess.jpg" alt="Chess">
             <button class="button-slide">Click Here</button>
         </div>
+        
         <div class="container1">
-            <div class="random-text">TABLE TENNIS</div>
-            <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
+            <div class="random-text">DART</div>
+            <img src="../assets/img/dart.jpg" alt="Dart">
             <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
@@ -300,30 +303,33 @@ include '../header/navbar.php';
             <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
-            <div class="random-text">TAEKWONDO</div>
-            <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
-            <button class="button-slide">Click Here</button>
-        </div>
-        <div class="container1">
             <div class="random-text">SEPAK TAKRAW</div>
             <img src="../assets/img/sepaktakraw.jpg" alt="Sepak Takraw">
             <button class="button-slide">Click Here</button>
         </div>
         <div class="container1">
+            <div class="random-text">TAEKWONDO</div>
+            <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
+            <button class="button-slide">Click Here</button>
+        </div>
+        <div class="container1">
+            <div class="random-text">TABLE TENNIS</div>
+            <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
+            <button class="button-slide">Click Here</button>
+        </div>
+      
+        <div class="container1">
+            <div class="random-text">TAEKWONDO</div>
+            <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
+            <button class="button-slide">Click Here</button>
+        </div>
+      
+        <div class="container1">
             <div class="random-text">Cornhole</div>
             <img src="../assets/img/cornhole.jpg" alt="Cornhole">
             <button class="button-slide">Click Here</button>
         </div>
-        <div class="container1">
-            <div class="random-text">Chess</div>
-            <img src="../assets/img/chess.jpg" alt="Chess">
-            <button class="button-slide">Click Here</button>
-        </div>
-        <div class="container1">
-            <div class="random-text">Arnis</div>
-            <img src="../assets/img/arnis.jpg" alt="Arnis">
-            <button class="button-slide">Click Here</button>
-        </div>
+      
     </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Units Report List</title>
+    <title>Reservation Approval</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
@@ -86,64 +86,68 @@
     <main class="dashboard d-flex">
         <?php include "component/sidebar.php"; ?>
         <div class="container-fluid px-4">
-            
-        <h1>Reservation Payments</h1>
+            <h1>Reservation Approval</h1>
 
-<div class="buttons-container">
-    <button class="button">Archive</button>
-    <button class="button">Delete</button>
-</div>
+            <div class="buttons-container">
+                <button class="button">Archive</button>
+                <button class="button">Delete</button>
+            </div>
 
-<?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
+            <?php
+            // Database connection parameters
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "reservation";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-// SQL query to retrieve data from the reservation_payments table
-$sql = "SELECT * FROM reservation_payments";
-$result = $conn->query($sql);
+            // SQL query to retrieve data from the reservation_payments table
+            $sql = "SELECT * FROM reservation_payments";
+            $result = $conn->query($sql);
 
-// Check if there are any rows returned
-if ($result->num_rows > 0) {
-    // Output data of each row in an HTML table
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Username</th><th>Date</th><th>Time</th><th>Court Number</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
-        echo "<td>" . $row["username"] . "</td>";
-        echo "<td>" . $row["date"] . "</td>";
-        echo "<td>" . $row["time"] . "</td>";
-        echo "<td>" . $row["court_number"] . "</td>";
-        echo "<td>" . $row["duration"] . "</td>";
-        echo "<td>" . $row["promo_code"] . "</td>";
-        echo "<td>" . $row["reference_no"] . "</td>";
-        echo "<td>" . $row["gcash_qrcode"] . "</td>";
-        echo "<td>" . $row["total"] . "</td>";
-        echo "<td>" . $row["created_at"] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
+            // Check if there are any rows returned
+            if ($result->num_rows > 0) {
+                // Output data of each row in an HTML table
+                echo "<table border='1'>";
+                echo "<tr><th>ID</th><th>Username</th><th>Sports</th><th>Date</th><th>Time</th><th>Field No:</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th><th>Operation</th></tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>" . $row["username"] . "</td>";
+                    echo "<td>" . $row["sports"] . "</td>";
+                    echo "<td>" . $row["date"] . "</td>";
+                    echo "<td>" . $row["time"] . "</td>";
+                    echo "<td>" . $row["court_number"] . "</td>";
+                    echo "<td>" . $row["duration"] . "</td>";
+                    echo "<td>" . $row["promo_code"] . "</td>";
+                    echo "<td>" . $row["reference_no"] . "</td>";
+                    echo "<td>" . $row["gcash_qrcode"] . "</td>";
+                    echo "<td>" . $row["total"] . "</td>";
+                    echo "<td>" . $row["created_at"] . "</td>";
+                    // Adding dropdown for approval status
+                    echo "<td><select>";
+                    echo "<option value='pending' style='background-color: yellow;'>Pending</option>";
+                    echo "<option value='approve' style='background-color: green;'>Approve</option>";
+                    echo "</select></td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "0 results";
+            }
 
-// Close connection
-$conn->close();
-?>
-
-
-</main>
+            // Close connection
+            $conn->close();
+            ?>
+        </div>
+    </main>
 </body>
 
 </html>
