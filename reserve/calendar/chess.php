@@ -376,7 +376,7 @@
 
 <!-- Additional Options -->
 <div class="text-link-container">
-    <div class="court-text">Court Number</div>
+    <div class="court-text">Board Number</div>
     <a href="#" class="text-link" onclick="selectCourt(this)">Board 1</a>
 <a href="#" class="text-link" onclick="selectCourt(this)">Board 2</a>
 
@@ -531,7 +531,7 @@
         const selectedDuration = document.querySelector('.additional-option.selected').textContent;
 
         // Redirect to payment.php with query parameters
-        window.location.href = "http://localhost/reservation_system/reserve/payment/badmintonpayment.php" + 
+        window.location.href = "http://localhost/reservation_system/reserve/payment/chesspayment.php" + 
                                 "?date=" + encodeURIComponent(selectedDate) + 
                                 "&time=" + encodeURIComponent(selectedTime) + 
                                 "&court=" + encodeURIComponent(selectedCourt) + 

@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <style>
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -20,30 +19,40 @@
             padding: 0;
             position: relative; /* Make the body a positioned parent */
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
             position: relative;
             font-weight: normal; /* Reset font weight */
         }
-        th:not(:last-child), /* Exclude last child from applying background color */
-        th:first-child ~ th { /* Apply styles from the second th onwards */
-            background-color: #2e8b57; /* Changed background color */
-            color: white; /* Changed text color to white */
+
+        th:not(:last-child),
+        /* Exclude last child from applying background color */
+        th:first-child ~ th {
+            /* Apply styles from the second th onwards */
+            background-color: #2e8b57;
+            /* Changed background color */
+            color: white;
+            /* Changed text color to white */
             font-weight: bold;
         }
+
         .buttons-container {
             position: absolute; /* Position the container absolutely */
             top: 20px; /* Adjust as needed */
             right: 20px; /* Adjust as needed */
             display: flex;
         }
+
         .buttons-container .button {
             cursor: pointer;
             background-color: #007bff;
@@ -54,12 +63,15 @@
             margin-left: 10px;
             transition: background-color 0.3s;
         }
+
         .buttons-container .button:hover {
             background-color: #0056b3;
         }
+
         tr:hover {
             background-color: #f5f5f5;
         }
+
         .details {
             color: gray;
             cursor: pointer;
@@ -67,16 +79,17 @@
             width: 100%; /* Set the width to 100% */
             text-align: left; /* Align the text to the right */
         }
+
         .details-container {
             padding: 10px; /* Add some padding to the container */
         }
+
         @media only screen and (max-width: 600px) {
-            th, td {
+            th,
+            td {
                 padding: 5px;
             }
         }
-        
- 
     </style>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -89,8 +102,7 @@
             <h1>Reservation Approval</h1>
 
             <div class="buttons-container">
-                <button class="button">Archive</button>
-                <button class="button">Delete</button>
+                <button class="button" id="approveBtn">Approve</button>
             </div>
 
             <?php
@@ -132,7 +144,7 @@
                     echo "<td>" . $row["total"] . "</td>";
                     echo "<td>" . $row["created_at"] . "</td>";
                     // Adding dropdown for approval status
-                    echo "<td><select>";
+                    echo "<td><select class='approval-status'>";
                     echo "<option value='pending' style='background-color: yellow;'>Pending</option>";
                     echo "<option value='approve' style='background-color: green;'>Approve</option>";
                     echo "</select></td>";
@@ -148,6 +160,35 @@
             ?>
         </div>
     </main>
+
+    <script>
+        $(document).ready(function () {
+            $('#approveBtn').on('click', function () {
+                var selectedRows = $('.approval-status').filter(function () {
+                    return this.value === 'approve';
+                }).closest('tr');
+
+                var ids = selectedRows.map(function () {
+                    return $(this).find('td:first').text();
+                }).get();
+
+                // AJAX call to move records to the 'badmintonpage' table and delete them from 'reservation_payments'
+                $.ajax({
+                    url: 'process.php', // PHP script to handle database operations
+                    method: 'POST',
+                    data: { ids: ids },
+                    success: function (response) {
+                        // Refresh the page or update the UI as needed
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
+

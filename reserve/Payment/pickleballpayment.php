@@ -200,7 +200,7 @@ $conn->close();
                     <h2>Reservation Details</h2>
                     <div class="detail-item">
                         <label for="sport">Sport:</label>
-                        <input type="text" id="sport" name="sport" value="Billiard" readonly>
+                        <input type="text" id="sport" name="sport" value="Pickle ball" readonly>
                     </div>
                     <div class="detail-item">
                         <label for="date">Date:</label>
@@ -211,7 +211,7 @@ $conn->close();
                         <input type="text" id="time" name="time" readonly>
                     </div>
                     <div class="detail-item">
-                        <label for="court_number">Table Number:</label>
+                        <label for="court_number">Court Number:</label>
                         <input type="text" id="court_number" name="court_number" readonly>
                     </div>
                     <div class="detail-item">
@@ -248,7 +248,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='http://localhost/reservation_system/reserve/calendar/billiard.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='http://localhost/reservation_system/reserve/calendar/pickleball.php'">Back</button>
             </div>
         </form>
     </div>

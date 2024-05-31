@@ -300,10 +300,10 @@
         height: 20px;
     }
 }
-
 .back-icon svg {
         fill: #ffffff; /* White color */
     }     
+       
         
         
     </style>
@@ -324,7 +324,6 @@
     </div>
 </div>
 
-<!-- Back button icon -->
 <div class="back-button-container">
     <a href="#" onclick="goBack()">
         <div class="back-icon"> 
@@ -335,7 +334,6 @@
         </div>
     </a>
 </div>
-
 <div class="back-description">Select a Date and Time</div>
 
 <div class="phlippine">
@@ -380,10 +378,7 @@
 <div class="text-link-container">
     <div class="court-text">Table Number</div>
     <a href="#" class="text-link" onclick="selectCourt(this)">Table 1</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Table 2</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Table 3</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Table 4</a>
-<a href="#" class="text-link" onclick="selectCourt(this)">Table 5</a>
+
 
 
 </div>
@@ -536,7 +531,7 @@
         const selectedDuration = document.querySelector('.additional-option.selected').textContent;
 
         // Redirect to payment.php with query parameters
-        window.location.href = "http://localhost/reservation_system/reserve/payment/billiardpayment.php" + 
+        window.location.href = "http://localhost/reservation_system/reserve/payment/tabletennispayment.php" + 
                                 "?date=" + encodeURIComponent(selectedDate) + 
                                 "&time=" + encodeURIComponent(selectedTime) + 
                                 "&court=" + encodeURIComponent(selectedCourt) + 
@@ -550,7 +545,6 @@
     generateCalendar(currentYear, currentMonth);
     currentDateDisplay.children[0].textContent = formatDate(currentDate);
 </script>
-
 <script>
     // JavaScript function to navigate back to the specified page
     function goBack() {
@@ -560,6 +554,7 @@
 
     // Your existing JavaScript functions...
 </script>
+<!-- Your page content here -->
 
 </body>
 </html>
