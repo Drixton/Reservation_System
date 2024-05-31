@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 08:28 AM
+-- Generation Time: May 31, 2024 at 10:27 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,36 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-05-31 13:10:04', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-05-31 15:23:54', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `arnispage`
+--
+
+CREATE TABLE `arnispage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` varchar(255) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `arnispage`
+--
+
+INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(62, 'phosclay', 'Arnis', '0000-00-00', '08:00:00', 'court 4', 3, '', '', '', '300.00', '2024-05-31 07:07:46'),
+(78, 'phosclay', 'Arnis', '0000-00-00', '09:00:00', 'court 5', 3, '', '', '', '300.00', '2024-05-31 07:36:11');
 
 -- --------------------------------------------------------
 
@@ -66,6 +95,126 @@ CREATE TABLE `badmintonpage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `badmintonpage`
+--
+
+INSERT INTO `badmintonpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(64, 'phosclay', 'Badminton', '0000-00-00', '09:00:00', 0, 3, '', '', '', '300.00', '2024-05-31 07:08:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `billiardpage`
+--
+
+CREATE TABLE `billiardpage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `billiardpage`
+--
+
+INSERT INTO `billiardpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(63, 'phosclay', 'Billiard', '0000-00-00', '09:00:00', 0, 1, '', '', '', '100.00', '2024-05-31 07:07:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chesspage`
+--
+
+CREATE TABLE `chesspage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chesspage`
+--
+
+INSERT INTO `chesspage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(65, 'phosclay', 'Chess', '0000-00-00', '02:30:00', 0, 3, '', '', '', '300.00', '2024-05-31 07:08:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dartpage`
+--
+
+CREATE TABLE `dartpage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dartpage`
+--
+
+INSERT INTO `dartpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(66, 'phosclay', 'Dart', '0000-00-00', '01:30:00', 0, 2, '', '', '', '200.00', '2024-05-31 07:08:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `picklepage`
+--
+
+CREATE TABLE `picklepage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `picklepage`
+--
+
+INSERT INTO `picklepage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(76, 'phosclay', 'Pickle ball', '0000-00-00', '09:30:00', 0, 3, '', '', '', '300.00', '2024-05-31 07:21:42'),
+(77, 'phosclay', 'Pickle ball', '0000-00-00', '09:30:00', 0, 3, '', '', '', '300.00', '2024-05-31 07:22:36');
+
 -- --------------------------------------------------------
 
 --
@@ -87,19 +236,89 @@ CREATE TABLE `reservation_payments` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `reservation_payments`
+-- Table structure for table `sepaktakrawpage`
 --
 
-INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(40, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:09:49'),
-(41, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:14:47'),
-(42, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:16:07'),
-(43, 'phosclay', 'badminton', 'Fri, May 10, 2024', '01:30:00', 'court 2', '2 hours', '', '', '', '0.00', '2024-05-23 07:20:49'),
-(44, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', '', '0.00', '2024-05-23 07:21:20'),
-(45, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 155058.png', '0.00', '2024-05-23 07:21:34'),
-(46, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 123752.png', '0.00', '2024-05-23 07:21:45'),
-(47, 'phosclay', 'badminton', 'Fri, May 17, 2024', '08:00:00', 'court 2', '2 hours', '2343', '2323333', 'Screenshot 2024-05-20 160145.png', '23455.00', '2024-05-23 07:23:05');
+CREATE TABLE `sepaktakrawpage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sepaktakrawpage`
+--
+
+INSERT INTO `sepaktakrawpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(68, 'phosclay', 'Sepak Takraw', '0000-00-00', '01:30:00', 0, 3, '', '', '', '300.00', '2024-05-31 07:09:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabletennispage`
+--
+
+CREATE TABLE `tabletennispage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabletennispage`
+--
+
+INSERT INTO `tabletennispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(69, 'phosclay', 'Table Tennis', '0000-00-00', '09:30:00', 0, 2, '', '', '', '200.00', '2024-05-31 07:10:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taekwondopage`
+--
+
+CREATE TABLE `taekwondopage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `taekwondopage`
+--
+
+INSERT INTO `taekwondopage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(79, 'phosclay', 'Taekwondo', '0000-00-00', '02:00:00', 0, 2, '', '', '', '200.00', '2024-05-31 08:09:49');
 
 -- --------------------------------------------------------
 
@@ -160,15 +379,63 @@ ALTER TABLE `adminlogs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `arnispage`
+--
+ALTER TABLE `arnispage`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `badmintonpage`
 --
 ALTER TABLE `badmintonpage`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `billiardpage`
+--
+ALTER TABLE `billiardpage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `chesspage`
+--
+ALTER TABLE `chesspage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dartpage`
+--
+ALTER TABLE `dartpage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `picklepage`
+--
+ALTER TABLE `picklepage`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sepaktakrawpage`
+--
+ALTER TABLE `sepaktakrawpage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabletennispage`
+--
+ALTER TABLE `tabletennispage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `taekwondopage`
+--
+ALTER TABLE `taekwondopage`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -194,16 +461,64 @@ ALTER TABLE `adminlogs`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `arnispage`
+--
+ALTER TABLE `arnispage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
 -- AUTO_INCREMENT for table `badmintonpage`
 --
 ALTER TABLE `badmintonpage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT for table `billiardpage`
+--
+ALTER TABLE `billiardpage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
+-- AUTO_INCREMENT for table `chesspage`
+--
+ALTER TABLE `chesspage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT for table `dartpage`
+--
+ALTER TABLE `dartpage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `picklepage`
+--
+ALTER TABLE `picklepage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT for table `sepaktakrawpage`
+--
+ALTER TABLE `sepaktakrawpage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `tabletennispage`
+--
+ALTER TABLE `tabletennispage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `taekwondopage`
+--
+ALTER TABLE `taekwondopage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `users`
