@@ -110,23 +110,60 @@
             display: none;
             z-index: 999;
         }
+        .hero-section {
+    background: url('assets/img/sports-bg.jpg') no-repeat center center/cover;
+    height: 80vh;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    margin-bottom: 30px;
+}
+
+
+        .hero-section h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+
+        .hero-section p {
+            font-size: 1.5em;
+           
+        }
+        @keyframes moveUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.category-heading {
+    animation: moveUpDown 2s ease-in-out infinite;
+}
+@keyframes changeColor {
+    0% { color: orange; }
+    33% { color: blue; }
+    66% { color: green; }
+    100% { color: orange; }
+}
+
+.category-heading span {
+    animation: changeColor 6s linear infinite;
+}
+
+
     </style>
 </head>
 <body>
 <?php include 'header/headbar.php'; ?> 
+<div class="hero-section">
+<h1 class="category-heading">Welcome to <span>Athlete Event Place</span></h1>
 
-<nav>
-    <a href="#badminton">Badminton</a>
-    <a href="#arnis">Arnis</a>
-    <a href="#billiard">Billiard</a>
-    <a href="#taekwondo">Taekwondo</a>
-    <a href="#pickleball">Pickleball</a>
-    <a href="#sepaktakraw">Sepak Takraw</a>
-    <a href="#cornhole">Cornhole</a>
-    <a href="#chess">Chess</a>
-    <a href="#tabletennis">Table Tennis</a>
-    <a href="#dart">Dart</a>
-</nav>
+
+    <p >Your ultimate destination for all things sports</p>
+    <a href="#content" class="btn btn-primary">Explore Now</a>
+</div>
+
 
 <main>
     <a href="#badminton" class="category">Badminton</a>
