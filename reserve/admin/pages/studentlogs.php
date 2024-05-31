@@ -5,153 +5,139 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student list</title>
+    <title>Sport List</title>
+    <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <style>
-        .toggle-mpin {
-            
+        <style>
+       <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
         }
-
-        .mpin {
-            display: none;
-            left: 0;
-            padding: 0.2rem 0.5rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             background-color: #fff;
-            border: 1px solid #ccc;
         }
-        .search-bar {
-        max-width: 200px; /* Adjust the width as needed */
-        margin-bottom: 1rem; /* Optional: Adjust the margin-bottom as needed */
-    }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #2e8b57;
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        @media only screen and (max-width: 600px) {
+            th, td {
+                padding: 8px;
+            }
+        }
     </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body class="bg-content">
     <main class="dashboard d-flex">
         <?php include "component/sidebar.php"; ?>
         <div class="container-fluid px-4">
-  
-            <div class="faculty-list-header d-flex justify-content-between align-items-center py-2">
-                <div class="title h6 fw-bold">Student list</div>
-                <div class="btn-add d-flex gap-3 align-items-center">
-                    <div class="short">
-                     
-                    </div>
-                    <?php include 'component/studentadd.php'; ?>
+            
+        <table id="sportTable">
+    <thead>
+        <tr>
+            <th colspan="5">
+                <div class="dropdown">
+                    <select id="sports" name="sports" onchange="showSportList()">
+                        <option value="ARNIS">ARNIS</option>
+                        <option value="BADMINTON">BADMINTON</option>
+                        <option value="BILLIARD">BILLIARD</option>
+                        <option value="CORNHOLE">CORNHOLE</option>
+                        <option value="CHESS">CHESS</option>
+                        <option value="DART">DART</option>
+                        <option value="PICKLE BALL">PICKLE BALL</option>
+                        <option value="SEPAK TAKRAW">SEPAK TAKRAW</option>
+                        <option value="TABLE TENNIS">TABLE TENNIS</option>
+                        <option value="TAEKWONDO">TAEKWONDO</option>
+                    </select>
                 </div>
-            </div>
-                 <!-- Add this code above the table -->
-             <div class="search-bar mb-3">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-            </div>
-            <div class="table-responsive">
-                
-                <table class="table faculty_list table-borderless">
-                    <thead>
-                        <tr class="align-middle">
-                       
-                            <th>First Name</th>
-                            <th>Last Name</th>
-							<th>Course</th>	
-							<th>Year</th>
-							<th>Student Number</th>
-                            <th>MPIN:</th>
-                            <th>Time_in</th>
-                            <th>Time_out</th>
-                            <th>Action</th>
-                            <th class="opacity-0">list</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        include 'conixion.php';
-                        $result = $con->query("SELECT * FROM allowed_Student_numbers");
-                        foreach ($result as $value):
-                        ?>
-                            <tr class="bg-white align-middle">
-                         
-                                <td><?php echo $value['First_Name'] ?></td>
-								   <td><?php echo $value['Last_Name'] ?></td>
-								      <td><?php echo $value['section'] ?></td>
-									     <td><?php echo $value['Year'] ?></td>
-										
-                                <td><?php echo $value['student_number'] ?></td>
-                                <td class="position-relative">
-                                    <button class="btn btn-sm btn-secondary toggle-mpin" data-target="mpin-<?php echo $value['id']; ?>">
-                                        Show MPIN
-                                    </button>
-                                    <span id="mpin-<?php echo $value['id']; ?>" class="mpin">
-                                        <?php echo $value['empin']; ?>
-                                    </span>
-                                </td>
-                                <td><?php echo $value['time_in'] ?></td>
-                                <td><?php echo $value['time_out'] ?></td>
-                                <td class="d-md-flex gap-3 mt-3">
-                                    <a href="#" class="delete-link" data-id="<?php echo $value['id']; ?>"><i class="far fa-trash"></i></a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-    <script src="../js/script.js"></script>
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script>
-         $(document).ready(function () {
-            $(".delete-link").on("click", function (e) {
-                e.preventDefault();
+            </th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Table</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+            <th>Paid/Unpaid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Sample data will be inserted here dynamically -->
+    </tbody>
+</table>
 
-                var recordId = $(this).data("id");
+<script>
+    const sportListData = {
+        'ARNIS': [
+            { name: 'John Doe', table: 'A1', time_in: '10:00 AM', time_out: '12:00 PM', paid: 'Paid' },
+            { name: 'Jane Smith', table: 'B2', time_in: '11:00 AM', time_out: '01:00 PM', paid: 'Unpaid' }
+        ],
+        'BADMINTON': [
+            { name: 'Alice Johnson', table: 'C3', time_in: '09:00 AM', time_out: '11:00 AM', paid: 'Paid' },
+            { name: 'Bob Brown', table: 'D4', time_in: '10:30 AM', time_out: '12:30 PM', paid: 'Unpaid' }
+        ],
+        // Add more sport data as needed
+    };
 
-                var userConfirmation = confirm("Are you sure you want to delete this record?");
-                if (userConfirmation) {
-                    $.ajax({
-                        type: "POST",
-                        url: "studentdelete.php",
-                        data: { id: recordId },
-                        success: function (response) {
-                            location.reload();
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
+    function showSportList() {
+        const sport = document.getElementById('sports').value;
+        const tableBody = document.querySelector('#sportTable tbody');
+        tableBody.innerHTML = '';
+
+        if (sportListData[sport]) {
+            sportListData[sport].forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entry.name}</td>
+                    <td>${entry.table}</td>
+                    <td>${entry.time_in}</td>
+                    <td>${entry.time_out}</td>
+                    <td>${entry.paid}</td>
+                `;
+                tableBody.appendChild(row);
             });
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="5">No data available for this sport</td></tr>';
+        }
+    }
 
-            $(".toggle-mpin").on("click", function () {
-                var targetId = $(this).data("target");
-                var mpinElement = $("#" + targetId);
-
-                if (mpinElement.is(":hidden")) {
-                    mpinElement.show();
-                    $(this).hide();
-                } else {
-                    mpinElement.hide();
-                }
-            });
-
-            // Search functionality
-            $("#searchInput").on("input", function () {
-                var searchText = $(this).val().toLowerCase();
-
-                $(".faculty_list tbody tr").each(function () {
-                    var rowData = $(this).text().toLowerCase();
-                    if (rowData.indexOf(searchText) === -1) {
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
-            });
-        });
-    </script>
+    // Initialize the table with the first sport in the list
+    document.addEventListener('DOMContentLoaded', () => {
+        showSportList();
+    });
+</script>
+   
 </body>
 
 </html>

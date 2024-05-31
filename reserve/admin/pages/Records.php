@@ -87,7 +87,7 @@
         <?php include "component/sidebar.php"; ?>
         <div class="container-fluid px-4">
             
-        <h1>Records</h1>
+        <h1>Reports</h1>
 
 <div class="buttons-container">
     <button class="button">Archive</button>
