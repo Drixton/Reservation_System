@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2024 at 10:23 AM
+-- Generation Time: May 31, 2024 at 08:28 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,28 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-05-23 16:06:27', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-05-31 13:10:04', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `badmintonpage`
+--
+
+CREATE TABLE `badmintonpage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `court_number` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `reference_no` varchar(255) DEFAULT NULL,
+  `gcash_qrcode` varchar(255) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -71,9 +92,6 @@ CREATE TABLE `reservation_payments` (
 --
 
 INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(37, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:06:25'),
-(38, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:07:44'),
-(39, 'phosclay', 'badminton', 'Thu, May 9, 2024', '08:00:00', 'court 3', '0', '123', '123', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:09:23'),
 (40, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:09:49'),
 (41, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:14:47'),
 (42, 'phosclay', 'badminton', 'Fri, May 24, 2024', '02:30:00', 'court 4', '2 hours', '23', '23', 'Screenshot 2024-05-20 160341.png', '23.00', '2024-05-23 07:16:07'),
@@ -81,8 +99,7 @@ INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, 
 (44, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', '', '0.00', '2024-05-23 07:21:20'),
 (45, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 155058.png', '0.00', '2024-05-23 07:21:34'),
 (46, 'phosclay', 'badminton', 'Thu, May 9, 2024', '02:30:00', 'court 3', '2 hours', 'asd', 'asd', 'Screenshot 2024-05-21 123752.png', '0.00', '2024-05-23 07:21:45'),
-(47, 'phosclay', 'badminton', 'Fri, May 17, 2024', '08:00:00', 'court 2', '2 hours', '2343', '2323333', 'Screenshot 2024-05-20 160145.png', '23455.00', '2024-05-23 07:23:05'),
-(48, 'phosclay', 'Arnis', 'Thu, May 2, 2024', '08:00:00', 'court 4', '2 hours', '', '', '', '0.00', '2024-05-23 07:25:53');
+(47, 'phosclay', 'badminton', 'Fri, May 17, 2024', '08:00:00', 'court 2', '2 hours', '2343', '2323333', 'Screenshot 2024-05-20 160145.png', '23455.00', '2024-05-23 07:23:05');
 
 -- --------------------------------------------------------
 
@@ -143,6 +160,12 @@ ALTER TABLE `adminlogs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `badmintonpage`
+--
+ALTER TABLE `badmintonpage`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
@@ -171,10 +194,16 @@ ALTER TABLE `adminlogs`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `badmintonpage`
+--
+ALTER TABLE `badmintonpage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `users`
