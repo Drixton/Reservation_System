@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Navbar Example</title>
+    <title>Arnis Reservation</title>
     <style>
         /* CSS for styling the navbar */
         .navbar {
@@ -258,17 +258,29 @@
             border-radius: 10px;
         }
 
-        .payment-option{
-            border-radius: 10px; /* Add rounded corners */
-            background-color: green;
-            color: white; /* White text color */
-            height: 30px; /* Adjust height as needed */
-            width: 200px; /* Adjust width as needed */
-            font-size: 18px;
-            padding-top: 7px;
-            margin-top: 50px;
-            box-shadow: 1px 1px 2px rgba(0, 1, 0, 1); /* Add shadow */
-        }
+        .payment-option {
+    border: 2px solid #FFA500; /* Orange border */
+    border-radius: 5px; /* Add rounded corners */
+    background-color: #FFA500; /* Orange background */
+    color: #fff; /* White text color */
+    height: 40px; /* Adjust height as needed */
+    width: 200px; /* Adjust width as needed */
+    font-size: 16px;
+    font-weight: bold; /* Make text bold */
+    text-transform: uppercase; /* Convert text to uppercase */
+    cursor: pointer; /* Add cursor pointer on hover */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Add transition effect */
+    box-shadow: 0 2px 4px rgba(255, 165, 0, 0.2); /* Add subtle shadow */
+    text-align: center; /* Center align text */
+    line-height: 40px; /* Center text vertically */
+}
+
+.payment-option:hover {
+    background-color: #FF8C00; /* Darker orange background on hover */
+    border-color: #FF8C00; /* Darker orange border color on hover */
+}
+
+
 
         .duration-text{
             padding-top: 20px;
@@ -304,7 +316,11 @@
 .back-icon svg {
         fill: #ffffff; /* White color */
     }     
-        
+        /* CSS for styling the calendar */
+.calendar .holiday {
+    color: orange;
+}
+
     </style>
 </head>
 <body>
@@ -402,47 +418,84 @@
         window.history.back();
     }
 
-    // Function to generate a calendar
-    function generateCalendar(year, month) {
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-        const currentDay = currentDate.getDate();
-        const calendarDiv = document.getElementById('calendar');
+  // Function to generate a calendar
+function generateCalendar(year, month) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    const calendarDiv = document.getElementById('calendar');
 
-        let html = '<h2>';
-        html += '<div onclick="previousMonth()" style="cursor: pointer;">&#8249;</div>'; // Previous month button
-        html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
-        html += '<div onclick="nextMonth()" style="cursor: pointer;">&#8250;</div>'; // Next month button
-        html += '</h2>';
-        html += '<table>';
-        html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
-        
-        let dayCounter = 1;
-        for (let i = 0; i < 6; i++) {
-            html += '<tr>';
-            for (let j = 0; j < 7; j++) {
-                if (i === 0 && j < firstDayOfMonth) {
-                    html += '<td></td>';
-                } else if (dayCounter > daysInMonth) {
-                    html += '<td></td>';
-                } else {
-                    let cellClass = '';
-                    if (year === currentYear && month === currentMonth && dayCounter === currentDay) {
-                        cellClass = 'current-date';
-                    }
-                    html += '<td class="' + cellClass + '" onclick="selectDate(this)">' + dayCounter + '</td>';
-                    dayCounter++;
+    // Define Philippine holidays (example)
+   // Define Philippine holidays
+const philippineHolidays = [
+    // Regular Holidays
+    { month: 0, day: 1 }, // New Year's Day
+    { month: 3, day: 9 }, // Araw ng Kagitingan
+    { month: 4, day: 1 }, // Labor Day
+    { month: 5, day: 12 }, // Independence Day
+    { month: 6, day: 30 }, // National Heroes Day
+    { month: 10, day: 30 }, // Bonifacio Day
+    { month: 11, day: 25 }, // Christmas Day
+    { month: 11, day: 30 }, // Rizal Day
+
+    // Special (Non-Working) Days
+    { month: 0, day: 23 }, // Chinese New Year
+    { month: 2, day: 25 }, // EDSA People Power Revolution Anniversary
+    { month: 6, day: 31 }, // Eid'l Fitr
+    { month: 10, day: 1 }, // All Saints' Day
+    { month: 10, day: 30 }, // All Souls' Day
+    { month: 11, day: 8 }, // Feast of the Immaculate Conception of the Blessed Virgin Mary
+    { month: 11, day: 31 }, // Last Day of the Year
+
+    // Additional Special (Non-Working) Days
+    { month: 1, day: 25 }, // Chinese New Year
+    { month: 11, day: 31 }, // Additional Special (Non-Working) Day
+
+    // Regional Holidays
+    { month: 8, day: 1 }, // Ninoy Aquino Day
+    { month: 9, day: 27 }, // Eidul Adha
+    { month: 11, day: 30 }, // Christmas Eve
+];
+
+
+    let html = '<h2>';
+    html += '<div onclick="previousMonth()" style="cursor: pointer;">&#8249;</div>'; // Previous month button
+    html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
+    html += '<div onclick="nextMonth()" style="cursor: pointer;">&#8250;</div>'; // Next month button
+    html += '</h2>';
+    html += '<table>';
+    html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+
+    let dayCounter = 1;
+    for (let i = 0; i < 6; i++) {
+        html += '<tr>';
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDayOfMonth) {
+                html += '<td></td>';
+            } else if (dayCounter > daysInMonth) {
+                html += '<td></td>';
+            } else {
+                let cellClass = '';
+                if (year === currentYear && month === currentMonth && dayCounter === currentDay) {
+                    cellClass = 'current-date';
                 }
+                // Check if the date is a holiday
+                const isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
+                html += '<td class="' + (isHoliday ? 'holiday' : '') + ' ' + cellClass + '" onclick="selectDate(this)">' + dayCounter + '</td>';
+                dayCounter++;
             }
-            html += '</tr>';
         }
-
-        html += '</table>';
-        calendarDiv.innerHTML = html;
+        html += '</tr>';
     }
+
+    html += '</table>';
+    calendarDiv.innerHTML = html;
+}
+
+
 
     // Function to select the date
     function selectDate(cell) {
@@ -490,7 +543,11 @@
     }
 
     // Function to select time
-    function selectTime(button) {
+// Function to select time
+// Function to select time
+function selectTime(button) {
+    // Check if the button is clickable (not red)
+    if (button.style.backgroundColor !== 'red') {
         // Deselect all buttons
         const timeButtons = document.querySelectorAll('.time-button');
         timeButtons.forEach(btn => {
@@ -500,6 +557,9 @@
         // Select the clicked button 
         button.classList.add('selected');
     }
+}
+
+
 
     // Function to select court number
     function selectCourt(courtLink) {
@@ -556,8 +616,44 @@
     }
 
     // Your existing JavaScript functions...
+    
 </script>
+<script>
+// Function to fetch data from the server
+function fetchDataFromServer() {
+    // Perform an AJAX request to fetch data from the server
+    fetch('arnis_script.php')
+        .then(response => response.json())
+        .then(data => {
+            // Call functions to update styling based on the fetched data
+            updateButtonStyling(data.time);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+// Function to update time button styling
+function updateButtonStyling(timeData) {
+    const timeButtons = document.querySelectorAll('.time-button');
+    timeButtons.forEach(button => {
+        if (timeData.includes(button.textContent)) {
+            button.style.backgroundColor = 'red';
+        }
+    });
+}
+
+// Call the function to fetch data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchDataFromServer();
+});
+
+
+</script>
+
+
+
+
 <!-- Your page content here -->
 
 </body>
 </html>
+
