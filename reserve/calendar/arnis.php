@@ -1,3 +1,9 @@
+<?php
+// Start session
+session_start(); 
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,7 +143,7 @@
         }
 
         .selected {
-            background-color: green; /* Change background color for selected date */
+            background-color: #04a5ff; /* Change background color for selected date */
             color: black; /* Change text color for selected date */
         }
 
@@ -177,7 +183,7 @@
         }
 
         .time-button.selected {
-            background-color: green;
+            background-color: #04a5ff;
         }
 
         .current-date-display{
@@ -187,7 +193,7 @@
             font-size: 25px;
         }
         .session-link {
-    color: green;
+    color: white;
     text-decoration: none;
     font-size: 16px;
     position: fixed;
@@ -293,7 +299,7 @@
         body {
             background: linear-gradient(to right, black,green); /* Set background gradient */
             margin: 0; /* Remove default margin */
-            padding-top: 60px; /* Adjust padding to account for the navbar */
+            
         }
 
         @media screen and (max-width: 1024px) {
@@ -318,26 +324,19 @@
     }     
         /* CSS for styling the calendar */
 .calendar .holiday {
-    color: orange;
+    color: red;
 }
 
     </style>
 </head>
 <body>
+<?php 
+// Include navbar
+include '../header/sched.php'; 
 
-<div class="navbar">
-    <!-- Logo Image -->
-    <a href="#" class="navbar-brand"><img src="../assets/img/logo.png" alt="Logo"></a>
-    
-    <!-- Text in the Middle -->
-    <a href="#" class="navbar-text">Schedule and Time</a>
-    
-    <!-- Account Icon and Name -->
-    <div class="navbar-account">
-        <span class="account-icon"><img src="../assets/img/profile.png" alt="icon-account" class="account-picture"></span> 
-        <span class="account-name">Your Account Name</span>
-    </div>
-</div>
+
+?>  
+
 
 <!-- Back button icon -->
 <div class="back-button-container">
@@ -353,7 +352,7 @@
 
 
 
-<div class="back-description">Select a Date and Time</div>
+
 
 <div class="phlippine">
     <div class="ph-description">Philippine Standard Time (GMT+8)</div>
