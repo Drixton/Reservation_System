@@ -84,7 +84,6 @@ $result_bank = $conn->query($sql_bank);
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,9 +97,10 @@ $conn->close();
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 120vh;
             margin: 0;
         }
+
         .paywall-container {
             position: relative;
             background-color: #fff;
@@ -110,27 +110,28 @@ $conn->close();
             max-width: 800px;
             width: 100%;
         }
+
         .flex-container {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
         }
+
         .section {
             margin-bottom: 20px;
             flex: 0 0 48%;
         }
-        .section h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
+
         .detail-item {
             margin-bottom: 10px;
         }
+
         .detail-item label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         .detail-item input[type="text"],
         .detail-item input[type="file"] {
             width: calc(100% - 10px);
@@ -138,12 +139,14 @@ $conn->close();
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         .detail-item input[type="datetime-local"] {
             width: calc(100% - 10px);
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         .pay-button {
             width: 100%;
             padding: 10px;
@@ -155,32 +158,37 @@ $conn->close();
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .pay-button:hover {
             background-color: #0056b3;
         }
-        .image-preview {
-            position: relative;
-            max-width: 220px;
-            max-height: 220px;
-            border: 1px solid #ccc;
-            text-align: center;
-            margin: 0 auto;
-            overflow: hidden;
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
+
+        .image-preview {
+            flex: 0 0 48%;
+            max-width: 48%;
+            text-align: center;
+        }
+
         .image-preview img {
-            width: 150px;
-            height: 150px;
+            max-width: 100%;
+            max-height: 200px;
             object-fit: cover;
             border-radius: 5px;
         }
+
         @media only screen and (max-width: 600px) {
             .section {
                 flex: 0 0 100%;
             }
         }
-        .detail-item input[type="date"] {
-            width: 400px;
-        }
+
         .back-button {
             width: 100%;
             padding: 10px;
@@ -193,30 +201,10 @@ $conn->close();
             transition: background-color 0.3s ease;
             margin-top: 10px;
         }
+
         .back-button:hover {
             background-color: darkred;
         }
-        .image-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: space-between;
-    margin-bottom: 20px; /* Add some margin between the sections */
-}
-
-.image-preview {
-    flex: 0 0 48%; /* Adjust the width of each QR code container */
-    max-width: 48%; /* Limit the maximum width to maintain spacing */
-    text-align: center;
-}
-
-
-.image-preview img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
     </style>
 </head>
 <body>
@@ -228,7 +216,7 @@ $conn->close();
                     <div class="detail-item">
                         <label for="sport">Sport:</label>
                         <input type="text" id="sport" name="sport" value="Arnis" readonly>
-                    </div>
+                        </div>
                     <div class="detail-item">
                         <label for="date">Date:</label>
                         <input type="text" id="date" name="date" readonly>
@@ -249,38 +237,6 @@ $conn->close();
                         <label for="promo-code">Promo Code:</label>
                         <input type="text" id="promo-code" name="promo-code">
                     </div>
-                    <div class="section">
-            <h2>GCash QR Code</h2>
-            <div class="image-container">
-                <?php
-                if ($result_gcash->num_rows > 0) {
-                    while ($row = $result_gcash->fetch_assoc()) {
-                        echo '<div class="image-preview">';
-                        echo '<img src="' . $row["image_path"] . '" alt="GCash QR Code">';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "No GCash QR code found";
-                }
-                ?>
-            </div>
-            <div class="section">
-            <h2>Bank QR Code</h2>
-            <div class="image-container">
-                <?php
-                if ($result_bank->num_rows > 0) {
-                    while ($row = $result_bank->fetch_assoc()) {
-                        echo '<div class="image-preview">';
-                        echo '<img src="' . $row["image_path"] . '" alt="Bank QR Code">';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "No Bank QR code found";
-                }
-                ?>
-            </div>
-        </div>
-        </div>
                 </div>
                 <div class="section">
                     <h2>Gcash Details</h2>
@@ -293,8 +249,42 @@ $conn->close();
                         <input type="file" id="gcash-qrcode" name="gcash-qrcode" accept="image/*">
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
-                            <!-- Attached Image will be placed here -->
+                            <!-- This is where the uploaded image preview will be displayed -->
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container">
+                <div class="section">
+                    <h2>GCash QR Code</h2>
+                    <div class="image-container">
+                        <?php  
+                        if ($result_gcash->num_rows > 0) {
+                            while ($row = $result_gcash->fetch_assoc()) {
+                                echo '<div class="image-preview">';
+                                echo '<img src="' . $row["image_path"] . '" alt="GCash QR Code">';
+                                echo '</div>';
+                            }
+                        } else {
+                            echo "No GCash QR code found";
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Bank QR Code</h2>
+                    <div class="image-container">
+                        <?php
+                        if ($result_bank->num_rows > 0) {
+                            while ($row = $result_bank->fetch_assoc()) {
+                                echo '<div class="image-preview">';
+                                echo '<img src="' . $row["image_path"] . '" alt="Bank QR Code">';
+                                echo '</div>';
+                            }
+                        } else {
+                            echo "No Bank QR code found";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -313,97 +303,75 @@ $conn->close();
     </div>
 
     <script>
-    document.getElementById('gcash-qrcode').addEventListener('change', function(event) {
-        const preview = document.getElementById('image-preview');
-        const file = event.target.files[0];
+        document.getElementById('gcash-qrcode').addEventListener('change', function(event) {
+            const preview = document.getElementById('image-preview');
+            const file = event.target.files[0];
 
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Remove existing image
-                while (preview.firstChild) {
-                    preview.removeChild(preview.firstChild);
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    while (preview.firstChild) {
+                        preview.removeChild(preview.firstChild);
+                    }
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Gcash QR Code';
+                    preview.appendChild(img);
                 }
-
-                // Create a new image element
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.alt = 'Gcash QR Code';
-
-                // Append the image
-                preview.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to get URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(window.location.href);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        // Populate input fields with URL parameters
-        document.getElementById('date').value = getUrlParameter('date');
-        document.getElementById('time').value = getUrlParameter('time');
-        document.getElementById('court_number').value = getUrlParameter('court');
-        document.getElementById('duration').value = getUrlParameter('duration');
-
-        // Update the total value based on duration
-        function updateTotal() {
-            const duration = document.getElementById('duration').value;
-            let total = 0;
-            if (duration === '1 hour') {
-                total = 100;
-            } else if (duration === '2 hours') {
-                total = 200;
-            } else if (duration === '3 hours') {
-                total = 300;
-            } else if (duration === 'Open hours') {
-                total = 400;
-            }
-            document.getElementById('total').value = total;
-        }
-
-        updateTotal(); // Call the function on page load
-    });
-    
-    </script>
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to validate form before submission
-        function validateForm() {
-            // Get the reference number input element
-            const referenceNoInput = document.getElementById('reference-no');
-            // Get the value of the reference number
-            const referenceNoValue = referenceNoInput.value.trim();
-            
-            // Check if the reference number is empty
-            if (referenceNoValue === '') {
-                // Display alert message
-                alert('Please fill up the reference number. Do not leave it blank.');
-                // Prevent form submission
-                return false;
-            }
-            // Allow form submission if reference number is not empty
-            return true;
-        }
-
-        // Add event listener to form submission
-        document.querySelector('form').addEventListener('submit', function(event) {
-            // Call the validateForm function before form submission
-            if (!validateForm()) {
-                // Prevent default form submission
-                event.preventDefault();
+                reader.readAsDataURL(file);
             }
         });
-    });
-</script>
 
+        document.addEventListener('DOMContentLoaded', function() {
+            function getUrlParameter(name) {
+                name = name.replace(/[\[\]]/g, '\\$&');
+                const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                const results = regex.exec(window.location.href);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            document.getElementById('date').value = getUrlParameter('date');
+            document.getElementById('time').value = getUrlParameter('time');
+            document.getElementById('court_number').value = getUrlParameter('court');
+            document.getElementById('duration').value = getUrlParameter('duration');
+
+            function updateTotal() {
+                const duration = document.getElementById('duration').value;
+                let total = 0;
+                if (duration === '1 hour') {
+                    total = 100;
+                } else if (duration === '2 hours') {
+                    total = 200;
+                } else if (duration === '3 hours') {
+                    total = 300;
+                } else if (duration === 'Open hours') {
+                    total = 400;
+                }
+                document.getElementById('total').value = total;
+            }
+
+            updateTotal();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            function validateForm() {
+                const referenceNoInput = document.getElementById('reference-no');
+                const referenceNoValue = referenceNoInput.value.trim();
+                if (referenceNoValue === '') {
+                    alert('Please fill up the reference number. Do not leave it blank.');
+                    return false;
+                }
+                return true;
+            }
+
+            document.querySelector('form').addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
