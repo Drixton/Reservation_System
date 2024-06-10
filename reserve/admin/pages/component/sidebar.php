@@ -108,6 +108,7 @@ if ($result->num_rows > 0) {
              <!--   <li class="h7"><a class="nav-link text-dark" href="studentlogs.php"><i class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text">Student accounts</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="\track-wise/admin/pages/schedulesystem/home.php"><i class="fas fa-calendar-plus me-2" id="dash-text"></i> <span id="dash-text">Add Schedules</span></a></li>-->
                 <li class="h7"><a class="nav-link text-dark" href="adminregistration.php"><i class="fas fa-user-plus me-2" id="dash-text"></i> <span id="dash-text">Registration</span></a></li>
+                <li class="h7"><a class="nav-link text-dark" href="qr.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Update Qr</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="profile.php"><i class="fas fa-user-plus me-2" id="dash-text"></i> <span id="dash-text">Profile</span></a></li>
             </ul>
             <ul class="logout d-flex justify-content-start list-unstyled">

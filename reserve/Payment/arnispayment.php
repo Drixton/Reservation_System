@@ -76,6 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_stmt->close();
 }
 
+$sql_gcash = "SELECT * FROM gcash_qr_images";
+$result_gcash = $conn->query($sql_gcash);
+
+$sql_bank = "SELECT * FROM bank_qr_images";
+$result_bank = $conn->query($sql_bank);
+
 $conn->close();
 ?>
 
@@ -190,6 +196,27 @@ $conn->close();
         .back-button:hover {
             background-color: darkred;
         }
+        .image-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between;
+    margin-bottom: 20px; /* Add some margin between the sections */
+}
+
+.image-preview {
+    flex: 0 0 48%; /* Adjust the width of each QR code container */
+    max-width: 48%; /* Limit the maximum width to maintain spacing */
+    text-align: center;
+}
+
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
     </style>
 </head>
 <body>
@@ -222,6 +249,38 @@ $conn->close();
                         <label for="promo-code">Promo Code:</label>
                         <input type="text" id="promo-code" name="promo-code">
                     </div>
+                    <div class="section">
+            <h2>GCash QR Code</h2>
+            <div class="image-container">
+                <?php
+                if ($result_gcash->num_rows > 0) {
+                    while ($row = $result_gcash->fetch_assoc()) {
+                        echo '<div class="image-preview">';
+                        echo '<img src="' . $row["image_path"] . '" alt="GCash QR Code">';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "No GCash QR code found";
+                }
+                ?>
+            </div>
+            <div class="section">
+            <h2>Bank QR Code</h2>
+            <div class="image-container">
+                <?php
+                if ($result_bank->num_rows > 0) {
+                    while ($row = $result_bank->fetch_assoc()) {
+                        echo '<div class="image-preview">';
+                        echo '<img src="' . $row["image_path"] . '" alt="Bank QR Code">';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "No Bank QR code found";
+                }
+                ?>
+            </div>
+        </div>
+        </div>
                 </div>
                 <div class="section">
                     <h2>Gcash Details</h2>
@@ -313,6 +372,38 @@ $conn->close();
 
         updateTotal(); // Call the function on page load
     });
+    
     </script>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to validate form before submission
+        function validateForm() {
+            // Get the reference number input element
+            const referenceNoInput = document.getElementById('reference-no');
+            // Get the value of the reference number
+            const referenceNoValue = referenceNoInput.value.trim();
+            
+            // Check if the reference number is empty
+            if (referenceNoValue === '') {
+                // Display alert message
+                alert('Please fill up the reference number. Do not leave it blank.');
+                // Prevent form submission
+                return false;
+            }
+            // Allow form submission if reference number is not empty
+            return true;
+        }
+
+        // Add event listener to form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Call the validateForm function before form submission
+            if (!validateForm()) {
+                // Prevent default form submission
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
