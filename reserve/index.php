@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="assets/css/landpage.css">     
     <style>
         body {
-            background-color: #040F13;
+            background-image: linear-gradient(to right, green, black);
+
             margin: 0;
             padding: 0;
             height: 100%;

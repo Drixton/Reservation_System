@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Header with Profile Icon</title>
     <style>
-        
         header{
             background-color: #040F13;
             color: #fff;
@@ -24,15 +22,18 @@
             height: 100px;
             transition: transform 0.3s;
         }
+
         header img:hover {
             transform: scale(1.5);
         }
+
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             text-align: right;
         }
+
         nav ul li {
             display: inline;
             margin-left: 20px;
@@ -76,7 +77,40 @@
             color: white;
             margin-bottom: 5px;
         }
-      
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+                height: auto; /* Auto height for smaller screens */
+                padding: 10px; /* Adjust padding for better spacing */
+            }
+
+            header img {
+                height: 80px; /* Adjusted height for responsiveness */
+            }
+
+            nav ul {
+                text-align: center; /* Center the navigation links */
+                margin-top: 10px; /* Add some space between logo and navigation on smaller screens */
+            }
+
+            nav ul li {
+                display: block; /* Display navigation links as block elements */
+                margin: 10px 0; /* Add space between navigation links */
+            }
+
+            .centered-text {
+                position: static; /* Reset position */
+                text-align: center; /* Center the text on all screen sizes */
+                margin-top: 10px; /* Add some space between navigation and centered text */
+            }
+
+            .welcome-message {
+                position: static; /* Adjust welcome message position */
+                text-align: center; /* Center the message */
+                margin-top: 10px; /* Add some space */
+            }
+        }
     </style>
 </head>
 <body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2024 at 09:15 AM
+-- Generation Time: Jun 11, 2024 at 11:51 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,7 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-06-10 15:02:00', '12345678', '2024-05-23 10:12:37', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-06-11 14:37:50', '12345678', '2024-06-10 13:04:05', 'profile_pictures/photo1712557113.jpeg');
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE `arnispage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` varchar(255) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -65,6 +65,16 @@ CREATE TABLE `arnispage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `arnispage`
+--
+
+INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(1, 'phosclay', 'Arnis', 'Thu, Jun 13, 2024', '02:00:00', 'court 5', 1, '', '676665', 'OIP.jpg', '100.00', '2024-06-10 10:55:26'),
+(29, 'phosclay', 'Arnis', '0000-00-00', '03:00:00', 'court 5', 3, '', 'asd', 'arnis.jpg', '300.00', '2024-06-10 06:19:48'),
+(31, 'phosclay', 'Arnis', '0000-00-00', '10:00:00', 'court 5', 2, '', '12', '', '200.00', '2024-06-10 07:53:28'),
+(33, 'phosclay', 'Arnis', '0000-00-00', '10:30:00', 'court 5', 2, '', '123', '', '200.00', '2024-06-10 08:11:34');
 
 -- --------------------------------------------------------
 
@@ -76,7 +86,7 @@ CREATE TABLE `badmintonpage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -115,7 +125,7 @@ CREATE TABLE `billiardpage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -136,7 +146,7 @@ CREATE TABLE `chesspage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -157,7 +167,7 @@ CREATE TABLE `dartpage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -196,7 +206,7 @@ CREATE TABLE `picklepage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -233,8 +243,7 @@ CREATE TABLE `reservation_payments` (
 --
 
 INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(29, 'phosclay', 'Arnis', 'Fri, Jun 28, 2024', '3:00 AM', 'court 5', '3 hours', '', 'asd', 'arnis.jpg', 300, '2024-06-10 06:19:48'),
-(30, 'phosclay', 'Arnis', 'Sat, Jun 29, 2024', '2:00 PM', 'court 5', '3 hours', '', 'asd', 'work3.jpg', 300, '2024-06-10 06:48:31');
+(1, 'phosclay', 'Arnis', 'Thu, Jun 20, 2024', '11:00 AM', '', '2 hours', '', '233', '', 200, '2024-06-11 09:38:06');
 
 -- --------------------------------------------------------
 
@@ -246,7 +255,7 @@ CREATE TABLE `sepaktakrawpage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -267,7 +276,7 @@ CREATE TABLE `tabletennispage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -288,7 +297,7 @@ CREATE TABLE `taekwondopage` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `sports` varchar(255) NOT NULL,
-  `date` date NOT NULL,
+  `date` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `court_number` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -455,7 +464,7 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `arnispage`
 --
 ALTER TABLE `arnispage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `badmintonpage`
@@ -491,7 +500,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`

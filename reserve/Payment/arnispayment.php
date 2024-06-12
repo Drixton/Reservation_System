@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
@@ -225,10 +226,13 @@ $conn->close();
                         <label for="time">Time:</label>
                         <input type="text" id="time" name="time" readonly>
                     </div>
-                    <div class="detail-item">
-                        <label for="court_number">Table Number:</label>
-                        <input type="text" id="court_number" name="court_number" readonly>
-                    </div>
+                   <!-- Court Number -->
+<div class="detail-item">
+    <label for="court_number">Court Number:</label>
+    <input type="text" id="court_number" name="court_number" readonly>
+</div>
+
+
                     <div class="detail-item">
                         <label for="duration">Duration:</label>
                         <input type="text" id="duration" name="duration" readonly>
@@ -323,37 +327,39 @@ $conn->close();
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            function getUrlParameter(name) {
-                name = name.replace(/[\[\]]/g, '\\$&');
-                const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-                const results = regex.exec(window.location.href);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, ' '));
-            }
+    function getUrlParameter(name) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        const results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-            document.getElementById('date').value = getUrlParameter('date');
-            document.getElementById('time').value = getUrlParameter('time');
-            document.getElementById('court_number').value = getUrlParameter('court');
-            document.getElementById('duration').value = getUrlParameter('duration');
+    document.getElementById('date').value = getUrlParameter('date');
+    document.getElementById('time').value = getUrlParameter('time');
+    document.getElementById('court_number').value = getUrlParameter('court'); // Populate court input
 
-            function updateTotal() {
-                const duration = document.getElementById('duration').value;
-                let total = 0;
-                if (duration === '1 hour') {
-                    total = 100;
-                } else if (duration === '2 hours') {
-                    total = 200;
-                } else if (duration === '3 hours') {
-                    total = 300;
-                } else if (duration === 'Open hours') {
-                    total = 400;
-                }
-                document.getElementById('total').value = total;
-            }
+    document.getElementById('duration').value = getUrlParameter('duration');
 
-            updateTotal();
-        });
+    function updateTotal() {
+        const duration = document.getElementById('duration').value;
+        let total = 0;
+        if (duration === '1 hour') {
+            total = 100;
+        } else if (duration === '2 hours') {
+            total = 200;
+        } else if (duration === '3 hours') {
+            total = 300;
+        } else if (duration === 'Open hours') {
+            total = 400;
+        }
+        document.getElementById('total').value = total;
+    }
+
+    updateTotal();
+});
+
 
         document.addEventListener('DOMContentLoaded', function() {
             function validateForm() {

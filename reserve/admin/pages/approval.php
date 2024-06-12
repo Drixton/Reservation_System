@@ -17,7 +17,7 @@
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            position: relative; /* Make the body a positioned parent */
+            position: relative;
         }
 
         table {
@@ -32,27 +32,20 @@
             padding: 10px;
             text-align: center;
             position: relative;
-            font-weight: normal; /* Reset font weight */
+            font-weight: normal;
         }
 
         th:not(:last-child),
-        /* Exclude last child from applying background color */
         th:first-child~th {
-            /* Apply styles from the second th onwards */
             background-color: #2e8b57;
-            /* Changed background color */
             color: white;
-            /* Changed text color to white */
             font-weight: bold;
         }
 
         .buttons-container {
             position: absolute;
-            /* Position the container absolutely */
             top: 20px;
-            /* Adjust as needed */
             right: 20px;
-            /* Adjust as needed */
             display: flex;
         }
 
@@ -79,16 +72,12 @@
             color: gray;
             cursor: pointer;
             display: block;
-            /* Display the details button as a block element */
             width: 100%;
-            /* Set the width to 100% */
             text-align: left;
-            /* Align the text to the right */
         }
 
         .details-container {
             padding: 10px;
-            /* Add some padding to the container */
         }
 
         @media only screen and (max-width: 600px) {
@@ -109,125 +98,143 @@
             <h1>Reservation Approval</h1>
 
             <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
+            // Database connection parameters
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "reservation";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-// Handle form submission
-if(isset($_POST['submit'])) {
-    $id = $_POST['id'];
+            // Handle delete submission
+            if (isset($_POST['delete_submit'])) {
+                $delete_id = $_POST['delete_id'];
+                // Prepare a delete statement
+                $deleteQuery = "DELETE FROM reservation_payments WHERE id = ?";
+                $stmt = $conn->prepare($deleteQuery);
+                $stmt->bind_param("i", $delete_id); // "i" indicates the type of parameter: integer
+                if ($stmt->execute()) {
+                    echo "<script>alert('Record with ID $delete_id deleted successfully.');</script>";
+                } else {
+                    echo "<script>alert('Error deleting record with ID $delete_id: " . $stmt->error . "');</script>";
+                }
+                $stmt->close(); // Close the prepared statement
+            }
 
-    // Retrieve the sports value for the given ID
-    $sportsQuery = "SELECT sports FROM reservation_payments WHERE id = $id";
-    $result = $conn->query($sportsQuery);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $sports = $row['sports'];
+            // Handle form submission for approval
+            if (isset($_POST['submit'])) {
+                $id = $_POST['id'];
 
-        // Move record to appropriate table based on sports value
-        switch ($sports) {
-            case 'Badminton':
-                $moveQuery = "INSERT INTO badmintonpage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Arnis':
-                $moveQuery = "INSERT INTO arnispage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Billiard':
-                $moveQuery = "INSERT INTO billiardpage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Taekwondo':
-                $moveQuery = "INSERT INTO taekwondopage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Pickle ball':
-                $moveQuery = "INSERT INTO picklepage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Chess':
-                $moveQuery = "INSERT INTO chesspage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Dart':
-                $moveQuery = "INSERT INTO dartpage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Sepak Takraw':
-                $moveQuery = "INSERT INTO sepaktakrawpage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            case 'Table Tennis':
-                $moveQuery = "INSERT INTO tabletennispage SELECT * FROM reservation_payments WHERE id = $id";
-                break;
-            default:
-                // Handle other sports types if needed
-                break;
-        }
+                // Retrieve the sports value for the given ID
+                $sportsQuery = "SELECT sports FROM reservation_payments WHERE id = $id";
+                $result = $conn->query($sportsQuery);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $sports = $row['sports'];
 
-        if ($conn->query($moveQuery) === TRUE) {
-            echo "<script>alert('Record with ID $id moved successfully.');</script>";
-        } else {
-            echo "<script>alert('Error moving record with ID $id: " . $conn->error . "');</script>";
-        }
+                    // Move record to appropriate table based on sports value
+                    switch ($sports) {
+                        case 'Badminton':
+                            $moveQuery = "INSERT INTO badmintonpage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Arnis':
+                            $moveQuery = "INSERT INTO arnispage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Billiard':
+                            $moveQuery = "INSERT INTO billiardpage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Taekwondo':
+                            $moveQuery = "INSERT INTO taekwondopage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Pickle ball':
+                            $moveQuery = "INSERT INTO picklepage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Chess':
+                            $moveQuery = "INSERT INTO chesspage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Dart':
+                            $moveQuery = "INSERT INTO dartpage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Sepak Takraw':
+                            $moveQuery = "INSERT INTO sepaktakrawpage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        case 'Table Tennis':
+                            $moveQuery = "INSERT INTO tabletennispage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
+                        default:
+                            // Handle other sports types if needed
+                            break;
+                    }
 
-        // Delete record from reservation_payments table
-        $deleteQuery = "DELETE FROM reservation_payments WHERE id = $id";
-        if ($conn->query($deleteQuery) === TRUE) {
-            echo "Record with ID $id deleted successfully.<br>";
-        } else {
-            echo "Error deleting record with ID $id: " . $conn->error . "<br>";
-        }
-    } else {
-        echo "No sports data found for ID: $id";
-    }
-}
+                    if ($conn->query($moveQuery) === TRUE) {
+                        echo "<script>alert('Record with ID $id moved successfully.');</script>";
+                    } else {
+                        echo "<script>alert('Error moving record with ID $id: " . $conn->error . "');</script>";
+                    }
 
-// SQL query to retrieve data from the reservation_payments table
-$sql = "SELECT * FROM reservation_payments";
-$result = $conn->query($sql);
+                    // Delete record from reservation_payments table
+                    $deleteQuery = "DELETE FROM reservation_payments WHERE id = $id";
+                    if ($conn->query($deleteQuery) === TRUE) {
+                        echo "Record with ID $id deleted successfully.<br>";
+                    } else {
+                        echo "Error deleting record with ID $id: " . $conn->error . "<br>";
+                    }
+                } else {
+                    echo "No sports data found for ID: $id";
+                }
+            }
 
-// Check if there are any rows returned
-if ($result->num_rows > 0) {
-    // Output data of each row in an HTML table
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Username</th><th>Sports</th><th>Date</th><th>Time</th><th>Field No:</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th><th>Operation</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
-        echo "<td>" . $row["username"] . "</td>";
-        echo "<td>" . $row["sports"] . "</td>";
-        echo "<td>" . $row["date"] . "</td>";
-        echo "<td>" . $row["time"] . "</td>";
-        echo "<td>" . $row["court_number"] . "</td>";
-        echo "<td>" . $row["duration"] . "</td>";
-        echo "<td>" . $row["promo_code"] . "</td>";
-        echo "<td>" . $row["reference_no"] . "</td>";
-        echo "<td>" . $row["gcash_qrcode"] . "</td>";
-        echo "<td>" . $row["total"] . "</td>";
-        echo "<td>" . $row["created_at"] . "</td>";
-        // Adding form for approval status
-        echo "<td>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
-        echo "<button type='submit' name='submit' class='button'>Approve</button>";
-        echo "</form>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
+            // SQL query to retrieve data from the reservation_payments table
+            $sql = "SELECT * FROM reservation_payments";
+            $result = $conn->query($sql);
 
-// Close connection
-$conn->close();
-?>
+            // Check if there are any rows returned
+            if ($result->num_rows > 0) {
+                // Output data of each row in an HTML table
+                echo "<table border='1'>";
+                echo "<tr><th>ID</th><th>Username</th><th>Sports</th><th>Date</th><th>Time</th><th>Field No:</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th><th>Operation</th></tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>" . $row["username"] . "</td>";
+                    echo "<td>" . $row["sports"] . "</td>";
+                    echo "<td>" . $row["date"] . "</td>";
+                    echo "<td>" . $row["time"] . "</td>";
+                    echo "<td>" . $row["court_number"] . "</td>";
+                    echo "<td>" . $row["duration"] . "</td>";
+                    echo "<td>" . $row["promo_code"] . "</td>";
+                    echo "<td>" . $row["reference_no"] . "</td>";
+                    echo "<td>" . $row["gcash_qrcode"] . "</td>";
+                    echo "<td>" . $row["total"] . "</td>";
+                    echo "<td>" . $row["created_at"] . "</td>";
+                    // Adding approve button
+                    echo "<td>";
+                    echo "<form method='post'>";
+                    echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
+                    echo "<button type='submit' name='submit' class='button'>Approve</button>";
+                    echo "</form>";
+                    // Adding delete button
+                    echo "<form method='post'>";
+                    echo "<input type='hidden' name='delete_id' value='" . $row["id"] . "'>";
+                    echo "<button type='submit' name='delete_submit' class='button' style='background-color: red;'>Delete</button>";
+                    echo "</form>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "0 results";
+            }
 
-
+            // Close connection
+            $conn->close();
+            ?>
         </div>
     </main>
 </body>
