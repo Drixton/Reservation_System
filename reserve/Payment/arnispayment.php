@@ -249,7 +249,7 @@ $conn->close();
                         <input type="text" id="reference-no" name="reference-no">
                     </div>
                     <div class="detail-item">
-                        <label for="gcash-qrcode">Upload Gcash QR Code:</label>
+                        <label for="gcash-qrcode">Upload Proof or Screenshot of payment:</label>
                         <input type="file" id="gcash-qrcode" name="gcash-qrcode" accept="image/*">
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
