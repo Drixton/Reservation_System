@@ -216,7 +216,7 @@ $conn->close();
                     <h2>Reservation Details</h2>
                     <div class="detail-item">
                         <label for="sport">Sport:</label>
-                        <input type="text" id="sport" name="sport" value="Pickle ball" readonly>
+                        <input type="text" id="sport" name="sport" value="Cornhole" readonly>
                         </div>
                     <div class="detail-item">
                         <label for="date">Date:</label>
@@ -301,7 +301,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='/reservation_system/reserve/calendar/pickleball.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='/reservation_system/reserve/calendar/cornhole.php'">Back</button>
             </div>
         </form>
     </div>

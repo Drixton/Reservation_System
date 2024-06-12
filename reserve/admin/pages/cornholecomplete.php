@@ -110,18 +110,19 @@
                         <option value="/reservation_system/reserve/admin/pages/arniscomplete.php">ARNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/badmintoncomplete.php">BADMINTON</option>
                         <option value="/reservation_system/reserve/admin/pages/billiardcomplete.php">BILLIARD</option>
-                      <!--  <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>-->
+                           <!--  <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>-->
                         <option value="/reservation_system/reserve/admin/pages/chesscomplete.php">CHESS</option>
-                        <option value="/reservation_system/reserve/admin/pages/datcomplete.phpT">DART</option>
+                        <option value="/reservation_system/reserve/admin/pages/dartcomplete.php">DART</option>
                         <option value="/reservation_system/reserve/admin/pages/pickleballcomplete.php">PICKLE BALL</option>
                         <option value="/reservation_system/reserve/admin/pages/sepaktakrawcomplete.php">SEPAK TAKRAW</option>
                         <option value="/reservation_system/reserve/admin/pages/tabletenniscomplete.php">TABLE TENNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
                         <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
+
                     </select>
                 </div>
             </div>
-            <h1>Table Tennis Reservation</h1>
+            <h1>Cornhole Reservation</h1>
             <table id="sportTable">
                 <thead>
                     <tr>
@@ -156,7 +157,7 @@
                     }
 
                     // Fetch data from the database
-                    $sql = "SELECT * FROM Tabletennispage";
+                    $sql = "SELECT * FROM cornholepage";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

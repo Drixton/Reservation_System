@@ -117,6 +117,7 @@
                         <option value="/reservation_system/reserve/admin/pages/sepaktakrawcomplete.php">SEPAK TAKRAW</option>
                         <option value="/reservation_system/reserve/admin/pages/tabletenniscomplete.php">TABLE TENNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
+                        <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
                     </select>
                 </div>
             </div>

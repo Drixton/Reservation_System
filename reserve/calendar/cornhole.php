@@ -4,7 +4,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Table tennis Reservation</title>
+            <title>Cornhole Reservation</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
         body {
@@ -192,7 +192,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Table tennis Reservation</a>
+                <a class="navbar-brand" href="#">Cornhole Reservation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -249,9 +249,9 @@
                     </div>
                     <!-- Court Selection -->
                     <div class="court-selection-container mt-3">
-                        <div class="duration-text">TABLE SELECTION</div>
+                        <div class="duration-text">COURT SELECTION</div>
                         <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
-                            <option value="Table 1">Table 1</option>
+                            <option value="court 1">Court 1</option>
                           
                             <!-- Add more courts as needed -->
                         </select>
@@ -438,7 +438,7 @@ function goToPayment() {
     const selectedCourt = document.getElementById('courtSelection').value; // Get the selected court
 
     // Redirect to payment.php with query parameters
-    window.location.href = "http://localhost/reservation_system/reserve/payment/tabletennispayment.php" + 
+    window.location.href = "http://localhost/reservation_system/reserve/payment/cornholepayment.php" + 
                             "?date=" + encodeURIComponent(selectedDate) + 
                             "&time=" + encodeURIComponent(selectedTime) + 
                             "&duration=" + encodeURIComponent(selectedDuration) +

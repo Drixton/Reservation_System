@@ -1,560 +1,573 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Navbar Example</title>
-    <style>
-        /* CSS for styling the navbar */
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Pickle ball Reservation</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+            <style>
+        body {
+            background: linear-gradient(to bottom, green, white) no-repeat fixed;
+            background-size: cover;
+            color: #333; /* Dark text color */
+            font-family: "Arial", sans-serif; /* Standard font family */
+            text-align: center;
+        }
+
+        /* Navbar */
         .navbar {
-            /*background: linear-gradient(to right, black, grey, green);*/
-            background-color: black;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
+            background-color: #000; /* Black background for navbar */
+        }
+
+        .navbar-brand {
+            font-weight: bold; /* Bold font for the brand */
+            color: #fff; /* White text color */
+        }
+
+        .nav-link {
+            color: #fff; /* White text color for navbar links */
+        }
+
+        .nav-link:hover {
+            color: #FFA500; /* Orange text color on hover */
+        }
+
+        /* Calendar */
+        #calendar {
+            background-color: #fff; /* White background for calendar */
+            border-radius: 5px; /* Slightly rounded corners */
+            padding: 20px; /* Increased padding for better spacing */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            margin-top: 40px;
+        }
+
+        .month-nav {
+            color: #333; /* Dark text color for month navigation */
+            font-weight: bold; /* Bold font for better visibility */
+        }
+
+        table {
             width: 100%;
-            height: 75px;
-            z-index: 1000; /* Ensure navbar is on top of other content */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-collapse: collapse;
         }
 
-        .navbar-brand,
-        .navbar-text,
-        .navbar-account {
-            color: white;
-            font-size: 30px;
-            text-decoration: none;
-            padding: 10px 15px;
+        th, td {
+            padding: 10px; /* Standard padding for cells */
         }
 
-        .navbar-brand img {
-            height: 140px;
-            vertical-align: middle;
+        th {
+            color: #333; /* Dark text color for table headers */
         }
 
-        .account-icon {
-            margin-right: 5px;
-        }
-
-        .account-name {
-            font-size: 15px;
-            text-align: center; /* Center align account name */
-        }
-
-        .account-picture {
-            width: 30px; /* Set width for the profile picture */
-            height: 30px; /* Set height for the profile picture */
-            display: block; /* Make profile picture a block element */
-            margin: 0 auto; /* Center profile picture */
-            padding-top: 10px;
-        }
-
-        .back-button-container {
-            display: flex;
-            align-items: center;
-            padding-left:30px;
-            margin-top: 20px;
-        }
-
-        .back-button {
-            color: white;
-            font-size: 24px;
+        .day {
             cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
         }
 
-        .back-text {
-            color: white;
-            font-size: 18px;
-            margin-left: 5px;
+        .day:hover {
+            background-color: #009933; /* Light gray background on hover */
         }
 
-        .back-description{
-            color: green;
-            padding-left: 30px;
-            padding-top: 10px;
-            font-size: 30px;
+        .today {
+            background-color: #add8e6; /* Green background for today's date */
+            color: #fff; /* White text color for today's date */
         }
 
-        .ph-description{
-            color: white;
-            text-align: center;
-            font-size: 15px;
-            margin-left: 150px;
+        .holiday {
+            color: orange; /* Orange text color for holidays */
         }
 
-        .ph-line {
-            border: 1px solid white;
-            width: 98%;
-            margin: 0 auto; /* Center the line */
-            margin-top: 10px; /* Adjust spacing between the line and text */
-        }
-
-        /* CSS for styling the calendar */
-        .calendar {
-            position: fixed;
-            left: 0;
-            top: 190px; /* Adjust this value to position the calendar below the ph-line */
-            width: 410px;
-            color: white;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-
-        .calendar h2 {
-            text-align: center;
-            margin-top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-left: 40px;
-        }
-
-        .calendar h2 .month-nav {
-            align-items: center;
-            padding-left: 10px;
-        }
-
-        .calendar table {
-            width: 450px;
-            height: 400px;
-            border-collapse: collapse; /* Remove default table border */
-        }
-
-        .calendar th,
-        .calendar td {
-            padding: 5px;
-            text-align: center;
-            cursor: pointer; /* Add cursor pointer to indicate selectability */
-        }
-
-        .calendar th {
-            color: white;
-        }
-
-        .calendar td {
-            color: white;
-        }
-
-        .selected {
-            background-color: green; /* Change background color for selected date */
-            color: black; /* Change text color for selected date */
-        }
-
-        .current-date {
-            background-color: #444; /* Change background color for current date */
-        }
-
-        /* CSS for styling the time buttons */
-        .time-buttons-container {
-            display: flex;
-            justify-content: center;
-      
-        }
-
-        .time-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: -65px;
-        }
-
+        /* Time buttons */
         .time-button {
-            background-color: #333;
-            color: white;
+            margin-bottom: 10px; /* Increased margin for better spacing */
+            width: 100%;
+            padding: 10px;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
-            margin-left: 68px;
-            margin-bottom: 10px;
+            background-color: white; /* Green background for time buttons */
+            color: black; /* White text color */
             cursor: pointer;
-            font-size: 17px;
-          
+            transition: background-color 0.3s ease;
         }
 
         .time-button:hover {
-            background-color: #555;
+            background-color: #009933; /* Darker green on hover */
         }
 
         .time-button.selected {
-            background-color: green;
+            background-color: red  !important; /* Darker green for selected time */
         }
 
-        .current-date-display{
-            color: white; 
-            text-align: center; 
-            margin-left: 145px;
-            font-size: 25px;
-        }
-        .session-link {
-    color: green;
-    text-decoration: none;
-    font-size: 16px;
-    position: fixed;
-    margin-left: 850px;
-
-}
-
-
-        .text-link-container {
-            position: fixed;
-            top: 155px;
-            right: -100px;
-            padding: 15px 5px 0 0; /* Adjust padding for vertical orientation */
-            border-radius: 20px;
-            color: white;
-            text-align: center;
-            width: 20%;
-            display: flex; /* Change display to flex */
-            flex-direction: column; /* Set flex direction to column */
-            align-items: flex-start; /* Align items to the end of the container */
-            margin-top: 40px;
-            margin-right: 200px;
+        /* Court selection container */
+        .court-selection-container {
+            background-color: #fff; /* White background for container */
+            border-radius: 5px; /* Slightly rounded corners */
+            padding: 20px; /* Increased padding for better spacing */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            margin-top: 20px; /* Spacing from the calendar */
         }
 
-        .text-link {
-            color: white;
-            padding: 10px 10px;
-            font-size: 25px;
-            padding-left: 12px;
-            text-decoration: none; /* Remove underline */
-            border: 1px solid white;
-            border-radius: 5px;
-            margin-top: 15px;
+        .form-select {
+            margin-bottom: 10px; /* Increased margin for better spacing */
         }
 
-        .text-link:hover {
-            background-color: green;
+        .duration-text {
+            font-weight: bold; /* Bold font for duration text */
         }
 
-        .court-text{
-            padding-bottom: 25px;
-            border-bottom: 2px solid white;
-            font-size: 25px;
-        }
-
-        .additional-options-container {
-            position: fixed;
-            top: 175px;
-            right: -76px;
-            padding: 15px 5em 0 0; /* Adjust padding for vertical orientation */
-            border-radius: 20px;
-            color: white;
-            text-align: center;
-            margin-left: 120px; /* Adjust margin-right to move the container to the right */
-        }
-
-
+        /* Duration options */
         .additional-option {
-            border-bottom: 2px solid white;
-            color: white;
-            padding: 20px 20px;
             cursor: pointer;
-            font-size: 22px;
+            margin-bottom: 10px; /* Increased margin for better spacing */
+            padding: 10px;
+            border-radius: 5px;
+            transition: color 0.3s ease;
         }
 
-        .additional-option:hover {
-            background-color: green;
-            border-radius: 10px;
+        .additional-option.selected {
+            color: #FFA500; /* Orange color for selected duration */
         }
 
-        .payment-option{
-            border-radius: 10px; /* Add rounded corners */
-            background-color: green;
-            color: white; /* White text color */
-            height: 30px; /* Adjust height as needed */
-            width: 200px; /* Adjust width as needed */
-            font-size: 18px;
-            padding-top: 7px;
-            margin-top: 50px;
-            box-shadow: 1px 1px 2px rgba(0, 1, 0, 1); /* Add shadow */
-        }
-
-        .duration-text{
-            padding-top: 20px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid white;
-            font-size: 25px;
+        /* Payment button */
+        .payment-option {
             width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3366CC; /* Blue background for payment button */
+            color: #fff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        body {
-            background: linear-gradient(to right, black,green); /* Set background gradient */
-            margin: 0; /* Remove default margin */
-            padding-top: 60px; /* Adjust padding to account for the navbar */
+        .payment-option:hover {
+            background-color: #00008B; /* Darker blue on hover */
         }
 
-        @media screen and (max-width: 1024px) {
-    /* Adjust navbar text size and padding for smaller screens */
-    .navbar-brand,
-    .navbar-text,
-    .navbar-account {
-        font-size: 16px;
-        padding: 10px;
-    }
-}
+        /* Back to top button */
+        .back-button {
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+            background-color: orange; /* Black background for back button */
+            color: #fff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* Adjust logo image height for smaller screens */
-@media screen and (max-width: 480px) {
-    .navbar-brand img {
-        height: 20px;
+        .back-button:hover {
+            background-color: orange; /* Darker black on hover */
+        }
+        .selected-date {
+        color: red !important; /* Red color for selected date */
+        background-color: inherit !important; /* Inherit background color to keep hover effect */
     }
-}
-.back-icon svg {
-        fill: #ffffff; /* White color */
-    }     
-       
-        
-        
+    .back-button {
+            display: block;
+            width: 100%;
+            margin-top: 10px; /* Added margin for spacing */
+            padding: 15px; /* Added padding for consistency */
+            border: none; /* Removed border */
+            border-radius: 5px;
+            background-color: orange; /* Orange background for back button */
+            color: #fff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: darkorange; /* Darker orange on hover */
+        }
+
     </style>
-</head>
-<body>
 
-<div class="navbar">
-    <!-- Logo Image -->
-    <a href="#" class="navbar-brand"><img src="../assets/img/logo.png" alt="Logo"></a>
-    
-    <!-- Text in the Middle -->
-    <a href="#" class="navbar-text">Schedule and Time</a>
-    
-    <!-- Account Icon and Name -->
-    <div class="navbar-account">
-        <span class="account-icon"><img src="../assets/img/profile.png" alt="icon-account" class="account-picture"></span> 
-        <span class="account-name">Your Account Name</span>
-    </div>
-</div>
 
-<div class="back-button-container">
-    <a href="#" onclick="goBack()">
-        <div class="back-icon"> 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
+
+
+        </head>
+        <body>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Pickle ball Reservation</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/reservation_system/reserve">Home</a>
+                        </li>
+                        <!-- Add more navbar links as needed -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container mt-4">
+            <!-- Calendar -->
+             
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="calendar"></div>
+                    <div class="current-date-display mt-3">
+                        <p id="currentDateDisplay"></p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Time buttons -->
+                    <div class="time-buttons-container">
+                    <h3>Time Selection</h3> 
+                        <div class="row">
+                            <div class="col">
+                                <div class="time-column">
+                                    <button class="time-button" onclick="selectTime(this)">8:00 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">8:30 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">9:00 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">9:30 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">10:00 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="time-column">
+                                    <button class="time-button" onclick="selectTime(this)">1:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">1:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">2:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">2:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">3:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">3:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">4:00 PM</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Court Selection -->
+                    <div class="court-selection-container mt-3">
+                        <div class="duration-text">COURT SELECTION</div>
+                        <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
+                            <option value="court 1">Court 1</option>
+                         
+                            <!-- Add more courts as needed -->
+                        </select>
+                        <div class="additional-options-container mt-3">
+                            <div class="duration-text">DURATION</div>
+                            <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
+                            <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
+                            <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
+                            <div class="additional-option" onclick="selectDuration(this)">Open hours</div>
+                            <button class="payment-option mt-3" onclick="goToPayment()">Go to payment</button>
+                            <button class="back-button" onclick="goBack()">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </a>
-</div>
-<div class="back-description">Select a Date and Time</div>
 
-<div class="phlippine">
-    <div class="ph-description">Philippine Standard Time (GMT+8)</div>
-    <hr class="ph-line">
-</div>
-
-<!-- Calendar -->
-<div class="calendar" id="calendar"></div>
-
-<!-- Current date display -->
-<div class="current-date-display" id="currentDateDisplay">
-    <p></p>
-</div>
-
-<!-- Time buttons -->
-<div class="time-buttons-container">
-    <div class="time-column">
-        <button class="time-button" onclick="selectTime(this)">8:00 AM</button>
-        <button class="time-button" onclick="selectTime(this)">8:30 AM</button>
-        <button class="time-button" onclick="selectTime(this)">9:00 AM</button>
-        <button class="time-button" onclick="selectTime(this)">9:30 AM</button>
-        <button class="time-button" onclick="selectTime(this)">10:00 AM</button>
-        <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
-        <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
-    </div>
-    <div class="time-column">
-        <button class="time-button" onclick="selectTime(this)">1:00 AM</button>
-        <button class="time-button" onclick="selectTime(this)">1:30 AM</button>
-        <button class="time-button" onclick="selectTime(this)">2:00 PM</button>
-        <button class="time-button" onclick="selectTime(this)">2:30 PM</button>
-        <button class="time-button" onclick="selectTime(this)">3:00 AM</button>
-        <button class="time-button" onclick="selectTime(this)">3:30 AM</button>
-        <button class="time-button" onclick="selectTime(this)">4:00 PM</button>
-    </div>
-</div>
-
-<!-- Session link -->
-<a href="#" class="session-link">See all Sessions</a>
-
-<!-- Additional Options -->
-<div class="text-link-container">
-    <div class="court-text">Court Number</div>
-    <a href="#" class="text-link" onclick="selectCourt(this)">Court 1</a>
+        <!-- Back to top button -->
 
 
-
-</div>
-
-<!-- Additional Options -->
-<div class="additional-options-container">
-    <div class="duration-text">Duration</div>
-    <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
-    <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
-    <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
-    <div class="additional-option" onclick="selectDuration(this)">Open hours</div>
-    <div class="payment-option" onclick="goToPayment()">Go to payment</div>
-</div>
-
-<script>
-    // JavaScript function to go back
-    function goBack() {
-        window.history.back();
-    }
-
-    // Function to generate a calendar
-    function generateCalendar(year, month) {
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-        const currentDay = currentDate.getDate();
-        const calendarDiv = document.getElementById('calendar');
-
-        let html = '<h2>';
-        html += '<div onclick="previousMonth()" style="cursor: pointer;">&#8249;</div>'; // Previous month button
-        html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
-        html += '<div onclick="nextMonth()" style="cursor: pointer;">&#8250;</div>'; // Next month button
-        html += '</h2>';
-        html += '<table>';
-        html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
-        
-        let dayCounter = 1;
-        for (let i = 0; i < 6; i++) {
-            html += '<tr>';
-            for (let j = 0; j < 7; j++) {
-                if (i === 0 && j < firstDayOfMonth) {
-                    html += '<td></td>';
-                } else if (dayCounter > daysInMonth) {
-                    html += '<td></td>';
-                } else {
-                    let cellClass = '';
-                    if (year === currentYear && month === currentMonth && dayCounter === currentDay) {
-                        cellClass = 'current-date';
-                    }
-                    html += '<td class="' + cellClass + '" onclick="selectDate(this)">' + dayCounter + '</td>';
-                    dayCounter++;
-                }
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // JavaScript function to go back
+            function goBack() {
+                window.history.back();
             }
-            html += '</tr>';
-        }
 
-        html += '</table>';
-        calendarDiv.innerHTML = html;
-    }
+            // Define global variables for current date
+            let currentYear, currentMonth;
 
-    // Function to select the date
-    function selectDate(cell) {
-        const selectedCells = document.querySelectorAll('.selected');
-        selectedCells.forEach(selectedCell => {
-            selectedCell.classList.remove('selected');
-        });
-        cell.classList.add('selected');
+            // Function to generate a calendar
+            function generateCalendar(year, month) {
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const firstDayOfMonth = new Date(year, month, 1).getDay();
+                const currentDate = new Date();
+                const todayYear = currentDate.getFullYear();
+                const todayMonth = currentDate.getMonth();
+                const currentDay = currentDate.getDate();
+                const calendarDiv = document.getElementById('calendar');
 
-        // Get the selected date
-        const selectedDate = new Date(currentYear, currentMonth, parseInt(cell.textContent));
+                // Define Philippine holidays
+                const philippineHolidays = [
+                    { month: 0, day: 1 }, // New Year's Day
+                    { month: 3, day: 9 }, // Araw ng Kagitingan
+                    { month: 4, day: 1 }, // Labor Day
+                    { month: 5, day: 12 }, // Independence Day
+                    { month: 6, day: 30 }, // National Heroes Day
+                    { month: 10, day: 30 }, // Bonifacio Day
+                    { month: 11, day: 25 }, // Christmas Day
+                    { month: 11, day: 30 }, // Rizal Day
+                    { month: 0, day: 23 }, // Chinese New Year
+                    { month: 2, day: 25 }, // EDSA People Power Revolution Anniversary
+                    { month: 6, day: 31 }, // Eid'l Fitr
+                    { month: 10, day: 1 }, // All Saints' Day
+                    { month: 10, day: 30 }, // All Souls' Day
+                    { month: 11, day: 8 }, // Feast of the Immaculate Conception of the Blessed Virgin Mary
+                    { month: 11, day: 31 }, // Last Day of the Year
+                    { month: 1, day: 25 }, // Chinese New Year
+                    { month: 11, day: 31 }, // Additional Special (Non-Working) Day
+                    { month: 8, day: 1 }, // Ninoy Aquino Day
+                    { month: 9, day: 27 }, // Eidul Adha
+                    { month: 11, day: 30 } // Christmas Eve
+                ];
 
-        // Update the current date display with the selected date
+                let html = '<h2>';
+                html += '<div onclick="previousMonth()" style="cursor: pointer;">◀</div>'; // Previous month button
+                html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
+                html += '<div onclick="nextMonth()" style="cursor: pointer;">▶</div>'; // Next month button
+                html += '</h2>';
+                html += '</h2>';
+                html += '<table>';
+                html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+
+                let dayCounter = 1;
+                for (let i = 0; i < 6; i++) {
+                    html += '<tr>';
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < firstDayOfMonth) {
+                            html += '<td></td>';
+                        } else if (dayCounter > daysInMonth) {
+                            html += '<td></td>';
+                        } else {
+                            let isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
+                            let classNames = 'day';
+                            if (isHoliday) {
+                                classNames += ' holiday';
+                            }
+                            if (year === todayYear && month === todayMonth && dayCounter === currentDay) {
+                                classNames += ' today';
+                            }
+                            html += `<td class="${classNames}" onclick="selectDate(${year}, ${month}, ${dayCounter})">${dayCounter}</td>`;
+                            dayCounter++;
+                        }
+                    }
+                    html += '</tr>';
+                }
+                html += '</table>';
+
+                calendarDiv.innerHTML = html;
+            }
+
+            // Function to go to the previous month
+            function previousMonth() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentYear, currentMonth);
+            }
+
+            // Function to go to the next month
+            function nextMonth() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentYear, currentMonth);
+            }
+
+        // Function to select a date
+    // Function to select a date
+    function selectDate(year, month, day) {
+        const selectedDate = new Date(year, month, day);
+        const formattedDate = selectedDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
         const currentDateDisplay = document.getElementById('currentDateDisplay');
-        currentDateDisplay.children[0].textContent = formatDate(selectedDate);
-
-        // Store the selected date for redirection
-        window.selectedFullDate = formatDate(selectedDate); // Store the formatted date string
-    }
-
-    // Function to format date
-    function formatDate(date) {
-        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }; // Include day, month, and year
-        return date.toLocaleDateString('en-US', options);
-    }
-
-    // Function to go to the previous month
-    function previousMonth() {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
+        currentDateDisplay.innerHTML = `Selected Date: <span style="color: red;">${formattedDate}</span>`;
+        
+        // Reset previous selected date style
+        const selectedDateCell = document.querySelector('.selected-date');
+        if (selectedDateCell) {
+            selectedDateCell.classList.remove('selected-date');
         }
-        generateCalendar(currentYear, currentMonth);
+        
+        // Find and style the newly selected date cell
+        const dateCells = document.querySelectorAll('.day');
+        dateCells.forEach(cell => {
+            const cellDate = new Date(year, month, parseInt(cell.textContent));
+            if (cellDate.getTime() === selectedDate.getTime()) {
+                cell.classList.add('selected-date');
+            }
+        });
     }
 
-    // Function to go to the next month
-    function nextMonth() {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-        }
-        generateCalendar(currentYear, currentMonth);
+
+            // Initialize the calendar with the current date
+            document.addEventListener('DOMContentLoaded', function() {
+                const currentDate = new Date();
+                currentYear = currentDate.getFullYear();
+                currentMonth = currentDate.getMonth();
+                generateCalendar(currentYear, currentMonth);
+            });
+
+        
+
+            // Function to update the selected court number
+            function updateCourtNumber(selectElement) {
+                const selectedCourt = selectElement.value;
+                console.log('Selected Court:', selectedCourt);
+            }
+
+            // Function to select a duration
+            function selectDuration(div) {
+                const selectedDuration = div.textContent;
+                console.log('Selected Duration:', selectedDuration);
+            }
+
+// Function to navigate to the payment page
+function goToPayment() {
+    // Get the selected date
+    const selectedDateText = document.getElementById('currentDateDisplay').textContent;
+    
+    // Check if a date is selected
+    if (selectedDateText === '') {
+        alert('Please select a date before proceeding to payment.');
+        return; // Exit the function if no date is selected
     }
 
-    // Function to select time
-    function selectTime(button) {
+    // Get selected date, time, duration, and court
+    const selectedDate = selectedDateText.replace('Selected Date: ', '');
+    const selectedTime = document.querySelector('.time-button.selected').textContent;
+    const selectedDuration = document.querySelector('.additional-option.selected').textContent;
+    const selectedCourt = document.getElementById('courtSelection').value; // Get the selected court
+
+    // Redirect to payment.php with query parameters
+    window.location.href = "http://localhost/reservation_system/reserve/payment/pickleballpayment.php" + 
+                            "?date=" + encodeURIComponent(selectedDate) + 
+                            "&time=" + encodeURIComponent(selectedTime) + 
+                            "&duration=" + encodeURIComponent(selectedDuration) +
+                            "&court=" + encodeURIComponent(selectedCourt); // Add court parameter
+}
+
+
+
+                // Initialize the calendar with the current date
+                const currentDate = new Date();
+                currentYear = currentDate.getFullYear();
+                currentMonth = currentDate.getMonth();
+                generateCalendar(currentYear, currentMonth);
+                document.getElementById('currentDateDisplay').textContent = formatDate(currentDate);
+
+                // JavaScript function to navigate back to the specified page
+                function goBack() {
+                    // Redirect to the desired page
+                    window.location.href = "http://localhost/reservation_system/reserve/landpage/dashboard.php";
+                }
+
+            </script>
+            <script>
+                // Function to select duration
+                function selectDuration(durationOption) {
+                    // Deselect all duration options
+                    const durationOptions = document.querySelectorAll('.additional-option');
+                    durationOptions.forEach(option => {
+                        option.classList.remove('selected');
+                        option.style.color = ''; // Reset text color
+                    });
+
+                    // Select the clicked duration option
+                    durationOption.classList.add('selected');
+                    durationOption.style.color = 'red'; // Apply selected color
+                }
+
+  // Function to select time
+function selectTime(button) {
+    // Check if the button is clickable (not red)
+    if (button.style.backgroundColor !== 'red') {
         // Deselect all buttons
         const timeButtons = document.querySelectorAll('.time-button');
         timeButtons.forEach(btn => {
             btn.classList.remove('selected');
+            if (btn.style.backgroundColor !== 'red') {
+                btn.style.backgroundColor = ''; // Reset background color
+            }
         });
 
         // Select the clicked button 
         button.classList.add('selected');
+        button.style.backgroundColor = '#04a5ff'; // Change background color
+
+        // Check if the selected time already exists in the database
+        const selectedDate = document.getElementById('currentDateDisplay').textContent.replace('Selected Date: ', '');
+        const selectedTime = button.textContent;
+
+        // Make AJAX request
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const exists = JSON.parse(this.responseText);
+                if (exists) {
+                    // Time already exists in the database, change button color to red
+                    button.style.backgroundColor = 'red';
+                    // Disable further interaction with the button
+                    button.disabled = true;
+                    button.style.cursor = 'not-allowed';
+                }
+            }
+        };
+        xhttp.open("POST", "check_time.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("date=" + selectedDate + "&time=" + selectedTime);
+    }
+}
+
+
+            </script>
+
+            <script>
+                function updateCourtNumber(select) {
+                    const selectedCourt = select.value;
+                    // Update the court number input in the payment details section
+                    document.getElementById('court_number').value = selectedCourt;
+                }
+            </script>
+        <script>
+    // Function to fetch data from the server
+    function fetchDataFromServer() {
+        // Perform an AJAX request to fetch data from the server
+        fetch('time.php')
+            .then(response => response.json())
+            .then(data => {
+                // Call functions to update styling based on the fetched data
+                updateButtonStyling(data.time);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }
 
-    // Function to select court number
-    function selectCourt(courtLink) {
-        // Deselect all court links
-        const courtLinks = document.querySelectorAll('.text-link');
-        courtLinks.forEach(link => {
-            link.classList.remove('selected');
+    // Function to update time button styling
+    function updateButtonStyling(timeData) {
+        const timeButtons = document.querySelectorAll('.time-button');
+        timeButtons.forEach(button => {
+            if (timeData.includes(button.textContent)) {
+                button.style.backgroundColor = 'red';
+            }
         });
-
-        // Select the clicked court link
-        courtLink.classList.add('selected');
     }
 
-    // Function to select duration
-    function selectDuration(durationOption) {
-        // Deselect all duration options
-        const durationOptions = document.querySelectorAll('.additional-option');
-        durationOptions.forEach(option => {
-            option.classList.remove('selected');
-        });
-
-        // Select the clicked duration option
-        durationOption.classList.add('selected');
-    }
-
-    // Function to redirect to payment page
-    function goToPayment() {
-        // Get selected date, time, court number, and duration
-        const selectedDate = window.selectedFullDate; // Use the stored full date string
-        const selectedTime = document.querySelector('.time-button.selected').textContent;
-        const selectedCourt = document.querySelector('.text-link.selected').textContent;
-        const selectedDuration = document.querySelector('.additional-option.selected').textContent;
-
-        // Redirect to payment.php with query parameters
-        window.location.href = "http://localhost/reservation_system/reserve/payment/pickleballpayment.php" + 
-                                "?date=" + encodeURIComponent(selectedDate) + 
-                                "&time=" + encodeURIComponent(selectedTime) + 
-                                "&court=" + encodeURIComponent(selectedCourt) + 
-                                "&duration=" + encodeURIComponent(selectedDuration);
-    }
-
-    // Initialize the calendar with the current date
-    const currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth();
-    generateCalendar(currentYear, currentMonth);
-    currentDateDisplay.children[0].textContent = formatDate(currentDate);
-</script>
-<script>
-    // JavaScript function to navigate back to the specified page
+    // Call the function to fetch data when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchDataFromServer();
+    });
+    // JavaScript code for back button
     function goBack() {
-        // Redirect to the desired page
-        window.location.href = "http://localhost/reservation_system/reserve/landpage/dashboard.php";
-    }
+    window.location.href = "/reservation_system/reserve/landpage/dashboard.php";
+}
 
-    // Your existing JavaScript functions...
-</script>
-<!-- Your page content here -->
+    </script>
 
-</body>
-</html>
+
+            </body>
+            </html>
+
+
+
+
+        
+
+

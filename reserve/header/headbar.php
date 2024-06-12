@@ -243,6 +243,7 @@
         }
         header img {
             height: 100px; /* Adjusted height for logo */
+            
         }
 
         nav ul {

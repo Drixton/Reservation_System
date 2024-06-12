@@ -249,7 +249,7 @@ $conn->close();
                         <input type="text" id="reference-no" name="reference-no">
                     </div>
                     <div class="detail-item">
-                        <label for="gcash-qrcode">Upload Proof or Screenshot of payment</label>
+                        <label for="gcash-qrcode">Upload Proof or Screenshot of payment:</label>
                         <input type="file" id="gcash-qrcode" name="gcash-qrcode" accept="image/*">
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
@@ -346,11 +346,11 @@ $conn->close();
         const duration = document.getElementById('duration').value;
         let total = 0;
         if (duration === '1 hour') {
-            total = 250;
+            total = 100;
         } else if (duration === '2 hours') {
-            total = 500;
+            total = 200;
         } else if (duration === '3 hours') {
-            total = 750;
+            total = 300;
         } else if (duration === 'Open hours') {
             total = 400;
         }

@@ -301,7 +301,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='http://localhost/reservation_system/reserve/calendar/arnis.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='/reservation_system/reserve/calendar/arnis.php'">Back</button>
             </div>
         </form>
     </div>

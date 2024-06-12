@@ -167,6 +167,9 @@
                         case 'Table Tennis':
                             $moveQuery = "INSERT INTO tabletennispage SELECT * FROM reservation_payments WHERE id = $id";
                             break;
+                            case 'Cornhole':
+                                $moveQuery = "INSERT INTO cornholepage SELECT * FROM reservation_payments WHERE id = $id";
+                                break;
                         default:
                             // Handle other sports types if needed
                             break;

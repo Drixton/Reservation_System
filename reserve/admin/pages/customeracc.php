@@ -114,7 +114,7 @@
                         <th>Username</th>
                         <th>Password</th>
                         <th>Time in</th>
-                        <th>Time out</th>
+                       <!-- <th>Time out</th>-->
                         <th>Created At</th>
                     
                     </tr>
@@ -144,8 +144,7 @@
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['username'] . "</td>";
                             echo "<td>" . $row['password'] . "</td>";
-                            echo "<td>" . $row['time_in'] . "</td>";
-                            echo "<td>" . $row['time_out'] . "</td>";             
+                            echo "<td>" . $row['time_in'] . "</td>";     
                             echo "<td>" . $row['created_at'] . "</td>";
                        
                             echo "</tr>";
