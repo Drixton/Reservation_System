@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Header with Profile Icon</title>
     <style>
-        header{
+        header {
             background-color: #040F13;
             color: #fff;
             padding: 1px 20px;
@@ -15,7 +17,6 @@
             align-items: center;
             position: relative;
             height: 120px;
-            position: relative; /* Ensure the header is positioned relatively */
         }
 
         header img {
@@ -50,9 +51,9 @@
             font-size: 40px;
         }
 
-        .profile-icon {
+        .prifle {
             position: absolute;
-            top: 10px;
+            top: -15px;
             right: 20px;
             height: 40px;
             border-radius: 50%;
@@ -60,99 +61,81 @@
 
         .centered-text {
             position: absolute;
-            top: 50%; /* Move the text to the vertical center of the header */
-            left: 600px; /* Push the text to the right */
-            transform: translateY(-50%); /* Center vertically */
-        }
-        .prifle{
-            width:40px;
-            height:40px
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
 
-        /* Echoing welcome message style */
         .welcome-message {
             position: absolute;
             bottom: 0;
-            right: 20px;
+            right: 30px;
             color: white;
             margin-bottom: 5px;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column; /* Stack elements vertically on smaller screens */
-                height: auto; /* Auto height for smaller screens */
-                padding: 10px; /* Adjust padding for better spacing */
-            }
-
-            header img {
-                height: 80px; /* Adjusted height for responsiveness */
-            }
-
-            nav ul {
-                text-align: center; /* Center the navigation links */
-                margin-top: 10px; /* Add some space between logo and navigation on smaller screens */
-            }
-
+        @media only screen and (max-width: 600px) {
             nav ul li {
-                display: block; /* Display navigation links as block elements */
-                margin: 10px 0; /* Add space between navigation links */
+                display: block;
+                margin-left: 0;
+                text-align: center;
             }
 
-            .centered-text {
-                position: static; /* Reset position */
-                text-align: center; /* Center the text on all screen sizes */
-                margin-top: 10px; /* Add some space between navigation and centered text */
+            nav ul li:first-child {
+                margin-top: 20px;
             }
 
-            .welcome-message {
-                position: static; /* Adjust welcome message position */
-                text-align: center; /* Center the message */
-                margin-top: 10px; /* Add some space */
+            nav ul li a {
+                font-size: 24px;
             }
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <a href="http://localhost/reservation_system/reserve/">
-        <img src="../assets/img/logo.png" alt="Logo">
-    </a>
-    <div class="dropdown">
-        <img src="../assets/img/profile.png" alt="Logo2" class="prifle dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">View profile</a></li>
-            <li><a class="dropdown-item" href="#">test</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-        </ul>
-    </div>
-    <!-- Check if user is logged in -->
-    <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid'): ?>
-        <!-- If logged in, display welcome message with username -->
-        <p class="welcome-message">Welcome, <?php echo $_SESSION['username']; ?>!</p>
-    <?php endif; ?>
-    <div class="centered-text">
-        <nav>
-            <ul>
-                <li><a href="#" id="sportText" class="center">CHOOSE YOUR SPORT</a></li>
+    <header>
+        <a href="http://localhost/reservation_system/reserve/">
+            <img src="../assets/img/logo.png" alt="Logo">
+        </a>
+        <div class="dropdown">
+            <img src="../assets/img/profile.png" alt="Logo2" class="prifle dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">View profile</a></li>
+                <li><a class="dropdown-item" href="#">test</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
             </ul>
-        </nav>
-    </div>
+        </div>
+        <!-- Check if user is logged in -->
+        <?php if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') : ?>
+            <!-- If logged in, display welcome message with username -->
+            <p class="welcome-message"> <?php echo $_SESSION['username']; ?>!</p>
+        <?php endif; ?>
+        <div class="centered-text">
+            <nav>
+                <ul>
+                    <li><a href="#" id="sportText" class="center">CHOOSE YOUR SPORT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-</header>
+    <script>
+        setInterval(changeColor, 1000);
 
-<script>
-    setInterval(changeColor, 1000);
-
-    function changeColor() {
-        var colors = ['#FF0000', '#FFA500', '#008000', '#0000FF']; // Red, Orange, Green, Blue
-        var sportText = document.getElementById('sportText');
-        var randomColor = colors[Math.floor(Math.random() * colors.length)];
-        sportText.style.color = randomColor;
-    }
-</script>
+        function changeColor() {
+            var colors = ['#FF0000', '#FFA500', '#008000', '#0000FF']; // Red, Orange, Green, Blue
+            var sportText = document.getElementById('sportText');
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            sportText.style.color = randomColor;
+        }
+    </script>
 
 </body>
+
 </html>

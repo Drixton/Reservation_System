@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gcash_qrcode_tmp = $_FILES['gcash-qrcode']['tmp_name'];
 
     // Directory path to store uploads
-    $upload_directory = "qrcode/";
+    $upload_directory = "../admin/pages/qrcode/";
 
     // Create the directory if it doesn't exist
     if (!file_exists($upload_directory)) {
@@ -363,20 +363,32 @@ $conn->close();
 
         document.addEventListener('DOMContentLoaded', function() {
             function validateForm() {
-                const referenceNoInput = document.getElementById('reference-no');
-                const referenceNoValue = referenceNoInput.value.trim();
-                if (referenceNoValue === '') {
-                    alert('Please fill up the reference number. Do not leave it blank.');
-                    return false;
-                }
-                return true;
-            }
+    const referenceNoInput = document.getElementById('reference-no');
+    const referenceNoValue = referenceNoInput.value.trim();
+    const fileInput = document.getElementById('gcash-qrcode');
+    
+    // Check if reference number is filled
+    if (referenceNoValue === '') {
+        alert('Please fill up the reference number. Do not leave it blank.');
+        return false;
+    }
+    
+    // Check if a file is selected for gcash-qrcode
+    if (fileInput.files.length === 0) {
+        alert('Please upload proof or screenshot of payment.');
+        return false;
+    }
+    
+    return true;
+}
 
-            document.querySelector('form').addEventListener('submit', function(event) {
-                if (!validateForm()) {
-                    event.preventDefault();
-                }
-            });
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission
+    }
+});
+
         });
     </script>
 </body>

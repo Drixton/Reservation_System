@@ -80,6 +80,33 @@
             padding: 10px;
         }
 
+        .float-screen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 30px;
+    width: 90%; /* Adjust the width of the floating screen */
+    max-width: 900px; /* Limit maximum width */
+    height: 60%; /* Adjust the height of the floating screen */
+    max-height: 90%;
+    overflow: auto;
+    text-align: center;
+}
+
+.float-screen img {
+    width: 100%; /* Occupy full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Add border for clarity */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to the image */
+}
+
+
+
         @media only screen and (max-width: 600px) {
             th,
             td {
@@ -89,6 +116,20 @@
     </style>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.gcash-qrcode-link').click(function (e) {
+                e.preventDefault();
+                var imageSrc = $(this).children('img').attr('src');
+                $('#qrCodeFloatScreen').html('<img src="' + imageSrc + '">');
+                $('#qrCodeFloatScreen').fadeIn();
+            });
+
+            $('#qrCodeFloatScreen').click(function () {
+                $(this).fadeOut();
+            });
+        });
+    </script>
 </head>
 
 <body class="bg-content">
@@ -115,16 +156,34 @@
             // Handle delete submission
             if (isset($_POST['delete_submit'])) {
                 $delete_id = $_POST['delete_id'];
-                // Prepare a delete statement
-                $deleteQuery = "DELETE FROM reservation_payments WHERE id = ?";
-                $stmt = $conn->prepare($deleteQuery);
-                $stmt->bind_param("i", $delete_id); // "i" indicates the type of parameter: integer
-                if ($stmt->execute()) {
-                    echo "<script>alert('Record with ID $delete_id deleted successfully.');</script>";
+
+                // Retrieve the QR code filename for the given ID
+                $qr_code_query = "SELECT gcash_qrcode FROM reservation_payments WHERE id = ?";
+                $stmt_qr = $conn->prepare($qr_code_query);
+                $stmt_qr->bind_param("i", $delete_id);
+                $stmt_qr->execute();
+                $stmt_qr->bind_result($gcash_qr_code);
+                $stmt_qr->fetch();
+                $stmt_qr->close();
+
+                // Prepare a delete statement for reservation_payments table
+                $delete_query = "DELETE FROM reservation_payments WHERE id = ?";
+                $stmt_delete = $conn->prepare($delete_query);
+                $stmt_delete->bind_param("i", $delete_id);
+                if ($stmt_delete->execute()) {
+                    echo "<script>alert('Record deleted successfully.');</script>";
+
+                    // Delete QR code image file if it exists
+                    if (!empty($gcash_qr_code)) {
+                        $image_path = "qrcode/" . $gcash_qr_code;
+                        if (file_exists($image_path)) {
+                            unlink($image_path); // Delete the file
+                        }
+                    }
                 } else {
-                    echo "<script>alert('Error deleting record with ID $delete_id: " . $stmt->error . "');</script>";
+                    echo "<script>alert('Error deleting record with ID $delete_id: " . $stmt_delete->error . "');</script>";
                 }
-                $stmt->close(); // Close the prepared statement
+                $stmt_delete->close(); // Close the prepared statement
             }
 
             // Handle form submission for approval
@@ -167,16 +226,16 @@
                         case 'Table Tennis':
                             $moveQuery = "INSERT INTO tabletennispage SELECT * FROM reservation_payments WHERE id = $id";
                             break;
-                            case 'Cornhole':
-                                $moveQuery = "INSERT INTO cornholepage SELECT * FROM reservation_payments WHERE id = $id";
-                                break;
+                        case 'Cornhole':
+                            $moveQuery = "INSERT INTO cornholepage SELECT * FROM reservation_payments WHERE id = $id";
+                            break;
                         default:
                             // Handle other sports types if needed
                             break;
                     }
 
                     if ($conn->query($moveQuery) === TRUE) {
-                        echo "<script>alert('Record with ID $id moved successfully.');</script>";
+                        echo "<script>alert('Record Approved successfully.');</script>";
                     } else {
                         echo "<script>alert('Error moving record with ID $id: " . $conn->error . "');</script>";
                     }
@@ -186,60 +245,92 @@
                     if ($conn->query($deleteQuery) === TRUE) {
                         echo "Record with ID $id deleted successfully.<br>";
                     } else {
-                        echo "Error deleting record with ID $id: " . $conn->error . "<br>";
-                    }
-                } else {
-                    echo "No sports data found for ID: $id";
+                        echo "Error                    deleting record with ID $id: " . $conn->error . "<br>";
                 }
-            }
-
-            // SQL query to retrieve data from the reservation_payments table
-            $sql = "SELECT * FROM reservation_payments";
-            $result = $conn->query($sql);
-
-            // Check if there are any rows returned
-            if ($result->num_rows > 0) {
-                // Output data of each row in an HTML table
-                echo "<table border='1'>";
-                echo "<tr><th>ID</th><th>Username</th><th>Sports</th><th>Date</th><th>Time</th><th>Field No:</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th><th>Operation</th></tr>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["username"] . "</td>";
-                    echo "<td>" . $row["sports"] . "</td>";
-                    echo "<td>" . $row["date"] . "</td>";
-                    echo "<td>" . $row["time"] . "</td>";
-                    echo "<td>" . $row["court_number"] . "</td>";
-                    echo "<td>" . $row["duration"] . "</td>";
-                    echo "<td>" . $row["promo_code"] . "</td>";
-                    echo "<td>" . $row["reference_no"] . "</td>";
-                    echo "<td>" . $row["gcash_qrcode"] . "</td>";
-                    echo "<td>" . $row["total"] . "</td>";
-                    echo "<td>" . $row["created_at"] . "</td>";
-                    // Adding approve button
-                    echo "<td>";
-                    echo "<form method='post'>";
-                    echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
-                    echo "<button type='submit' name='submit' class='button'>Approve</button>";
-                    echo "</form>";
-                    // Adding delete button
-                    echo "<form method='post'>";
-                    echo "<input type='hidden' name='delete_id' value='" . $row["id"] . "'>";
-                    echo "<button type='submit' name='delete_submit' class='button' style='background-color: red;'>Delete</button>";
-                    echo "</form>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
             } else {
-                echo "0 results";
+                echo "No sports data found for ID: $id";
             }
+        }
 
-            // Close connection
-            $conn->close();
-            ?>
-        </div>
-    </main>
+        // SQL query to retrieve data from the reservation_payments table
+        $sql = "SELECT * FROM reservation_payments";
+        $result = $conn->query($sql);
+
+        // Check if there are any rows returned
+        if ($result->num_rows > 0) {
+            // Output data of each row in an HTML table
+            echo "<table border='1'>";
+            echo "<tr><th>Username</th><th>Sports</th><th>Date</th><th>Time</th><th>Field No:</th><th>Duration</th><th>Promo Code</th><th>Reference No</th><th>GCash QR Code</th><th>Total</th><th>Created At</th><th>Operation</th></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+
+                echo "<td>" . $row["username"] . "</td>";
+                echo "<td>" . $row["sports"] . "</td>";
+                echo "<td>" . $row["date"] . "</td>";
+                echo "<td>" . $row["time"] . "</td>";
+                echo "<td>" . $row["court_number"] . "</td>";
+                echo "<td>" . $row["duration"] . "</td>";
+                echo "<td>" . $row["promo_code"] . "</td>";
+                echo "<td>" . $row["reference_no"] . "</td>";
+                echo "<td>";
+
+                // Check if there is a GCash QR Code filename
+                $gcash_qr_code = $row["gcash_qrcode"];
+                if (!empty($gcash_qr_code)) {
+                    // Assuming the QR Code images are stored in "qrcode/" directory
+                    $image_path = "qrcode/" . $gcash_qr_code;
+                    // Make the image clickable with a class for styling
+                    echo "<a href='#' class='gcash-qrcode-link'><img src='$image_path' alt='GCash QR Code' style='max-width: 100px; max-height: 100px;'></a>";
+                } else {
+                    echo "No QR Code available";
+                }
+
+                echo "</td>";
+                echo "<td>" . $row["total"] . "</td>";
+                echo "<td>" . $row["created_at"] . "</td>";
+
+                // Adding approve and delete buttons
+                echo "<td>";
+                echo "<form method='post'>";
+                echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
+                echo "<button type='submit' name='submit' class='button'>Approve</button>";
+                echo "</form>";
+                echo "<form method='post' onsubmit='return confirmDelete(\"" . $row["id"] . "\")'>";
+                echo "<input type='hidden' name='delete_id' value='" . $row["id"] . "'>";
+                echo "<button type='submit' name='delete_submit' class='button' style='background-color: red;'>Delete</button>";
+                echo "</form>";
+                
+                echo "</td>";
+
+                echo "</tr>";
+            }
+            echo "</table>";
+
+        } else {
+            echo "0 results";
+        }
+
+        // Close connection
+        $conn->close();
+        ?>
+    </div>
+</main>
+
+<!-- Floating screen for displaying QR Code -->
+<div id="qrCodeFloatScreen" class="float-screen"></div>
+
 </body>
+<script>
+function confirmDelete(deleteId) {
+    if (confirm("Are you sure you want to delete this record?")) {
+        // If user confirms, submit the form for deletion
+        return true;
+    } else {
+        // If user cancels, do not submit the form
+        return false;
+    }
+}
+</script>
 
 </html>
+
