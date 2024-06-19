@@ -267,7 +267,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/badminton.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/badmintoncourt1.php'">Back</button>
             </div>
         </form>
     </div>

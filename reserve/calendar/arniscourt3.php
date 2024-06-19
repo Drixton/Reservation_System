@@ -251,9 +251,9 @@
                     <div class="court-selection-container mt-3">
                         <div class="duration-text">COURT SELECTION</div>
                         <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
+                            <option value="court 3">Court 3</option>
                             <option value="court 1">Court 1</option>
                             <option value="court 2">Court 2</option>
-                            <option value="court 3">Court 3</option>
                             <!-- Add more courts as needed -->
                         </select>
                         <div class="additional-options-container mt-3">
@@ -276,9 +276,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // JavaScript function to go back
-            function goBack() {
-                window.history.back();
-            }
+         
 
             // Define global variables for current date
             let currentYear, currentMonth;
@@ -458,7 +456,7 @@ window.location.href = "../Payment/arnispayment.php" +
                 // JavaScript function to navigate back to the specified page
                 function goBack() {
                     // Redirect to the desired page
-                    window.location.href = "http://localhost/reservation_system/reserve/landpage/dashboard.php";
+                    window.location.href = "../landpage/dashboard.php";
                 }
 
             </script>
@@ -528,40 +526,107 @@ function selectTime(button) {
                     document.getElementById('court_number').value = selectedCourt;
                 }
             </script>
-        <script>
-    // Function to fetch data from the server
+       <script>
     function fetchDataFromServer() {
-        // Perform an AJAX request to fetch data from the server
-        fetch('time.php')
+        fetch('time3.php')
             .then(response => response.json())
             .then(data => {
-                // Call functions to update styling based on the fetched data
                 updateButtonStyling(data.time);
             })
             .catch(error => console.error('Error fetching data:', error));
     }
 
-    // Function to update time button styling
     function updateButtonStyling(timeData) {
         const timeButtons = document.querySelectorAll('.time-button');
         timeButtons.forEach(button => {
-            if (timeData.includes(button.textContent)) {
+            const timeInfo = timeData.find(item => item.time === button.textContent && item.court_number === 'court 3');
+            if (timeInfo) {
                 button.style.backgroundColor = 'red';
             }
         });
     }
 
-    // Call the function to fetch data when the page loads
     document.addEventListener('DOMContentLoaded', () => {
         fetchDataFromServer();
     });
-    // JavaScript code for back button
-    function goBack() {
-    window.location.href = "../landpage/dashboard.php";
-}
 
-    </script>
+    function selectTime(button) {
+        if (button.style.backgroundColor !== 'red') {
+            const timeButtons = document.querySelectorAll('.time-button');
+            timeButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.style.backgroundColor !== 'red') {
+                    btn.style.backgroundColor = '';
+                }
+            });
 
+            button.classList.add('selected');
+            button.style.backgroundColor = '#04a5ff';
+
+            const selectedDate = document.getElementById('currentDateDisplay').textContent.replace('Selected Date: ', '');
+            const selectedTime = button.textContent;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const exists = JSON.parse(this.responseText);
+                    if (exists) {
+                        button.style.backgroundColor = 'red';
+                        button.disabled = true;
+                        button.style.cursor = 'not-allowed';
+                    }
+                }
+            };
+            xhttp.open("POST", "check_time.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("date=" + selectedDate + "&time=" + selectedTime);
+        }
+    }
+
+    function goToPayment() {
+        const selectedDateText = document.getElementById('currentDateDisplay').textContent;
+
+        if (selectedDateText === '') {
+            alert('Please select a date before proceeding to payment.');
+            return;
+        }
+
+        const selectedDate = selectedDateText.replace('Selected Date: ', '');
+        const selectedTime = document.querySelector('.time-button.selected').textContent;
+        const selectedDuration = document.querySelector('.additional-option.selected').textContent;
+        const selectedCourt = document.getElementById('courtSelection').value;
+
+        window.location.href = "../Payment/arnispayment.php" +
+            "?date=" + encodeURIComponent(selectedDate) +
+            "&time=" + encodeURIComponent(selectedTime) +
+            "&duration=" + encodeURIComponent(selectedDuration) +
+            "&court=" + encodeURIComponent(selectedCourt);
+    }
+
+    function selectDuration(durationOption) {
+        const durationOptions = document.querySelectorAll('.additional-option');
+        durationOptions.forEach(option => {
+            option.classList.remove('selected');
+            option.style.color = '';
+        });
+
+        durationOption.classList.add('selected');
+        durationOption.style.color = 'red';
+    }
+
+    function updateCourtNumber(selectElement) {
+            const selectedCourt = selectElement.value;
+            console.log('Selected Court:', selectedCourt);
+
+            // Redirect based on selected court
+            if (selectedCourt === 'court 2') {
+                window.location.href = 'arniscourt2.php'; // Redirect to arniscourt2.php
+            } else if (selectedCourt === 'court 1') {
+                window.location.href = 'arniscourt1.php'; // Redirect to arniscourt3.php
+            }
+        }
+    
+</script>
 
             </body>
             </html>

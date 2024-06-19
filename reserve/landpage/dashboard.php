@@ -140,17 +140,17 @@
         <div class="container1">
             <div class="random-text">Arnis</div>
             <img src="../assets/img/arnis.jpg" alt="Arnis">
-            <a href="/reservation_system/reserve/calendar/arnis.php" class="button-slide">Click Here</a>
+            <a href="../calendar/arniscourt1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Billiard</div>
             <img src="../assets/img/billiard.jpg" alt="Billiard">
-            <a href="/reservation_system/reserve/calendar/billiard.php" class="button-slide">Click Here</a>
+            <a href="../calendar/billiardtable1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Badminton</div>
             <img src="../assets/img/badminton.jpg" alt="Badminton">
-            <a href="/reservation_system/reserve/calendar/badminton.php" class="button-slide">Click Here</a>
+                <a href="../calendar/badmintoncourt1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Chess</div>

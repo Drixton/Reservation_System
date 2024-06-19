@@ -322,7 +322,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/arnis.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/arniscourt1.php'">Back</button>
             </div>
         </form>
     </div>
