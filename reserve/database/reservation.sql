@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2024 at 10:49 AM
+-- Generation Time: Jun 19, 2024 at 07:38 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,7 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-06-12 12:56:02', '12345678', '2024-06-12 06:54:21', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-06-19 10:16:36', '12345678', '2024-06-14 09:41:09', 'profile_pictures/photo1712557113.jpeg');
 
 -- --------------------------------------------------------
 
@@ -71,13 +71,7 @@ CREATE TABLE `arnispage` (
 --
 
 INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(1, 'phosclay', 'Arnis', 'Thu, Jun 13, 2024', '02:00:00', 'court 5', 1, '', '676665', 'OIP.jpg', '100.00', '2024-06-10 10:55:26'),
-(2, 'phosclay', 'Arnis', '19 June 2024', '10:00:00', 'court 2', 2, '', '1233', '', '200.00', '2024-06-12 03:30:23'),
-(3, 'phosclay', 'Arnis', '1 June 2024', '08:00:00', 'court 1', 1, '', '123', '', '100.00', '2024-06-12 04:07:38'),
-(10, 'phosclay', 'Arnis', '11 June 2024', '02:30:00', 'court 2', 2, '', 'asdas', '', '200.00', '2024-06-12 06:03:50'),
-(29, 'phosclay', 'Arnis', '0000-00-00', '03:00:00', 'court 5', 3, '', 'asd', 'arnis.jpg', '300.00', '2024-06-10 06:19:48'),
-(31, 'phosclay', 'Arnis', '0000-00-00', '10:00:00', 'court 5', 2, '', '12', '', '200.00', '2024-06-10 07:53:28'),
-(33, 'phosclay', 'Arnis', '0000-00-00', '10:30:00', 'court 5', 2, '', '123', '', '200.00', '2024-06-10 08:11:34');
+(1, 'phosclay', 'Arnis', '4 June 2024', '09:30:00', 'court 2', 2, '', 'asda', 'kevintower-qdf2ponfeapnvic22q7wat6gli.jpg', '200.00', '2024-06-17 05:23:49');
 
 -- --------------------------------------------------------
 
@@ -116,7 +110,25 @@ CREATE TABLE `bank_qr_images` (
 --
 
 INSERT INTO `bank_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/qrsample.jpg');
+(1, '../assets/img/free-nature-images.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bdo_qr_images`
+--
+
+CREATE TABLE `bdo_qr_images` (
+  `id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bdo_qr_images`
+--
+
+INSERT INTO `bdo_qr_images` (`id`, `image_path`) VALUES
+(1, '../assets/img/free-nature-images.jpg');
 
 -- --------------------------------------------------------
 
@@ -138,6 +150,31 @@ CREATE TABLE `billiardpage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `billiardpage`
+--
+
+INSERT INTO `billiardpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(50, 'phosclay', 'Billiard', '8 June 2024', '02:30:00', 0, 1, '', 'asd', 'dart.jpg', '100.00', '2024-06-14 06:23:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bpi_qr_images`
+--
+
+CREATE TABLE `bpi_qr_images` (
+  `id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bpi_qr_images`
+--
+
+INSERT INTO `bpi_qr_images` (`id`, `image_path`) VALUES
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -225,7 +262,7 @@ CREATE TABLE `gcash_qr_images` (
 --
 
 INSERT INTO `gcash_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/qrsample.jpg');
+(1, '../assets/img/billiardPhenoms.png');
 
 -- --------------------------------------------------------
 
@@ -281,9 +318,7 @@ CREATE TABLE `reservation_payments` (
 --
 
 INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(8, 'phosclay', 'Arnis', '17 June 2024', '10:00 AM', 'court 3', '2 hours', '', '12123', 'Screenshot 2024-05-20 160145.png', 200, '2024-06-12 05:50:38'),
-(9, 'phosclay', 'Arnis', '17 June 2024', '10:30 AM', 'court 3', '1 hour', '', 'asdsad', 'Screenshot 2024-05-21 155736.png', 100, '2024-06-12 05:55:44'),
-(16, 'phosclay', 'Pickle ball', '14 June 2024', '9:30 AM', 'court 1', '1 hour', '', '123123', '', 100, '2024-06-12 08:15:40');
+(14, 'phosclay', 'Arnis', '6 June 2024', '9:30 AM', 'court 3', '1 hour', '', 'asdad', 'bQgcMwEnyhFu6ASuUFrtsn.jpg', 100, '2024-06-19 05:02:56');
 
 -- --------------------------------------------------------
 
@@ -408,7 +443,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `created_at`, `time_in`, `time_out`) VALUES
 (13, 'phosclay@gmail.com', 'phosclay', 'phosclay', '2024-05-10 04:06:07', '2024-05-10 06:52:17', '0000-00-00 00:00:00'),
 (14, 'jared@gmail.com', 'jared', '12345678', '2024-05-10 09:24:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'baroy@gmail.com', 'baroy', '12345678', '2024-05-13 03:37:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(15, 'baroy@gmail.com', 'baroy', '12345678', '2024-05-13 03:37:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(16, 'drixdiocton@gmail.com', 'darwinpaular', '12345678', '2024-06-14 09:37:06', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(17, 'a@g.com', '<script>Hello world</script>', '12345678', '2024-06-17 16:07:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(18, 'ad@gm.com', 'adasd', '$2y$10$cD9pF4VncFQ6z.Rgx/bu3ug23IyTp/6/rvm385ohq9AcRKm6ncuAq', '2024-06-17 16:12:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -439,9 +477,21 @@ ALTER TABLE `bank_qr_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `bdo_qr_images`
+--
+ALTER TABLE `bdo_qr_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `billiardpage`
 --
 ALTER TABLE `billiardpage`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bpi_qr_images`
+--
+ALTER TABLE `bpi_qr_images`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -524,7 +574,7 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `arnispage`
 --
 ALTER TABLE `arnispage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `badmintonpage`
@@ -533,10 +583,22 @@ ALTER TABLE `badmintonpage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bdo_qr_images`
+--
+ALTER TABLE `bdo_qr_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `billiardpage`
 --
 ALTER TABLE `billiardpage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `bpi_qr_images`
+--
+ALTER TABLE `bpi_qr_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `chesspage`
@@ -566,7 +628,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`
@@ -590,7 +652,7 @@ ALTER TABLE `taekwondopage`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
