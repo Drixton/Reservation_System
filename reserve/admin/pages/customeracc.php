@@ -94,6 +94,21 @@
             right: 20px;
             z-index: 999; /* Ensure dropdown is on top */
         }
+        .deleteButton {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.deleteButton:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+
     </style>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -103,9 +118,6 @@
     <main class="dashboard d-flex">
         <?php include "component/sidebar.php"; ?>
         <div class="container-fluid px-4">
-            <div class="dropdown-container">
-            
-            </div>
             <h1>Customer Accounts</h1>
             <table id="sportTable">
                 <thead>
@@ -113,10 +125,8 @@
                         <th>No</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Time in</th>
-                       <!-- <th>Time out</th>-->
                         <th>Created At</th>
-                    
+                        <th>Operation</th> <!-- New column for delete button -->
                     </tr>
                 </thead>
                 <tbody>
@@ -144,13 +154,12 @@
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['username'] . "</td>";
                             echo "<td>" . $row['password'] . "</td>";
-                            echo "<td>" . $row['time_in'] . "</td>";     
                             echo "<td>" . $row['created_at'] . "</td>";
-                       
+                            echo "<td><button class='deleteButton' data-id='" . $row['id'] . "'>Delete</button></td>";
                             echo "</tr>";
                         }
                     } else {
-                        echo '<tr><td colspan="13">No data available</td></tr>';
+                        echo '<tr><td colspan="5">No data available</td></tr>';
                     }
 
                     // Close the database connection
@@ -161,12 +170,17 @@
         </div>
     </main>
     <script>
-        function navigateToUrl() {
-            var selectedUrl = document.getElementById("sports").value;
-            if (selectedUrl !== "#") {
-                window.location.href = selectedUrl;
-            }
-        }
+        $(document).ready(function() {
+            // Attach click event handler to all delete buttons
+            $('.deleteButton').on('click', function() {
+                var id = $(this).data('id');
+                if (confirm('Are you sure you want to delete this row?')) {
+                    // Perform AJAX delete request or form submission here
+                    // For simplicity, just remove the row from DOM
+                    $(this).closest('tr').remove();
+                }
+            });
+        });
     </script>
 </body>
 

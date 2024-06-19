@@ -5,24 +5,27 @@ if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';
 }
 
-// if($_SESSION['status']=='valid'){
-//     echo "<script> alert('You are already logged in');window.history.back() ;</script>";
-// }
 $logged = false;
 if(isset($_POST['submit'])) {
 
     $email = $_POST['email'];
     $password = $_POST['pass'];
 
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $_SESSION['status'] = 'valid';
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['username'] = $row['username'];
-        echo "<script>window.location.href='index.php?logged=1';</script>";
-        exit();
+        // Verify password
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['status'] = 'valid';
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['username'] = $row['username'];
+            echo "<script>window.location.href='index.php?logged=1';</script>";
+            exit();
+        } else {
+            header("Location: index.php?error=email or password not found");
+            exit();
+        }
     } else {
         header("Location: index.php?error=email or password not found");
         exit();
@@ -33,6 +36,7 @@ if(!empty($_GET['logged'])){
 }
 $conn->close();
 ?>
+
 
     
 

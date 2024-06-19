@@ -102,71 +102,69 @@
             </div>
 
             <button type="submit" name="submit" class="btn-like">Register</button>
-            <a class="btn-like" href="/reservation_system/reserve/userlog/index.php">Back</a>
+            <a class="btn-like" href="index.php">Back</a>
             <br><br>
         </form>
 
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Database connection credentials
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "reservation";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Database connection credentials
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "reservation";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $database);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-            // Retrieve username, email, and password from form
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password']; //hash this \
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // Retrieve username, email, and password from form
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
+    // Sanitize inputs (optional but recommended)
+    $username = $conn->real_escape_string($username);
+    $email = $conn->real_escape_string($email);
 
-            // Check if password length is exactly 8 characters
-            if (strlen($password) !== 8) {
-                // Password does not meet the required length, display error message
-                echo '<div class="alert alert-danger" role="alert">Password must be exactly 8 characters long.</div>';
-                // Close database connection
-                $conn->close();
-                // Stop further execution
-                exit();
-            }
+    // Query to check if the email already exists
+    $check_query = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($check_query);
 
-            // Query to check if the email already exists
-            $check_query = "SELECT * FROM users WHERE email = '$email'";
-            $result = $conn->query($check_query);
+    if ($result->num_rows > 0) {
+        // Email already exists, display error message
+        echo '<div class="alert alert-danger" role="alert">Account with this email already exists. Please use a different email.</div>';
+    } else {
+        // Email does not exist, proceed with registration
 
-            if ($result->num_rows > 0) {
-                // Email already exists, display error message
-                echo '<div class="alert alert-danger" role="alert">Account with this email already exists. Please use a different email.</div>';
-            } else {
-                // Email does not exist, proceed with registration
-                // Query to insert user into database
-                $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                if ($conn->query($sql) === TRUE) {
-                    // Registration successful, display success message with JavaScript
-                    echo '<script>
-                    alert("Registration successful. You can now login.");
-                    window.location.href = "index.php"; // Redirect to login page
-                  </script>';
-                } else {
-                    // Registration failed, display error message
-                    echo '<div class="alert alert-danger" role="alert">Registration failed. Please try again.</div>';
-                }
-            }
+        // Query to insert user into database with hashed password
+        $sql = "INSERT INTO users (username, email, password, time_in) VALUES ('$username', '$email', '$hashed_password', NOW())";
 
-            // Close database connection
-            $conn->close();
+        if ($conn->query($sql) === TRUE) {
+            // Registration successful, display success message with JavaScript
+            echo '<script>
+                alert("Registration successful. You can now login.");
+                window.location.href = "index.php"; // Redirect to login page
+              </script>';
+        } else {
+            // Registration failed, display error message
+            echo '<div class="alert alert-danger" role="alert">Registration failed. Please try again.</div>';
         }
-        ?>
+    }
+
+    // Close database connection
+    $conn->close();
+}
+?>
+
+
 
     </div>
 </main>
