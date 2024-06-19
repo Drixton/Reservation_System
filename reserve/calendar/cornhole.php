@@ -97,7 +97,7 @@
         }
 
         .time-button.selected {
-            background-color: red  !important; /* Darker green for selected time */
+            background-color: green  !important; /* Darker green for selected time */
         }
 
         /* Court selection container */
@@ -199,7 +199,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/reservation_system/reserve">Home</a>
+                            <a class="nav-link" href="https://aepreserve.000webhostapp.com/">Home</a>
                         </li>
                         <!-- Add more navbar links as needed -->
                     </ul>
@@ -438,7 +438,7 @@ function goToPayment() {
     const selectedCourt = document.getElementById('courtSelection').value; // Get the selected court
 
     // Redirect to payment.php with query parameters
-    window.location.href = "http://localhost/reservation_system/reserve/payment/cornholepayment.php" + 
+    window.location.href = "../Payment/cornholepayment.php" + 
                             "?date=" + encodeURIComponent(selectedDate) + 
                             "&time=" + encodeURIComponent(selectedTime) + 
                             "&duration=" + encodeURIComponent(selectedDuration) +
@@ -457,7 +457,7 @@ function goToPayment() {
                 // JavaScript function to navigate back to the specified page
                 function goBack() {
                     // Redirect to the desired page
-                    window.location.href = "http://localhost/reservation_system/reserve/landpage/dashboard.php";
+                    window.location.href = "../landpage/dashboard.php";
                 }
 
             </script>
@@ -556,7 +556,7 @@ function selectTime(button) {
     });
     // JavaScript code for back button
     function goBack() {
-    window.location.href = "/reservation_system/reserve/landpage/dashboard.php";
+    window.location.href = "../landpage/dashboard.php";
 }
 
     </script>

@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gcash_qrcode_tmp = $_FILES['gcash-qrcode']['tmp_name'];
 
     // Directory path to store uploads
-    $upload_directory = "qrcode/";
+    $upload_directory = "../admin/pages/qrcode/";
 
     // Create the directory if it doesn't exist
     if (!file_exists($upload_directory)) {
@@ -71,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_stmt->close();
 
         // Display success alert
-        echo "<script>alert('Reservation successful!');</script>";
+        header("location: invoice.php");
+       exit();
     }
-
     $check_stmt->close();
 }
 
@@ -91,122 +91,126 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paywall</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, black, green);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 120vh;
-            margin: 0;
-        }
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, black, green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 10px; /* Add padding to prevent content from touching the edges */
+}
 
-        .paywall-container {
-            position: relative;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 100%;
-        }
+.paywall-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
 
-        .flex-container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-        .section {
-            margin-bottom: 20px;
-            flex: 0 0 48%;
-        }
+.section {
+    margin-bottom: 20px;
+    flex: 0 0 48%;
+    box-sizing: border-box;
+}
 
-        .detail-item {
-            margin-bottom: 10px;
-        }
+.detail-item {
+    margin-bottom: 10px;
+}
 
-        .detail-item label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.detail-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
-        .detail-item input[type="text"],
-        .detail-item input[type="file"] {
-            width: calc(100% - 10px);
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+.detail-item input[type="text"],
+.detail-item input[type="file"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 
-        .detail-item input[type="datetime-local"] {
-            width: calc(100% - 10px);
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+.detail-item input[type="datetime-local"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 
-        .pay-button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: green;
-            color: #fff;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.pay-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: green;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        .pay-button:hover {
-            background-color: #0056b3;
-        }
+.pay-button:hover {
+    background-color: #0056b3;
+}
 
-        .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 
-        .image-preview {
-            flex: 0 0 48%;
-            max-width: 48%;
-            text-align: center;
-        }
+.image-preview {
+    flex: 0 0 48%;
+    max-width: 48%;
+    text-align: center;
+}
 
-        .image-preview img {
-            max-width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
 
-        @media only screen and (max-width: 600px) {
-            .section {
-                flex: 0 0 100%;
-            }
-        }
+@media only screen and (max-width: 600px) {
+    .section {
+        flex: 0 0 100%;
+    }
+}
 
-        .back-button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: red;
-            color: #fff;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
+.back-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
 
-        .back-button:hover {
-            background-color: darkred;
-        }
-    </style>
+.back-button:hover {
+    background-color: darkred;
+}
+</style>
 </head>
 <body>
     <div class="paywall-container">
@@ -239,14 +243,14 @@ $conn->close();
                     </div>
                     <div class="detail-item">
                         <label for="promo-code">Promo Code:</label>
-                        <input type="text" id="promo-code" name="promo-code">
+                        <input type="text" id="promo-code" name="promo-code" placeholder="Enter promo code (if any)">
                     </div>
                 </div>
                 <div class="section">
-                    <h2>Gcash Details</h2>
-                    <div class="detail-item">
+                <h2>Payment Confirmation</h2>
+                  <div class="detail-item">
                         <label for="reference-no">Reference No:</label>
-                        <input type="text" id="reference-no" name="reference-no">
+                        <input type="text" id="reference-no" name="reference-no" placeholder="Enter reference number">
                     </div>
                     <div class="detail-item">
                         <label for="gcash-qrcode">Upload Proof or Screenshot of payment:</label>
@@ -274,9 +278,10 @@ $conn->close();
                         }
                         ?>
                     </div>
+                    <h2>09172741721</h2>
                 </div>
                 <div class="section">
-                    <h2>Bank QR Code</h2>
+                    <h2>LandBank QR Code</h2>
                     <div class="image-container">
                         <?php
                         if ($result_bank->num_rows > 0) {
@@ -289,7 +294,9 @@ $conn->close();
                             echo "No Bank QR code found";
                         }
                         ?>
+                        
                     </div>
+                    <h2>09278131881</h2>
                 </div>
             </div>
             <div class="section">
@@ -301,7 +308,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='/reservation_system/reserve/calendar/taekwondo.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../taekwondo.php'">Back</button>
             </div>
         </form>
     </div>
@@ -363,20 +370,32 @@ $conn->close();
 
         document.addEventListener('DOMContentLoaded', function() {
             function validateForm() {
-                const referenceNoInput = document.getElementById('reference-no');
-                const referenceNoValue = referenceNoInput.value.trim();
-                if (referenceNoValue === '') {
-                    alert('Please fill up the reference number. Do not leave it blank.');
-                    return false;
-                }
-                return true;
-            }
+    const referenceNoInput = document.getElementById('reference-no');
+    const referenceNoValue = referenceNoInput.value.trim();
+    const fileInput = document.getElementById('gcash-qrcode');
+    
+    // Check if reference number is filled
+    if (referenceNoValue === '') {
+        alert('Please fill up the reference number. Do not leave it blank.');
+        return false;
+    }
+    
+    // Check if a file is selected for gcash-qrcode
+    if (fileInput.files.length === 0) {
+        alert('Please upload proof or screenshot of payment.');
+        return false;
+    }
+    
+    return true;
+}
 
-            document.querySelector('form').addEventListener('submit', function(event) {
-                if (!validateForm()) {
-                    event.preventDefault();
-                }
-            });
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission
+    }
+});
+
         });
     </script>
 </body>

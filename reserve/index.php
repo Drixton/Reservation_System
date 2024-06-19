@@ -162,82 +162,11 @@
 
 
     <p >Your ultimate destination for all things sports</p>
-    <a href="#content" class="btn btn-primary">Explore Now</a>
+    <a href="/userlog/index.php" class="btn btn-primary">Explore Now</a>
 </div>
 
 
-<main>
-    <a href="#badminton" class="category">Badminton</a>
-    <div id="badminton" class="image-container">
-        <img src="assets/img/badminton.jpg" alt="Badminton Image 1">
-        <img src="assets/img/badminton.jpg" alt="Badminton Image 2">
-        <img src="assets/img/badminton.jpg" alt="Badminton Image 3">
-    </div>
-    
-    <a href="#arnis" class="category">Arnis</a>
-    <div id="arnis" class="image-container">
-        <img src="assets/img/arnis.jpg" alt="Arnis Image 1">
-        <img src="assets/img/arnis.jpg" alt="Arnis Image 2">
-        <img src="assets/img/arnis.jpg" alt="Arnis Image 3">
-    </div>
 
-    <a href="#billiard" class="category">Billiard</a>
-    <div id="billiard" class="image-container">
-        <img src="assets/img/billiard.jpg" alt="Billiard Image 1">
-        <img src="assets/img/billiard.jpg" alt="Billiard Image 2">
-        <img src="assets/img/billiard.jpg" alt="Billiard Image 3">
-    </div>
-
-    <a href="#taekwondo" class="category">Taekwondo</a>
-    <div id="taekwondo" class="image-container">
-        <img src="assets/img/taekwondo.jpg" alt="Taekwondo Image 1">
-        <img src="assets/img/taekwondo.jpg" alt="Taekwondo Image 2">
-        <img src="assets/img/taekwondo.jpg" alt="Taekwondo Image 3">
-    </div>
-
-    <a href="#pickleball" class="category">Pickleball</a>
-    <div id="pickleball" class="image-container">
-        <img src="assets/img/pickleball.jpg" alt="Pickleball Image 1">
-        <img src="assets/img/pickleball.jpg" alt="Pickleball Image 2">
-        <img src="assets/img/pickleball.jpg" alt="Pickleball Image 3">
-    </div>
-
-    <a href="#sepaktakraw" class="category">Sepak Takraw</a>
-    <div id="sepaktakraw" class="image-container">
-        <img src="assets/img/sepaktakraw.jpg" alt="Sepak Takraw Image 1">
-        <img src="assets/img/sepaktakraw.jpg" alt="Sepak Takraw Image 2">
-        <img src="assets/img/sepaktakraw.jpg" alt="Sepak Takraw Image 3">
-    </div>
-
-    <a href="#cornhole" class="category">Cornhole</a>
-    <div id="cornhole" class="image-container">
-        <img src="assets/img/cornhole.jpg" alt="Cornhole Image 1">
-        <img src="assets/img/cornhole.jpg" alt="Cornhole Image 2">
-        <img src="assets/img/cornhole.jpg" alt="Cornhole Image 3">
-    </div>
-
-    <a href="#chess" class="category">Chess</a>
-    <div id="chess" class="image-container">
-       
-    <img src="assets/img/chess.jpg" alt="Chess Image 1">
-        <img src="assets/img/chess.jpg" alt="Chess Image 2">
-        <img src="assets/img/chess.jpg" alt="Chess Image 3">
-    </div>
-
-    <a href="#tabletennis" class="category">Table Tennis</a>
-    <div id="tabletennis" class="image-container">
-        <img src="assets/img/tabletennis.jpg" alt="Table Tennis Image 1">
-        <img src="assets/img/tabletennis.jpg" alt="Table Tennis Image 2">
-        <img src="assets/img/tabletennis.jpg" alt="Table Tennis Image 3">
-    </div>
-
-    <a href="#dart" class="category">Dart</a>
-    <div id="dart" class="image-container">
-        <img src="assets/img/dart.jpg" alt="Dart Image 1">
-        <img src="assets/img/dart.jpg" alt="Dart Image 2">
-        <img src="assets/img/dart.jpg" alt="Dart Image 3">
-    </div>
-</main>
 <footer>
     <p>Email: example@example.com</p>
     <p>Contact: +1234567890</p>

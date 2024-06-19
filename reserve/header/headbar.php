@@ -1,4 +1,4 @@
-    <?php
+<?php
     session_start();
 
     // Check if the user is logged in and the session ID matches the one stored in cookies
@@ -238,7 +238,7 @@
     @media (max-width: 767.98px) {
         header {
             flex-direction: column; /* Stack items vertically */
-            height: auto; /* Allow header height to adjust based on content */
+            height: 450px; /* Allow header height to adjust based on content */
             padding: 10px; /* Adjusted padding */
         }
         header img {
@@ -296,7 +296,7 @@
     }
     @media (max-width: 575.98px) {
                 header img {
-                    height: 80px; /* Decrease logo size */
+                    height: 130px; /* Decrease logo size */
                 }
                 .centered-text {
                     left: 50%; /* Center the text horizontally */
@@ -304,8 +304,8 @@
                 }
                 .profile-icon {
                     /* Reset position */
-                    margin-top: 200px; /* Adjust margin */
-                    margin-left: 380px;
+                    margin-top: -90px; /* Adjust margin */
+                   
                     left: 520px;
                     
                 }
@@ -317,12 +317,14 @@
                     width: 90%; /* Adjust width */
                     margin: 20px auto; /* Center horizontally with top margin */
                 }
-                .welcome-message {
-                    bottom: auto; /* Reset position */
-                    top: 10px; /* Adjust top position */
-                    right: 10px; /* Adjust right position */
-                }
-            }
+    .welcome-message {
+        position: absolute;
+        top: 94%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
 
     </style>
     </head>
@@ -349,13 +351,13 @@
                             <li><a class="dropdown-item" href="#">Taekwondo</a></li>  
                         </ul>
                     </li>
-                    <li><a href="#">Promo</a></li>
+               
                     <li><a href="#">Support</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our location</a>
                         <ul class="dropdown-menu" aria-labelledby="locationDropdown">
-                            <li><a class="dropdown-item" href="https://www.google.com/maps/@14.3917056,120.9532416,13z?entry=ttu">Google Map</a></li>
-                            <li><a class="dropdown-item" href="https://www.waze.com/live-map/">Waze</a></li>
+                            <li><a class="dropdown-item" href="https://www.google.com.ph/maps/place/Athlete+Event+Place/@14.2702578,121.0046655,17z/data=!3m1!4b1!4m6!3m5!1s0x33bd7d485454c201:0x64cd31fb87052134!8m2!3d14.2702526!4d121.0072458!16s%2Fg%2F11vm2kxqxt?entry=ttu">Google Map</a></li>
+                            <li><a class="dropdown-item" href="https://www.waze.com/live-map/directions/ph/calabarzon/carmona/athlete-event-place?to=place.ChIJAcJUVEh9vTMRNCEFh_sxzWQ">Waze</a></li>
                             <!-- Add more locations here -->
                         </ul>
                     </li>

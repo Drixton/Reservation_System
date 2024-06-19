@@ -125,7 +125,9 @@
             // Retrieve username, email, and password from form
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $password = $_POST['password'];
+            $password = $_POST['password']; //hash this \
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 
             // Check if password length is exactly 8 characters
             if (strlen($password) !== 8) {
@@ -147,7 +149,7 @@
             } else {
                 // Email does not exist, proceed with registration
                 // Query to insert user into database
-                $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+                $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
 
                 if ($conn->query($sql) === TRUE) {
                     // Registration successful, display success message with JavaScript

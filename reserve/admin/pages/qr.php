@@ -1,6 +1,4 @@
-
 <?php
-
 
 // Database connection parameters
 $servername = "localhost";
@@ -32,8 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mkdir($upload_directory, 0777, true);
         }
 
-        // Check if there is an existing image in the database
-        $table_name = ($_POST['qr_type'] == 'gcash') ? 'gcash_qr_images' : 'bank_qr_images';
+        // Determine table name based on qr_type
+        if ($_POST['qr_type'] == 'bpi' || $_POST['qr_type'] == 'bdo') {
+            $table_name = ($_POST['qr_type'] == 'bpi') ? 'bpi_qr_images' : 'bdo_qr_images';
+        } else {
+            $table_name = ($_POST['qr_type'] == 'gcash') ? 'gcash_qr_images' : 'bank_qr_images';
+        }
+
         $select_sql = "SELECT id FROM $table_name WHERE id = 1";
         $result = $conn->query($select_sql);
 
@@ -136,7 +139,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration!</title>
+    <title>Update QR Image</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -151,34 +154,33 @@ $conn->close();
 
         <!-- start content page -->
         <div class="container-fluid px-4">
-        
+            <div class="container">
+                <h1>Update QR Image</h1>
+                <?php if(!empty($error)): ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php endif; ?>
+                <form id="upload-form" method="post" enctype="multipart/form-data">
+                    <label for="qr_type">Select QR Type:</label>
+                    <select name="qr_type" id="qr_type">
+                        <option value="bpi">BPI</option>
+                        <option value="bdo">BDO</option>
+                        <option value="gcash">Gcash</option>
+                        <option value="bank">Bank</option>
+                    </select>
+                    <label for="new-qrcode">Upload New QR Image:</label>
+                    <input type="file" id="new-qrcode" name="new-qrcode" accept="image/*">
+                    <button type="submit">Update QR Image</button>
+                </form>
+            </div>
 
-        <div class="container">
-        <h1>Update QR Image</h1>
-        <?php if(!empty($error)): ?>
-            <div class="error"><?php echo $error; ?></div>
-        <?php endif; ?>
-        <form id="upload-form" method="post" enctype="multipart/form-data">
-            <label for="qr_type">Select QR Type:</label>
-            <select name="qr_type" id="qr_type">
-                <option value="gcash">Gcash</option>
-                <option value="bank">Bank</option>
-            </select>
-            <label for="new-qrcode">Upload New QR Image:</label>
-            <input type="file" id="new-qrcode" name="new-qrcode" accept="image/*">
-            <button type="submit">Update QR Image</button>
-        </form>
-    </div>
-
-    <script>
-        <?php if(!empty($message)): ?>
-            alert("<?php echo $message; ?>");
-        <?php endif; ?>
-    </script>
-
-   
-
-   
+            <script>
+                <?php if(!empty($message)): ?>
+                    alert("<?php echo $message; ?>");
+                <?php endif; ?>
+            </script>
+        </div>
+        <!-- end content page -->
+    </main>
 </body>
 
 </html>

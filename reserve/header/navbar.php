@@ -76,6 +76,15 @@
         }
 
         @media only screen and (max-width: 600px) {
+       header img {
+            height: 100px;
+            transition: transform 0.3s;
+            margin-left:-20px;
+        }
+
+        header img:hover {
+            transform: scale(1.5);
+        }
             nav ul li {
                 display: block;
                 margin-left: 0;
@@ -90,13 +99,27 @@
                 font-size: 24px;
             }
         }
+           .prifle {
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            height: 50px;
+            border-radius: 50%;
+        }
+          .welcome-message {
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+            color: white;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
 <body>
 
     <header>
-        <a href="http://localhost/reservation_system/reserve/">
+        <a href="/reservation_system/reserve/index.php">
             <img src="../assets/img/logo.png" alt="Logo">
         </a>
         <div class="dropdown">
@@ -119,7 +142,7 @@
         <div class="centered-text">
             <nav>
                 <ul>
-                    <li><a href="#" id="sportText" class="center">CHOOSE YOUR SPORT</a></li>
+                    <li><a href="#" id="sportText" class="center">RESERVE NOW!</a></li>
                 </ul>
             </nav>
         </div>
