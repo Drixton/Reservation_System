@@ -150,17 +150,17 @@
         <div class="container1">
             <div class="random-text">Badminton</div>
             <img src="../assets/img/badminton.jpg" alt="Badminton">
-                <a href="../calendar/badmintoncourt1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/badmintoncourt1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Chess</div>
             <img src="../assets/img/chess.jpg" alt="Chess">
-            <a href="/reservation_system/reserve/calendar/chess.php" class="button-slide">Click Here</a>
+            <a href="../calendar/chessboard1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Dart</div>
             <img src="../assets/img/dart.jpg" alt="Dart">
-            <a href="/reservation_system/reserve/calendar/dart.php" class="button-slide">Click Here</a>
+            <a href="../calendar/darttable1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Pickleball</div>
@@ -175,7 +175,7 @@
         <div class="container1">
             <div class="random-text">Table Tennis</div>
             <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
-            <a href="/reservation_system/reserve/calendar/tabletennis.php" class="button-slide">Click Here</a>
+            <a href="../calendar/tabletennistable1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Taekwondo</div>
