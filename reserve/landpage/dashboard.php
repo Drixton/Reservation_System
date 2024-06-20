@@ -165,12 +165,12 @@
         <div class="container1">
             <div class="random-text">Pickleball</div>
             <img src="../assets/img/pickleball.jpg" alt="Pickleball">
-            <a href="/reservation_system/reserve/calendar/pickleball.php" class="button-slide">Click Here</a>
+            <a href="../calendar/pickleballcourt1.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Sepak Takraw</div>
             <img src="../assets/img/sepaktakraw.jpg" alt="Sepak Takraw">
-            <a href="/reservation_system/reserve/calendar/sepaktakraw.php" class="button-slide">Click Here</a>
+            <a href="..calendar/sepaktakrawcourt2.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Table Tennis</div>
@@ -180,12 +180,12 @@
         <div class="container1">
             <div class="random-text">Taekwondo</div>
             <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
-            <a href="/reservation_system/reserve/calendar/taekwondo.php" class="button-slide">Click Here</a>
+            <a href="../calendar/taekwondocourt4.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Cornhole</div>
             <img src="../assets/img/cornhole.jpg" alt="Cornhole">
-            <a href="/reservation_system/reserve/calendar/cornhole.php" class="button-slide">Click Here</a>
+            <a href="../calendar/cornholecourt1.php" class="button-slide">Click Here</a>
         </div>
     </div>
     <footer>

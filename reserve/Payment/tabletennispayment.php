@@ -8,19 +8,7 @@ if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
 }
 
 // Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data

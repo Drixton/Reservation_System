@@ -8,10 +8,9 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
 
 // Database connection parameters
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
-
+$username = "id22317868_aepphosclay";
+$password = "Phoscl@y123";
+$database = "id22317868_reservation";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -22,11 +21,11 @@ if ($conn->connect_error) {
 }
 
 // Fetch the most recent reservation for the logged-in user
-$sql = "SELECT username, date, sports, court_number, duration, total FROM reservation_payments WHERE username = ? ORDER BY id DESC LIMIT 1";
+$sql = "SELECT username, date, time, sports, court_number, duration, total FROM reservation_payments WHERE username = ? ORDER BY id DESC LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $logged_on_user);
 $stmt->execute();
-$stmt->bind_result($username, $date, $sports, $court_number, $duration, $total);
+$stmt->bind_result($username, $date, $time,$sports, $court_number, $duration, $total);
 $stmt->fetch();
 $stmt->close();
 $conn->close();
@@ -46,6 +45,9 @@ $conn->close();
             padding: 0;
             background-color: #f2f2f2;
             color: #333;
+        }
+        p {
+            font-size: 10px;
         }
 
         .container {
@@ -117,6 +119,9 @@ $conn->close();
             margin-top: 20px;
             color: #666;
         }
+        .customer{
+            font-size: 16px;
+        }
 
         /* Responsive styles */
         @media (max-width: 600px) {
@@ -146,7 +151,9 @@ $conn->close();
 
     <div class="invoice-details">
         <h2>Invoice Details</h2>
-        <p><strong>Customer:</strong> <?php echo htmlspecialchars($username); ?></p>
+        <p>*Please arrive 30 or 15 mins before your designated time of reservation..</p>
+        <p>*Kindly screenshot this invoice and show it at the front desk..</p>
+        <p class = "customer"><strong>Customer:</strong> <?php echo htmlspecialchars($username); ?></p>
     </div>
 
     <div class="table-responsive">
@@ -156,6 +163,7 @@ $conn->close();
                     <th>Sports Description</th>
                     <th>Date</th>
                     <th>Court/Facility Number</th>
+                      <th>Time</th>
                     <th>Duration</th>
                     <th>Price</th>
                     <th>Total</th>
@@ -166,6 +174,7 @@ $conn->close();
                     <td><?php echo htmlspecialchars($sports); ?></td>
                     <td><?php echo htmlspecialchars($date); ?></td>
                     <td><?php echo htmlspecialchars($court_number); ?></td>
+                     <td><?php echo htmlspecialchars($time); ?></td>
                     <td><?php echo htmlspecialchars($duration); ?></td>
                     <td><?php echo '₱' . htmlspecialchars($total); ?></td>
                     <td><?php echo '₱' . htmlspecialchars($total); ?></td>

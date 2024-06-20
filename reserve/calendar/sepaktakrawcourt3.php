@@ -4,7 +4,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Billiard Reservation</title>
+            <title>Sepak Takraw Reservation</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
         body {
@@ -192,7 +192,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Billiard Reservation</a>
+                <a class="navbar-brand" href="#">Sepak Takraw Reservation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -251,9 +251,9 @@
                     <div class="court-selection-container mt-3">
                         <div class="duration-text">COURT SELECTION</div>
                         <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
-                            <option value="table 1">Table 1</option>
-                            <option value="table 2">Table 2</option>
-                            <option value="table 3">Table 3</option>
+                            <option value="court 3">Court 3</option>
+                            <option value="court 2">Court 2</option>
+                       
                             <!-- Add more courts as needed -->
                         </select>
                         <div class="additional-options-container mt-3">
@@ -436,7 +436,7 @@ function goToPayment() {
     const selectedCourt = document.getElementById('courtSelection').value; // Get the selected court
 
     // Redirect to payment.php with query parameters
-window.location.href = "../Payment/arnispayment.php" + 
+window.location.href = "../Payment/sepaktakrawpayment.php" + 
                             "?date=" + encodeURIComponent(selectedDate) + 
                             "&time=" + encodeURIComponent(selectedTime) + 
                             "&duration=" + encodeURIComponent(selectedDuration) +
@@ -527,7 +527,7 @@ function selectTime(button) {
             </script>
        <script>
     function fetchDataFromServer() {
-        fetch('table1.php')
+        fetch('time3.php')
             .then(response => response.json())
             .then(data => {
                 updateButtonStyling(data.time);
@@ -538,7 +538,7 @@ function selectTime(button) {
     function updateButtonStyling(timeData) {
         const timeButtons = document.querySelectorAll('.time-button');
         timeButtons.forEach(button => {
-            const timeInfo = timeData.find(item => item.time === button.textContent && item.court_number === 'table 1');
+            const timeInfo = timeData.find(item => item.time === button.textContent && item.court_number === 'court 3');
             if (timeInfo) {
                 button.style.backgroundColor = 'red';
             }
@@ -595,7 +595,7 @@ function selectTime(button) {
         const selectedDuration = document.querySelector('.additional-option.selected').textContent;
         const selectedCourt = document.getElementById('courtSelection').value;
 
-        window.location.href = "../Payment/billiardpayment.php" +
+        window.location.href = "../Payment/sepaktakrawpayment.php" +
             "?date=" + encodeURIComponent(selectedDate) +
             "&time=" + encodeURIComponent(selectedTime) +
             "&duration=" + encodeURIComponent(selectedDuration) +
@@ -618,10 +618,10 @@ function selectTime(button) {
             console.log('Selected Court:', selectedCourt);
 
             // Redirect based on selected court
-            if (selectedCourt === 'table 2') {
-                window.location.href = 'billiardtable2.php'; // Redirect to arniscourt2.php
-            } else if (selectedCourt === 'table 3') {
-                window.location.href = 'billiardtable3.php'; // Redirect to arniscourt3.php
+            if (selectedCourt === 'court 2') {
+                window.location.href = 'sepaktakrawcourt2.php'; // Redirect to arniscourt2.php
+            } else if (selectedCourt === 'court 3') {
+                window.location.href = 'sepaktakrawcourt3.php'; // Redirect to arniscourt3.php
             }
         }
  
