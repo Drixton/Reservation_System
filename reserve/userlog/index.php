@@ -89,7 +89,7 @@ $conn->close();
             color: white;
         }
         .bg-sign-in {
-            background-image: url('../assets/img/logbg.jpg');
+            background: linear-gradient(to right, black, #008000);
             background-size: cover; /* Ensure the background covers the entire container */
             background-repeat: no-repeat;
             background-position: center; /* Center the background image */
