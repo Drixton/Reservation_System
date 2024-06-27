@@ -66,6 +66,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        
 </head>
 
 <body class="bg-content">
@@ -132,7 +133,7 @@
                         <label for="user_type">User Type</label>
                         <select name="user_type" required>
                             <option value="adminlogs">Admin</option>
-                            <option value="users">client</option>
+                            <option value="users">Customer</option>
                       
                         </select>
                     </div>

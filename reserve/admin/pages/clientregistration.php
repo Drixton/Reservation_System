@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
             <div class="container">
-                <h2>Client Registration Form</h2>
+                <h2>Customer Registration Form</h2>
                 <?php if (!empty($success_message)): ?>
                     <div class="alert-success">
                         <?php echo $success_message; ?>
@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="user_type">User Type</label>
                         <select name="user_type" required>
-                    <option value="users">client</option>
+                    <option value="users">Customer</option>
                             
 							     <option value="adminlogs">Admin</option>
                         </select>

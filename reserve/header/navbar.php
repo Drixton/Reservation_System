@@ -20,7 +20,7 @@
         }
 
         header img {
-            height: 100px;
+            height: 160px;
             transition: transform 0.3s;
         }
 
