@@ -162,7 +162,7 @@
 
 
     <p >Your ultimate destination for all things sports</p>
-    <a href="/userlog/index.php" class="btn btn-primary">Explore Now</a>
+    <a href="userlog/index.php" class="btn btn-primary">Explore Now</a>
 </div>
 
 

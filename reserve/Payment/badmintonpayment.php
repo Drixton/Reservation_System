@@ -1,12 +1,13 @@
 <?php
 session_start();
-if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
+if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
     $logged_on_user = $_SESSION['username'];
 } else {
     $logged_on_user = '';
 }
 
 include 'connection.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
     $sport = $_POST['sport'];
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_stmt->close();
 
         header("location: invoice.php");
-       exit();
+        exit();
     }
     $check_stmt->close();
 }
@@ -60,6 +61,11 @@ $result_gcash = $conn->query($sql_gcash);
 $sql_bank = "SELECT * FROM bank_qr_images";
 $result_bank = $conn->query($sql_bank);
 
+$sql_bpi = "SELECT * FROM bpi_qr_images";
+$result_bpi = $conn->query($sql_bpi);
+
+$sql_bdo = "SELECT * FROM bdo_qr_images";
+$result_bdo = $conn->query($sql_bdo);
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -84,9 +90,11 @@ $conn->close();
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             box-sizing: border-box;
+            margin-top: 20px;
+            padding-bottom: 20px;
         }
         .flex-container {
             display: flex;
@@ -151,8 +159,8 @@ $conn->close();
             text-align: center;
         }
         .image-preview img {
-            max-width: 100%;
-            max-height: 200px;
+            width: 100%;
+            height: 200px;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -160,6 +168,18 @@ $conn->close();
             .section {
                 flex: 0 0 100%;
             }
+            .image-preview img {
+            width: 130%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-left: 60px;
+            
+        }
+        h2
+        {
+            text-align: center;
+        }
         }
     </style>
 </head>
@@ -196,7 +216,7 @@ $conn->close();
                 </div>
                 <div class="section">
                 <h2>Payment Confirmation</h2>
-                   <div class="detail-item">
+                    <div class="detail-item">
                         <label for="reference-no">Reference No:</label>
                         <input type="text" id="reference-no" name="reference-no" placeholder="Enter reference number">
                     </div>
@@ -216,16 +236,19 @@ $conn->close();
                         <?php  
                         if ($result_gcash->num_rows > 0) {
                             while ($row = $result_gcash->fetch_assoc()) {
-                                echo '<div class="image-preview">';
-                                echo '<img src="' . $row["image_path"] . '" alt="GCash QR Code">';
-                                echo '</div>';
+                                $image_path = "../admin/assets/img/" . basename($row["image_path"]);
+                                if (file_exists($image_path)) {
+                                    echo '<div class="image-preview">';
+                                    echo '<img src="' . $image_path . '" alt="GCash QR Code">';
+                                    echo '</div>';
+                                }
                             }
                         } else {
                             echo "No GCash QR code found";
                         }
                         ?>
                     </div>
-                    <h2>09172741721</h2>
+                    <h2>09238713111</h2>
                 </div>
                 <div class="section">
                     <h2>LandBank QR Code</h2>
@@ -233,16 +256,61 @@ $conn->close();
                         <?php
                         if ($result_bank->num_rows > 0) {
                             while ($row = $result_bank->fetch_assoc()) {
-                                echo '<div class="image-preview">';
-                                echo '<img src="' . $row["image_path"] . '" alt="Bank QR Code">';
-                                echo '</div>';
+                                $image_path = "../admin/assets/img/" . basename($row["image_path"]);
+                                if (file_exists($image_path)) {
+                                    echo '<div class="image-preview">';
+                                    echo '<img src="' . $image_path . '" alt="Bank QR Code">';
+                                    echo '</div>';
+                                }
                             }
                         } else {
                             echo "No Bank QR code found";
                         }
                         ?>
                     </div>
-                    <h2>09278131881</h2>
+                    <h2>1447116223</h2>
+                </div>
+            </div>
+            <div class="image-container">
+                <div class="section">
+                    <h2>BDO QR Code</h2>
+                    <div class="image-container">
+                        <?php  
+                        if ($result_bdo->num_rows > 0) {
+                            while ($row = $result_bdo->fetch_assoc()) {
+                                $image_path = "../admin/assets/img/" . basename($row["image_path"]);
+                                if (file_exists($image_path)) {
+                                    echo '<div class="image-preview">';
+                                    echo '<img src="' . $image_path . '" alt="GCash QR Code">';
+                                    echo '</div>';
+                                }
+                            }
+                        } else {
+                            echo "No GCash QR code found";
+                        }
+                        ?>
+                    </div>
+                    <h2>007670239783</h2>
+                </div>
+                <div class="section">
+                    <h2>BPI QR Code</h2>
+                    <div class="image-container">
+                        <?php
+                        if ($result_bpi->num_rows > 0) {
+                            while ($row = $result_bpi->fetch_assoc()) {
+                                $image_path = "../admin/assets/img/" . basename($row["image_path"]);
+                                if (file_exists($image_path)) {
+                                    echo '<div class="image-preview">';
+                                    echo '<img src="' . $image_path . '" alt="Bank QR Code">';
+                                    echo '</div>';
+                                }
+                            }
+                        } else {
+                            echo "No Bank QR code found";
+                        }
+                        ?>
+                    </div>
+                    <h2>000969473909</h2>
                 </div>
             </div>
             <div class="section">
@@ -254,7 +322,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/badmintoncourt1.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/badminton.php'">Back</button>
             </div>
         </form>
     </div>
@@ -298,13 +366,13 @@ $conn->close();
                 const duration = document.getElementById('duration').value;
                 let total = 0;
                 if (duration === '1 hour') {
-                    total = 100;
+                    total = 250;
                 } else if (duration === '2 hours') {
-                    total = 200;
+                    total = 500;
                 } else if (duration === '3 hours') {
-                    total = 300;
+                    total = 750;
                 } else if (duration === 'Open hours') {
-                    total = 400;
+                    total = 500;
                 }
                 document.getElementById('total').value = total;
             }

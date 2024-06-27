@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sport List</title>
+    <title>Customer Accounts</title>
     <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -31,22 +31,20 @@
             padding: 10px;
             text-align: center;
             position: relative;
-            font-weight: normal; /* Reset font weight */
+            font-weight: normal;
         }
 
         th:not(:last-child),
-        /* Exclude last child from applying background color */
         th:first-child~th {
-            /* Apply styles from the second th onwards */
-            background-color: #2e8b57; /* Changed background color */
-            color: white; /* Changed text color to white */
+            background-color: #2e8b57;
+            color: white;
             font-weight: bold;
         }
 
         .buttons-container {
-            position: absolute; /* Position the container absolutely */
-            top: 20px; /* Adjust as needed */
-            right: 20px; /* Adjust as needed */
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
         }
 
@@ -72,13 +70,13 @@
         .details {
             color: gray;
             cursor: pointer;
-            display: block; /* Display the details button as a block element */
-            width: 100%; /* Set the width to 100% */
-            text-align: left; /* Align the text to the right */
+            display: block;
+            width: 100%;
+            text-align: left;
         }
 
         .details-container {
-            padding: 10px; /* Add some padding to the container */
+            padding: 10px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -92,23 +90,22 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 999; /* Ensure dropdown is on top */
+            z-index: 999;
         }
+
         .deleteButton {
-    background-color: #dc3545; /* Red color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-.deleteButton:hover {
-    background-color: #c82333; /* Darker red on hover */
-}
-
-
+        .deleteButton:hover {
+            background-color: #c82333;
+        }
     </style>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -126,7 +123,7 @@
                         <th>Username</th>
                         <th>Password</th>
                         <th>Created At</th>
-                        <th>Operation</th> <!-- New column for delete button -->
+                        <th>Operation</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -170,14 +167,23 @@
         </div>
     </main>
     <script>
-        $(document).ready(function() {
-            // Attach click event handler to all delete buttons
-            $('.deleteButton').on('click', function() {
+        $(document).ready(function () {
+            $('.deleteButton').on('click', function () {
                 var id = $(this).data('id');
                 if (confirm('Are you sure you want to delete this row?')) {
-                    // Perform AJAX delete request or form submission here
-                    // For simplicity, just remove the row from DOM
-                    $(this).closest('tr').remove();
+                    $.ajax({
+                        url: 'delete_user.php',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (response) {
+                            if (response == 'success') {
+                                alert('User deleted successfully.');
+                                location.reload(); // Reload the page to reflect the deletion
+                            } else {
+                                alert('Error deleting user.');
+                            }
+                        }
+                    });
                 }
             });
         });

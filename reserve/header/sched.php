@@ -88,7 +88,7 @@
     <div class="dropdown">
         <img src="../assets/img/profile.png" alt="Logo2" class="prifle dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">View profile</a></li>
+            <li><a class="dropdown-item" href="..landpage/userprofile.php">View profile</a></li>
             <li><a class="dropdown-item" href="#">test</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php">Logout</a></li>

@@ -169,6 +169,18 @@ $conn->close();
             .section {
                 flex: 0 0 100%;
             }
+            .image-preview img {
+            width: 130%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-left: 60px;
+            
+        }
+        h2
+        {
+            text-align: center;
+        }
         }
     </style>
 </head>
@@ -311,7 +323,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/dartboard1.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/dart.php'">Back</button>
             </div>
         </form>
     </div>

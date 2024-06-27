@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2024 at 07:38 AM
+-- Generation Time: Jun 25, 2024 at 08:41 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,7 +43,7 @@ CREATE TABLE `adminlogs` (
 --
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
-(1, 'AEP', 'AEP@gmail.com', '2024-06-19 10:16:36', '12345678', '2024-06-14 09:41:09', 'profile_pictures/photo1712557113.jpeg');
+(1, 'AEP', 'AEP@gmail.com', '2024-06-25 11:13:59', '12345678', '2024-06-21 11:45:40', 'profile_pictures/photo1712557113.jpeg');
 
 -- --------------------------------------------------------
 
@@ -65,13 +65,6 @@ CREATE TABLE `arnispage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `arnispage`
---
-
-INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(1, 'phosclay', 'Arnis', '4 June 2024', '09:30:00', 'court 2', 2, '', 'asda', 'kevintower-qdf2ponfeapnvic22q7wat6gli.jpg', '200.00', '2024-06-17 05:23:49');
 
 -- --------------------------------------------------------
 
@@ -110,7 +103,7 @@ CREATE TABLE `bank_qr_images` (
 --
 
 INSERT INTO `bank_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/free-nature-images.jpg');
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -128,7 +121,7 @@ CREATE TABLE `bdo_qr_images` (
 --
 
 INSERT INTO `bdo_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/free-nature-images.jpg');
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -262,7 +255,7 @@ CREATE TABLE `gcash_qr_images` (
 --
 
 INSERT INTO `gcash_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/billiardPhenoms.png');
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -318,7 +311,11 @@ CREATE TABLE `reservation_payments` (
 --
 
 INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(14, 'phosclay', 'Arnis', '6 June 2024', '9:30 AM', 'court 3', '1 hour', '', 'asdad', 'bQgcMwEnyhFu6ASuUFrtsn.jpg', 100, '2024-06-19 05:02:56');
+(5, 'xirdreme', 'Arnis', '1 June 2024', '8:00 AM', 'court 1', '1 hour', '', '123123', 'Screenshot 2024-05-20 153544.png', 100, '2024-06-25 05:56:17'),
+(6, 'xirdreme', 'Billiard', '1 June 2024', '8:00 AM', 'Table 1', '1 hour', '', '123123', 'Screenshot 2024-05-20 155917.png', 100, '2024-06-25 05:56:37'),
+(7, 'xirdreme', 'Badminton', '1 June 2024', '8:00 AM', 'Court 2', '1 hour', '', '123123', 'Screenshot 2024-05-20 160247.png', 100, '2024-06-25 06:02:09'),
+(8, 'xirdreme', 'Chess', '1 June 2024', '8:00 AM', 'Chess Board 1', '1 hour', '', '12123', 'Screenshot 2024-05-20 153544.png', 100, '2024-06-25 06:04:36'),
+(9, 'xirdreme', 'Dart', '1 June 2024', '8:00 AM', 'Board 1', '1 hour', '', '123123', 'Screenshot 2024-05-20 153544.png', 100, '2024-06-25 06:04:54');
 
 -- --------------------------------------------------------
 
@@ -433,20 +430,55 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `time_in` datetime NOT NULL,
-  `time_out` datetime NOT NULL
+  `time_out` datetime NOT NULL,
+  `profile_picture` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `created_at`, `time_in`, `time_out`) VALUES
-(13, 'phosclay@gmail.com', 'phosclay', 'phosclay', '2024-05-10 04:06:07', '2024-05-10 06:52:17', '0000-00-00 00:00:00'),
-(14, 'jared@gmail.com', 'jared', '12345678', '2024-05-10 09:24:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'baroy@gmail.com', 'baroy', '12345678', '2024-05-13 03:37:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 'drixdiocton@gmail.com', 'darwinpaular', '12345678', '2024-06-14 09:37:06', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 'a@g.com', '<script>Hello world</script>', '12345678', '2024-06-17 16:07:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 'ad@gm.com', 'adasd', '$2y$10$cD9pF4VncFQ6z.Rgx/bu3ug23IyTp/6/rvm385ohq9AcRKm6ncuAq', '2024-06-17 16:12:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `created_at`, `time_in`, `time_out`, `profile_picture`) VALUES
+(13, 'phosclay@gmail.com', 'phosclay', 'phosclay', '2024-05-10 04:06:07', '2024-05-10 06:52:17', '0000-00-00 00:00:00', ''),
+(14, 'jared@gmail.com', 'jared', '12345678', '2024-05-10 09:24:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(15, 'baroy@gmail.com', 'baroy', '12345678', '2024-05-13 03:37:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(16, 'drixdiocton@gmail.com', 'darwinpaular', '12345678', '2024-06-14 09:37:06', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(17, 'a@g.com', '<script>Hello world</script>', '12345678', '2024-06-17 16:07:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(21, 'asdasd@gmail.com', 'asdasdasd', '', '2024-06-19 05:49:15', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(22, 'asdas@gmail.com', 'asdasdasdasd', '', '2024-06-19 05:49:59', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(23, 'hostz@gmail.com', 'asdasdasdasdasdasd', 'wertyuio', '2024-06-19 05:53:14', '2024-06-19 13:53:14', '0000-00-00 00:00:00', ''),
+(24, 'love@gmail.com', 'localhost', '12345678', '2024-06-19 05:55:50', '2024-06-19 13:55:50', '0000-00-00 00:00:00', ''),
+(25, 'love1@gmail.com', 'asdasd', '12345678', '2024-06-19 05:56:17', '2024-06-19 13:56:17', '0000-00-00 00:00:00', ''),
+(26, 'hostx@gmail.com', 'asdasdasdsss', '$2y$10$aDGTL5kGE.AMZokQ1NSGruXC0Xewr/GH/Ly25d8HEiflbB9v6ZcTG', '2024-06-19 06:01:03', '2024-06-19 14:01:03', '0000-00-00 00:00:00', ''),
+(27, 'xirdreme@gmail.com', 'xirdreme', '$2y$10$lROSBl.SU9LaO2KosztWveBMUKJMEkIfRzUzTGqA0yDEwtMhZAnHe', '2024-06-19 08:37:13', '2024-06-19 16:37:13', '0000-00-00 00:00:00', 'profile_pictures/Screenshot 2024-05-20 160236.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wholevenuepage`
+--
+
+CREATE TABLE `wholevenuepage` (
+  `id` int(100) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `time` time NOT NULL,
+  `court_number` varchar(255) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `promo_code` varchar(255) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `gcash_qrcode` varchar(255) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wholevenuepage`
+--
+
+INSERT INTO `wholevenuepage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(1, 'xirdreme', 'Events', '1 June 2024', '08:00:00', 'Whole Venue', 24, '', '123123', 'Screenshot 2024-05-20 155917.png', '10000.00', '2024-06-25 03:12:14');
 
 --
 -- Indexes for dumped tables
@@ -574,7 +606,7 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `arnispage`
 --
 ALTER TABLE `arnispage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `badmintonpage`
@@ -628,7 +660,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`
@@ -652,7 +684,7 @@ ALTER TABLE `taekwondopage`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

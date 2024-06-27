@@ -100,11 +100,9 @@ if ($result->num_rows > 0) {
                 <li class="h7"><a class="nav-link text-dark" href="dashboard.php"><i class="fal fa-home-lg-alt me-2" id="dash-text"></i> <span id="dash-text">Home</span></a></li>
                 <li class="h7"><a class="nav-link text-dar  k" href="approval.php"><i class="fas fa-chalkboard-teacher me-2" id="dash-text"></i> <span id="dash-text">Reservation Approval</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="arniscomplete.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Complete Transaction</span></a></li>
-                <li class="h7"><a class="nav-link text-dark" href="records.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Reports</span></a></li>
-                <li class="h7"><a class="nav-link text-dark" href="customeracc.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Customer accounts</span></a></li>
-                <li class="h7"><a class="nav-link text-dark" href="records.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Existing Rentals</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="salesreport.php"><i class="fas fa-user-shield me-2" id="dash-text"></i> <span id="dash-text">Sales Report</span></a></li>
- 
+                <li class="h7"><a class="nav-link text-dark" href="customeracc.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Customer accounts</span></a></li>
+                <li class="h7"><a class="nav-link text-dark" href="records.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Admin Accounts</span></a></li>
              <!--   <li class="h7"><a class="nav-link text-dark" href="studentlogs.php"><i class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text">Student accounts</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="\track-wise/admin/pages/schedulesystem/home.php"><i class="fas fa-calendar-plus me-2" id="dash-text"></i> <span id="dash-text">Add Schedules</span></a></li>-->
                 <li class="h7"><a class="nav-link text-dark" href="adminregistration.php"><i class="fas fa-user-plus me-2" id="dash-text"></i> <span id="dash-text">Registration</span></a></li>

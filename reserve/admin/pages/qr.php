@@ -165,7 +165,7 @@ $conn->close();
                         <option value="bpi">BPI</option>
                         <option value="bdo">BDO</option>
                         <option value="gcash">Gcash</option>
-                        <option value="bank">Bank</option>
+                        <option value="bank">LandBank</option>
                     </select>
                     <label for="new-qrcode">Upload New QR Image:</label>
                     <input type="file" id="new-qrcode" name="new-qrcode" accept="image/*">

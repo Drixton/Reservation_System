@@ -165,6 +165,7 @@
                         <option value="/reservation_system/reserve/admin/pages/tabletenniscomplete.php">TABLE TENNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
                         <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
+                        <option value="/reservation_system/reserve/admin/pages/wholevenuecomplete.php">WHOLE VENUE</option>
                     </select>
                 </div>
             </div>
@@ -208,7 +209,7 @@
                     if (isset($_POST['delete_submit'])) {
                         // Prepare SQL to delete row based on id
                         $delete_id = $_POST['delete_id'];
-                        $sql_select = "SELECT * FROM badmintompage WHERE id = $delete_id";
+                        $sql_select = "SELECT * FROM badmintonpage WHERE id = $delete_id";
                         $result_select = $conn->query($sql_select);
 
                         if ($result_select->num_rows > 0) {

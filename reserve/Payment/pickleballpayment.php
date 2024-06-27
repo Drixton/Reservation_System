@@ -168,6 +168,18 @@ $conn->close();
             .section {
                 flex: 0 0 100%;
             }
+            .image-preview img {
+            width: 130%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-left: 60px;
+            
+        }
+        h2
+        {
+            text-align: center;
+        }
         }
     </style>
 </head>
@@ -310,7 +322,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/pickleballcourt1.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/pickleball.php'">Back</button>
             </div>
         </form>
     </div>
@@ -354,13 +366,13 @@ $conn->close();
                 const duration = document.getElementById('duration').value;
                 let total = 0;
                 if (duration === '1 hour') {
-                    total = 100;
+                    total = 250;
                 } else if (duration === '2 hours') {
-                    total = 200;
+                    total = 500;
                 } else if (duration === '3 hours') {
-                    total = 300;
+                    total = 750;
                 } else if (duration === 'Open hours') {
-                    total = 400;
+                    total = 500;
                 }
                 document.getElementById('total').value = total;
             }

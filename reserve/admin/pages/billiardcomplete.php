@@ -165,6 +165,7 @@
                         <option value="/reservation_system/reserve/admin/pages/tabletenniscomplete.php">TABLE TENNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
                         <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
+                        <option value="/reservation_system/reserve/admin/pages/wholevenuecomplete.php">WHOLE VENUE</option>
                     </select>
                 </div>
             </div>
@@ -178,7 +179,7 @@
                         <th>Sports</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Court Number</th>
+                        <th>Table Number</th>
                         <th>Duration</th>
                         <th>Promo Code</th>
                         <th>Reference No</th>

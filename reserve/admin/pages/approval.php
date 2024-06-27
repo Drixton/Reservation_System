@@ -229,6 +229,9 @@
                         case 'Cornhole':
                             $moveQuery = "INSERT INTO cornholepage SELECT * FROM reservation_payments WHERE id = $id";
                             break;
+                            case 'Events':
+                                $moveQuery = "INSERT INTO wholevenuepage SELECT * FROM reservation_payments WHERE id = $id";
+                                break;
                         default:
                             // Handle other sports types if needed
                             break;

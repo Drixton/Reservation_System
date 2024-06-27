@@ -16,7 +16,7 @@
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, white, #008000);
-            height: 100%;
+            height: 105%; /* Changed to 100% */
         }
         .main {
             display: flex;
@@ -27,14 +27,14 @@
             margin-top: 20px;
         }
         .container1 {
-            width: calc(33.33% - 20px); /* Three columns on desktop */
-            max-width: 300px;
+            width: 300px; /* Fixed width for all containers */
             text-align: center;
             background-color: #fff;
             border: 2px solid #000;
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .container1:hover {
             transform: translateY(-10px); /* Lift on hover */
@@ -48,12 +48,11 @@
             font-size: 20px;
         }
         .container1 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the image covers the entire container */
-    transition: filter 0.3s ease;
-}
-
+            width: 100%;
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensure the image covers the entire container */
+            transition: filter 0.3s ease;
+        }
         .container1:hover img {
             filter: brightness(0.8); /* Darken on hover */
         }
@@ -117,7 +116,6 @@
             overflow: hidden;
             text-align: center;
         }
-      
 
         /* Media Queries */
         @media screen and (max-width: 1024px) {
@@ -140,52 +138,57 @@
         <div class="container1">
             <div class="random-text">Arnis</div>
             <img src="../assets/img/arnis.jpg" alt="Arnis">
-            <a href="../calendar/arniscourt1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/arnis.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Billiard</div>
             <img src="../assets/img/billiard.jpg" alt="Billiard">
-            <a href="../calendar/billiardtable1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/billiard.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Badminton</div>
             <img src="../assets/img/badminton.jpg" alt="Badminton">
-            <a href="../calendar/badmintoncourt1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/badminton.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Chess</div>
             <img src="../assets/img/chess.jpg" alt="Chess">
-            <a href="../calendar/chessboard1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/chess.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Dart</div>
             <img src="../assets/img/dart.jpg" alt="Dart">
-            <a href="../calendar/darttable1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/dart.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Pickleball</div>
             <img src="../assets/img/pickleball.jpg" alt="Pickleball">
-            <a href="../calendar/pickleballcourt1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/pickleball.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Sepak Takraw</div>
             <img src="../assets/img/sepaktakraw.jpg" alt="Sepak Takraw">
-            <a href="..calendar/sepaktakrawcourt2.php" class="button-slide">Click Here</a>
+            <a href="../calendar/sepaktakraw.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Table Tennis</div>
             <img src="../assets/img/tabletennis.jpg" alt="Table Tennis">
-            <a href="../calendar/tabletennistable1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/tabletennis.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Taekwondo</div>
             <img src="../assets/img/taekwondo.jpg" alt="Taekwondo">
-            <a href="../calendar/taekwondocourt4.php" class="button-slide">Click Here</a>
+            <a href="../calendar/taekwondo.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Cornhole</div>
             <img src="../assets/img/cornhole.jpg" alt="Cornhole">
-            <a href="../calendar/cornholecourt1.php" class="button-slide">Click Here</a>
+            <a href="../calendar/cornhole.php" class="button-slide">Click Here</a>
+        </div>
+        <div class="container1">
+            <div class="random-text">Whole Venue</div>
+            <img src="../assets/img/overnight.jpg" alt="Basketball">
+            <a href="../calendar/wholevenue.php" class="button-slide">Click Here</a>
         </div>
     </div>
     <footer>

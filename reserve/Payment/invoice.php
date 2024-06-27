@@ -6,19 +6,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
     $logged_on_user = '';
 }
 
-// Database connection parameters
-$servername = "localhost";
-$username = "id22317868_aepphosclay";
-$password = "Phoscl@y123";
-$database = "id22317868_reservation";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'connection.php';
 
 // Fetch the most recent reservation for the logged-in user
 $sql = "SELECT username, date, time, sports, court_number, duration, total FROM reservation_payments WHERE username = ? ORDER BY id DESC LIMIT 1";
