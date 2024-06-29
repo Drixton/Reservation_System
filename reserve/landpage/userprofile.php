@@ -126,7 +126,7 @@ if (isset($_POST['update_profile'])) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #000;
+            background: linear-gradient(to bottom, white, #008000);
             margin: 0;
             padding: 0;
             display: flex;
@@ -222,7 +222,7 @@ if (isset($_POST['update_profile'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Profile</h1>
+        <h1>Your Profile</h1>
         <p>Welcome, <?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?>!</p>
         <p>Email: <?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?></p>
 

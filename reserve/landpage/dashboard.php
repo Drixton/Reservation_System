@@ -14,12 +14,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
-        body, html {
+      /* General Styles */
+      body, html {
             font-family: "Tilt Neon", sans-serif;
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, white, #008000);
-            height: 105%; /* Changed to 100% */
+            height: 100%; /* Changed to 100% */
         }
         .main {
             display: flex;
@@ -50,9 +51,7 @@
             margin-top: -10px;
             font-size: 20px;
             font-family: "Roboto Condensed", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
+            font-weight: bold;
         }
         .container1 img {
             width: 100%;
@@ -80,6 +79,37 @@
         .container1:hover .button-slide {
             bottom: 20px;
             opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 20%;
+            text-align: center;
+        }
+        .modal-content p {
+            margin-bottom: 20px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            background-color: #00ff00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         /* Header and Footer */
@@ -135,14 +165,22 @@
                 width: 100%; /* Full width on smaller screens */
                 max-width: none;
             }
+            .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            text-align: center;
         }
+        }
+      
     </style>
 </head>
 <body>
     <?php include '../header/navbar.php'; ?>
  
     <div class="main">
-        <div class="container1">
+    <div class="container1">
             <div class="random-text">Arnis</div>
             <img src="../assets/img/arnis.jpg" alt="Arnis">
             <a href="../calendar/arnis.php" class="button-slide">Click Here</a>
@@ -198,12 +236,69 @@
             <a href="../calendar/wholevenue.php" class="button-slide">Click Here</a>
         </div>
     </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Terms and Conditions</h2>
+            <ul>
+                        <li>Wear appropriate safety gear.</li>
+                        <li>Follow all safety guidelines and rules.</li>
+                        <li>Stay hydrated and take necessary breaks.</li>
+                    </ul>
+                    <h3>Proper Attire:</h3>
+                    <ul>
+                        <li>Wear comfortable sports attire.</li>
+                        <li>Use proper footwear.</li>
+                        <li>Avoid loose clothing that may hinder movement.</li>
+                    </ul>
+                    <h3>Do's and Don'ts:</h3>
+                    <ul>
+                        <li>Respect other players and officials.</li>
+                        <li>Listen to instructions carefully.</li>
+                        <li>Avoid disruptive behavior.</li>
+                    </ul>
+            <button id="acceptButton">Accept and Proceed</button>
+        </div>
+    </div>
     <footer>
     <div class="footer">
         <p>&copy; 2024 Athlete Event Place. 📌Located at: CW, Sitio Ibaba, Brgy. Maguyam, Silang, Philippines.</p>
     </div>
 </footer>
->
+<script>
+        // Get all 'Click Here' buttons
+        const buttons = document.querySelectorAll('.button-slide');
+
+        // Modal
+        const modal = document.getElementById('modal');
+        const acceptButton = document.getElementById('acceptButton');
+
+        // Function to show modal
+        function showModal() {
+            modal.style.display = 'flex';
+        }
+
+        // Event listener for 'Click Here' buttons
+        buttons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // Show modal
+                showModal();
+
+                // Handle redirect after acceptance
+                acceptButton.addEventListener('click', function() {
+                    window.location.href = button.getAttribute('href');
+                });
+            });
+        });
+
+        // Close modal if clicked outside of modal content
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>

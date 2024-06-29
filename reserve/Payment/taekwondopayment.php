@@ -6,7 +6,6 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
     $logged_on_user = '';
 }
 
-// Database connection parameters
 include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $check_stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('Reservation already exists, wait for admin approval');</script>";
+        echo "<script>alert('The court is already reserved by another sports group');</script>";
     } else {
         $insert_sql = "INSERT INTO reservation_payments (username, sports, date, time, court_number, duration, promo_code, reference_no, gcash_qrcode, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $insert_stmt = $conn->prepare($insert_sql);
@@ -62,8 +61,8 @@ $result_gcash = $conn->query($sql_gcash);
 $sql_bank = "SELECT * FROM bank_qr_images";
 $result_bank = $conn->query($sql_bank);
 
-$sql_bpi = "SELECT * FROM bpi_qr_images";
-$result_bpi = $conn->query($sql_bpi);
+$sql_maya = "SELECT * FROM maya_qr_images";
+$result_maya = $conn->query($sql_maya);
 
 $sql_bdo = "SELECT * FROM bdo_qr_images";
 $result_bdo = $conn->query($sql_bdo);
@@ -227,6 +226,7 @@ $conn->close();
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
                         </div>
+                        <p class="reservation-note" style="color: blue;">Note: Your payment covers 50% of the total. Please complete it at the front desk</p>
                     </div>
                 </div>
             </div>
@@ -294,11 +294,11 @@ $conn->close();
                     <h2>007670239783</h2>
                 </div>
                 <div class="section">
-                    <h2>BPI QR Code</h2>
+                    <h2>PayMaya QR Code</h2>
                     <div class="image-container">
                         <?php
-                        if ($result_bpi->num_rows > 0) {
-                            while ($row = $result_bpi->fetch_assoc()) {
+                        if ($result_maya->num_rows > 0) {
+                            while ($row = $result_maya->fetch_assoc()) {
                                 $image_path = "../admin/assets/img/" . basename($row["image_path"]);
                                 if (file_exists($image_path)) {
                                     echo '<div class="image-preview">';
@@ -314,6 +314,7 @@ $conn->close();
                     <h2>000969473909</h2>
                 </div>
             </div>
+
             <div class="section">
                 <h2>Payment Details</h2>
                 <div class="detail-item">
@@ -366,14 +367,12 @@ $conn->close();
             function updateTotal() {
                 const duration = document.getElementById('duration').value;
                 let total = 0;
-                if (duration === '1 hour') {
+                if (duration === '2 hours') {
                     total = 100;
-                } else if (duration === '2 hours') {
-                    total = 200;
                 } else if (duration === '3 hours') {
-                    total = 300;
-                } else if (duration === 'Open hours') {
-                    total = 400;
+                    total = 200;
+                }  else if (duration === 'Open hours') {
+                    total = 100;
                 }
                 document.getElementById('total').value = total;
             }
