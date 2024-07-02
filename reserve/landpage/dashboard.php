@@ -231,6 +231,11 @@
             <a href="../calendar/cornhole.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
+            <div class="random-text">Basketball</div>
+            <img src="../assets/img/basketball.jpg" alt="Cornhole">
+            <a href="../calendar/basketball.php" class="button-slide">Click Here</a>
+        </div>
+        <div class="container1">
             <div class="random-text">Whole Venue</div>
             <img src="../assets/img/overnight.jpg" alt="Basketball">
             <a href="../calendar/wholevenue.php" class="button-slide">Click Here</a>

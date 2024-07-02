@@ -171,7 +171,7 @@
                 </div>
             </div>
           
-            <h1>Arnis Reservation</h1>
+            <h1>Basketball Reservation</h1>
             <table id="sportTable">
                 <thead>
                     <tr>
@@ -210,7 +210,7 @@
                     if (isset($_POST['delete_submit'])) {
                         // Prepare SQL to delete row based on id
                         $delete_id = $_POST['delete_id'];
-                        $sql_select = "SELECT * FROM arnispage WHERE id = $delete_id";
+                        $sql_select = "SELECT * FROM basketballpage WHERE id = $delete_id";
                         $result_select = $conn->query($sql_select);
 
                         if ($result_select->num_rows > 0) {
@@ -218,7 +218,7 @@
                             $gcash_qrcode = $row['gcash_qrcode'];
 
                             // Delete row from database
-                            $delete_sql = "DELETE FROM arnispage WHERE id = $delete_id";
+                            $delete_sql = "DELETE FROM basketballpage WHERE id = $delete_id";
                             if ($conn->query($delete_sql) === TRUE) {
                                 echo "<script>alert('Record deleted successfully');</script>";
 
@@ -240,7 +240,7 @@
                     }
 
                     // Fetch data from the database
-                    $sql = "SELECT * FROM arnispage";
+                    $sql = "SELECT * FROM basketballpage";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
