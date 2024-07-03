@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $servername = "localhost";
 $username = "root";
@@ -9,6 +8,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
 }
 
 if (isset($_GET['logout'])) {
@@ -92,7 +95,7 @@ if ($result->num_rows > 0) {
         </div>
         <div class="img-admin d-flex flex-column align-items-center text-center gap-2">
             <img class="rounded-circle" src="<?php echo $profilePicturePath; ?>" alt="img-admin" height="120" width="120">
-            <h2 class="h6 fw-bold" id="dash-text"><?php echo $_SESSION['name']; ?></h2>
+            <h2 class="h6 fw-bold" id="dash-text"><?php echo $_SESSION['full_name']; ?></h2>
             <span class="h7 admin-color" id="side-text" style="color: #04b7ee;">Admin</span>
         </div>
         <div class="bg-list d-flex flex-column align-items-center fw-bold gap-2 mt-2">
@@ -102,7 +105,7 @@ if ($result->num_rows > 0) {
                 <li class="h7"><a class="nav-link text-dark" href="arniscomplete.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Complete Transaction</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="salesreport.php"><i class="fas fa-user-shield me-2" id="dash-text"></i> <span id="dash-text">Sales Report</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="customeracc.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Customer accounts</span></a></li>
-                <li class="h7"><a class="nav-link text-dark" href="records.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Admin Accounts</span></a></li>
+                <li class="h7"><a class="nav-link text-dark" href="adminacc.php"><i class="fas fa-cube me-2" id="dash-text"></i> <span id="dash-text">Admin Accounts</span></a></li>
              <!--   <li class="h7"><a class="nav-link text-dark" href="studentlogs.php"><i class="fas fa-user-graduate me-2" id="dash-text"></i> <span id="dash-text">Student accounts</span></a></li>
                 <li class="h7"><a class="nav-link text-dark" href="\track-wise/admin/pages/schedulesystem/home.php"><i class="fas fa-calendar-plus me-2" id="dash-text"></i> <span id="dash-text">Add Schedules</span></a></li>-->
                 <li class="h7"><a class="nav-link text-dark" href="adminregistration.php"><i class="fas fa-user-plus me-2" id="dash-text"></i> <span id="dash-text">Registration</span></a></li>

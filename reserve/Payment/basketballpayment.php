@@ -5,6 +5,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
 } else {
     $logged_on_user = '';
 }
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}
 
 include 'connection.php';
 
@@ -191,7 +195,7 @@ $conn->close();
                     <h2>Reservation Details</h2>
                     <div class="detail-item">
                         <label for="sport">Sport:</label>
-                        <input type="text" id="sport" name="sport" value="Basketball" readonly>
+                        <input type="text" id="sport" name="sport" value="Basketball (Half Court)" readonly>
                     </div>
                     <div class="detail-item">
                         <label for="date">Date:</label>

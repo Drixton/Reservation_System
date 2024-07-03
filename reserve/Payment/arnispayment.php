@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
@@ -5,7 +6,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
 } else {
     $logged_on_user = '';
 }
-
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}
 include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -66,6 +70,7 @@ $result_maya = $conn->query($sql_maya);
 
 $sql_bdo = "SELECT * FROM bdo_qr_images";
 $result_bdo = $conn->query($sql_bdo);
+
 $conn->close();
 ?>
 <!DOCTYPE html>

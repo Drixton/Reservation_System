@@ -5,7 +5,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
 } else {
     $logged_on_user = '';
 }
-
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}
 include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

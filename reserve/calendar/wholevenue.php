@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -198,7 +204,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://aepreserve.000webhostapp.com/">Home</a>
+                        <a class="nav-link" href="../index.php">Home</a>
                         </li>
                         <!-- Add more navbar links as needed -->
                     </ul>

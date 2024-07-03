@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -229,7 +235,7 @@
                         case 'Cornhole':
                             $moveQuery = "INSERT INTO cornholepage SELECT * FROM reservation_payments WHERE id = $id";
                             break;
-                            case 'Basketball':
+                            case 'Basketball (Half Court)':
                                 $moveQuery = "INSERT INTO basketballpage SELECT * FROM reservation_payments WHERE id = $id";
                                 break;
                             case 'Events':

@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,45 +88,50 @@
             <!-- start student list table -->
 
             <?php
-            $host = "localhost";  // Your MySQL host
-            $username = "root";  // Your MySQL username
-            $password = "";  // Your MySQL password
-            $database = "reservation";  // Your database name
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "reservation";
 
-            $conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect($host, $username, $password, $database);
 
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-            $full_name = $email = $password = $user_type = "";
-            $success_message = "";
+$full_name = $email = $password = $user_type = "";
+$success_message = "";
+$error_message = "";
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $full_name = $_POST["full_name"];
-                $email = $_POST["email"];
-                $password = $_POST["password"];
-                $user_type = $_POST["user_type"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = $_POST["full_name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $user_type = $_POST["user_type"];
 
-                // Validate the password with a regular expression
-                $password_pattern = "/^[a-zA-Z0-9]{8,32}$/"; // Only letters and digits allowed, and length between 8 to 32 characters
-                if (preg_match($password_pattern, $password)) {
-                    // Use prepared statement to prevent SQL injection
-                    $stmt = $conn->prepare("INSERT INTO adminlogs (full_name, email, password) VALUES (?, ?, ?)");
-                    $stmt->bind_param("sss", $full_name, $email, $password);
+    // Validate the password with a regular expression
+    $password_pattern = "/^[a-zA-Z0-9]{8,32}$/"; // Only letters and digits allowed, length between 8 to 32 characters
 
-                    if ($stmt->execute()) {
-                        $success_message = "Registration successful!";
-                    } else {
-                        echo "Error: " . $stmt->error;
-                    }
+    if (preg_match($password_pattern, $password)) {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $stmt->close();
-                } else {
-                    $error_message = "Password must be between 8 to 32 characters and should not contain special characters.";
-                }
-            }
-            ?>
+        // Use prepared statement to prevent SQL injection
+        $stmt = $conn->prepare("INSERT INTO adminlogs (full_name, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $full_name, $email, $hashed_password);
+
+        if ($stmt->execute()) {
+            $success_message = "Registration successful!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        $error_message = "Password must be between 8 to 32 characters and should not contain special characters.";
+    }
+}
+?>
             <div class="container">
                 <h2>Admin Registration Form</h2>
                 <?php if (!empty($success_message)): ?>
@@ -146,10 +157,10 @@
                         <input type="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                        <div id="password-error" style="color: red;"><?php echo isset($error_message) ? $error_message : ''; ?></div>
-                    </div>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                    <div id="password-error" style="color: red;"><?php echo isset($error_message) ? $error_message : ''; ?></div>
+                </div>
                     <button type="submit">Register</button>
                 </form>
             </div>

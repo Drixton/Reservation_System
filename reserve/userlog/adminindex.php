@@ -1,25 +1,27 @@
 <?php
-require("../connection/conn.php");
+require("../connection/conn.php"); // Adjust the path as necessary
 session_start();
+
 if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';
 }
 
 $logged = false;
-if(isset($_POST['submit'])) {
 
+if(isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['pass'];
 
-    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $sql = "SELECT * FROM adminlogs WHERE email = '$email'";
     $result = $conn->query($sql);
+
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         // Verify password
         if (password_verify($password, $row['password'])) {
             $_SESSION['status'] = 'valid';
             $_SESSION['email'] = $row['email'];
-            $_SESSION['username'] = $row['username'];
+            $_SESSION['full_name'] = $row['full_name']; // Assuming you have full_name in your adminlogs table
         
             // Display alert message and redirect
             echo "<script>alert('Successful login');</script>";
@@ -35,9 +37,7 @@ if(isset($_POST['submit'])) {
         exit();
     }
 }
-if(!empty($_GET['logged'])){
-    $logged = true;
-}
+
 $conn->close();
 ?>
 

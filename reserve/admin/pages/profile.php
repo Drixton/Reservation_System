@@ -1,5 +1,11 @@
+
 <?php
 session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}
 
 $host = "localhost";
 $username = "root";
@@ -13,14 +19,13 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['full_name'])) {
     header("Location: index.php");
     exit();
 }
 
-$fullName = $_SESSION['name'];
+$fullName = $_SESSION['full_name'];
 $email = $_SESSION['email'];
-$password = $_SESSION['password'];
 
 try {
     $selectQuery = "SELECT profile_pictures FROM adminlogs WHERE email = :email";
@@ -32,7 +37,7 @@ try {
     if ($result && isset($result['profile_pictures']) && !empty($result['profile_pictures'])) {
         $profilePicturePath = $result['profile_pictures'];
     } else {
-        $profilePicturePath = 'default_profile_picture.jpg';
+        $profilePicturePath = 'profile_pictures/default_profile_picture.jpg'; // Adjust default path as per your directory structure
     }
 } catch (PDOException $e) {
     echo "Error fetching profile picture: " . $e->getMessage();
@@ -57,6 +62,8 @@ if (isset($_POST['save_picture'])) {
                 $_SESSION['profile_picture'] = $uploadedFile;
 
                 echo '<script>alert("Profile picture saved successfully.");</script>';
+                // Reload the page after successful upload to reflect changes
+                echo '<script>window.location.href = "profile.php";</script>';
             } catch (PDOException $e) {
                 echo "Profile picture save failed: " . $e->getMessage();
             }
@@ -71,18 +78,20 @@ if (isset($_POST['update_profile'])) {
     $newEmail = $_POST['new_email'];
     $newPassword = $_POST['new_password'];
 
+    // Hash the new password
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
     try {
-        $updateQuery = "UPDATE adminlogs SET full_name = :newFullName, email = :newEmail, password = :newPassword WHERE email = :email";
+        $updateQuery = "UPDATE adminlogs SET full_name = :newFullName, email = :newEmail, password = :hashedPassword WHERE email = :email";
         $updateStatement = $con->prepare($updateQuery);
         $updateStatement->bindParam(':newFullName', $newFullName);
         $updateStatement->bindParam(':newEmail', $newEmail);
-        $updateStatement->bindParam(':newPassword', $newPassword);
+        $updateStatement->bindParam(':hashedPassword', $hashedPassword);
         $updateStatement->bindParam(':email', $email);
         $updateStatement->execute();
 
-        $_SESSION['name'] = $newFullName;
+        $_SESSION['full_name'] = $newFullName;
         $_SESSION['email'] = $newEmail;
-        $_SESSION['password'] = $newPassword;
 
         echo '<script>alert("Profile updated successfully.");</script>';
     } catch (PDOException $e) {
@@ -96,99 +105,35 @@ if (isset($_POST['update_profile'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="\TRACK-WISE/asset/icon.png" type="image/x-icon">
     <title>Profile</title>
     <link rel="stylesheet" href="profile.css">
     <style>
-       body {
-    font-family: 'Arial', sans-serif;
-    background-color: #333;
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #4d4855;
+    background-image: linear-gradient(147deg, green 0%, black 74%);
+    background: cover;
     color: #fff;
 }
-
-.container {
-    text-align: center;
-    background-color: #444;
-    padding: 30px; /* Increase padding */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Set the width as needed */
-    margin: 0 auto; /* Center the container */
-}
-
-h1 {
-    color: #4CAF50;
-    font-size: 24px;
-    margin: 0;
-}
-
-p {
-    color: #ccc;
-    font-size: 16px;
-    margin: 0;
-}
-
-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border: 2px solid #4CAF50;
-    border-radius: 50%;
-    margin: 10px 0;
-}
-
-label {
-    color: #4CAF50;
-    font-weight: bold;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-button {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Profile</h1>
+        <h1>Your Profile</h1>
         <p>Welcome, <?php echo $fullName; ?>!</p>
         <p>Email: <?php echo $email; ?></p>
 
         <form method="post" action="" enctype="multipart/form-data">
-            <label for="profile_picture"> Click to Insert Picture:</label>
-            <?php echo '<img id="profile_image" src="' . $profilePicturePath . '?v=' . time() . '" alt="Profile Picture" style="color:black;">'; ?>
-            <label for="profile_picture" class="file-upload-label">Choose a file</label>
-            <input type="file" id="profile_picture" name="profile_picture" onchange="previewImage(this);">
+            <label for="profile_picture">Profile Picture:</label>
+            <img src="<?php echo $profilePicturePath; ?>" alt="Profile Picture" style="width: 120px; height: 120px; object-fit: cover; border: 2px solid #4CAF50; border-radius: 50%; margin: 10px 0;">
+            <input type="file" id="profile_picture" name="profile_picture">
             <button type="submit" name="save_picture">Save Picture</button>
         </form>
 
         <!-- Update Profile Form -->
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="">
             <label for="new_name">New Full Name:</label>
             <input type="text" id="new_name" name="new_name" placeholder="Enter new full name" required>
 
@@ -204,22 +149,6 @@ button:hover {
     </div>
 
     <script>
-        function previewImage(input) {
-            var profileImage = document.getElementById('profile_image');
-            var file = input.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                profileImage.src = e.target.result;
-            };
-
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                profileImage.src = 'default_profile_picture.jpg';
-            }
-        }
-
         function goBack() {
             window.location.href = "/reservation_system/reserve/admin/pages/dashboard.php";
         }

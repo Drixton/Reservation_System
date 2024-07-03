@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <?php
 // Connect to the database
 $servername = "localhost";
@@ -16,7 +22,7 @@ if ($conn->connect_error) {
 $sportsData = [];
 
 // Fetch data for each sport grouped by day, week, and month
-$sports = ['arnispage', 'badmintonpage', 'billiardpage', 'tabletennispage', 'chesspage', 'dartpage', 'picklepage', 'sepaktakrawpage', 'taekwondopage'];
+$sports = ['arnispage', 'badmintonpage', 'billiardpage', 'basketballpage','wholevenuepage','cornholepage','tabletennispage', 'chesspage', 'dartpage', 'picklepage', 'sepaktakrawpage', 'taekwondopage'];
 
 foreach ($sports as $sport) {
     $sql = "SELECT DATE(created_at) AS date, 
@@ -239,6 +245,10 @@ $conn->close();
                         <th>Darts</th>
                         <th>Arnis</th>
                         <th>Chess</th>
+                        <th>Cornhole</th>
+                        <th>Basketball</th>
+                        <th>Whole Venue</th>
+
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -298,6 +308,9 @@ $conn->close();
                 <td>₱${data[period]['dartpage']}</td>
                 <td>₱${data[period]['arnispage']}</td>
                 <td>₱${data[period]['chesspage']}</td>
+                     <td>₱${data[period]['cornholepage']}</td>
+                          <td>₱${data[period]['basketballpage']}</td>
+                               <td>₱${data[period]['wholevenuepage']}</td>
                 <td>₱${data[period]['total_sales']}</td>
             `;
 

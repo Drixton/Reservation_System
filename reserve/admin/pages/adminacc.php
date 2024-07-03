@@ -121,7 +121,7 @@ if ($_SESSION['status'] != 'valid') {
     <main class="dashboard d-flex">
         <?php include "component/sidebar.php"; ?>
         <div class="container-fluid px-4">
-            <h1>Customer Accounts</h1>
+            <h1>Admin Accounts</h1>
             <table id="sportTable">
                 <thead>
                     <tr>
@@ -129,7 +129,6 @@ if ($_SESSION['status'] != 'valid') {
                         <th>Email</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Created At</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
@@ -149,7 +148,7 @@ if ($_SESSION['status'] != 'valid') {
                     }
 
                     // Fetch data from the database
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT * FROM adminlogs";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -157,9 +156,8 @@ if ($_SESSION['status'] != 'valid') {
                             echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['email'] . "</td>";
-                            echo "<td>" . $row['username'] . "</td>";
+                            echo "<td>" . $row['full_name'] . "</td>";
                             echo "<td>" . $row['password'] . "</td>";
-                            echo "<td>" . $row['created_at'] . "</td>";
                             echo "<td><button class='deleteButton' data-id='" . $row['id'] . "'>Delete</button></td>";
                             echo "</tr>";
                         }
@@ -180,7 +178,7 @@ if ($_SESSION['status'] != 'valid') {
                 var id = $(this).data('id');
                 if (confirm('Are you sure you want to delete this row?')) {
                     $.ajax({
-                        url: 'delete_user.php',
+                        url: 'delete_admin.php',
                         type: 'POST',
                         data: { id: id },
                         success: function (response) {

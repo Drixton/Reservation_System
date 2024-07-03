@@ -371,8 +371,7 @@
         <img src="assets/img/profile.png" alt="Profile" class="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" <?php echo isset($_SESSION['status']) && $_SESSION['status'] === 'valid' ? '' : 'disabled'; ?>>
         <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'valid'): ?>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">View profile</a></li>
-            <li><a class="dropdown-item" href="#">test</a></li>
+            <li><a class="dropdown-item" href="header/userprofile.php">View profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="landpage/logout.php">Logout</a></li>
         </ul>

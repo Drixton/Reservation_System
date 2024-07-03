@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,6 +171,7 @@
                         <option value="/reservation_system/reserve/admin/pages/tabletenniscomplete.php">TABLE TENNIS</option>
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
                         <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
+                        <option value="/reservation_system/reserve/admin/pages/basketballcomplete.php">BASKETBALL</option>
                         <option value="/reservation_system/reserve/admin/pages/wholevenuecomplete.php">WHOLE VENUE</option>
                     </select>
                 </div>

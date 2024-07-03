@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}?><!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -191,14 +197,14 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Basketball Reservation</a>
+                <a class="navbar-brand" href="#">Basketball(Half Court) Reservation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://aepreserve.000webhostapp.com/">Home</a>
+                        <a class="nav-link" href="../index.php">Home</a>
                         </li>
                         <!-- Add more navbar links as needed -->
                     </ul>
@@ -255,7 +261,7 @@
                             </select>
                             <div class="duration-text">SPORT SELECTION</div>
                             <select id="sportSelection" class="form-select" onchange="updateSport(this)">
-    <option value="Basketball">Basketball</option>
+    <option value="Basketball (Half Court)">Basketball (Half Court)</option>
 <!-- Add more sports as needed -->
 </select>
 

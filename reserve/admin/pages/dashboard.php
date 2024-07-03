@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <?php
 // Database configuration
 $servername = "localhost";
@@ -13,6 +19,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 // Queries to count records
 $query_adminlogs = "SELECT COUNT(*) as count FROM adminlogs";
 $query_reservation_payments = "SELECT COUNT(*) as count FROM reservation_payments";
@@ -27,6 +34,9 @@ $query_picklepage = "SELECT COUNT(*) as count FROM  picklepage";
 $query_sepaktakrawpage = "SELECT COUNT(*) as count FROM sepaktakrawpage";
 $query_tabletennispage = "SELECT COUNT(*) as count FROM tabletennispage";
 $query_taekwondopage = "SELECT COUNT(*) as count FROM taekwondopage";
+$query_basketballpage = "SELECT COUNT(*) as count FROM basketballpage";
+$query_wholevenuepage = "SELECT COUNT(*) as count FROM wholevenuepage";
+
 
 
 // Execute queries and fetch results
@@ -43,6 +53,8 @@ $result_picklepage = $conn->query($query_picklepage);
 $result_sepaktakrawpage = $conn->query($query_sepaktakrawpage);
 $result_tabletennispage = $conn->query($query_tabletennispage);
 $result_taekwondopage = $conn->query($query_taekwondopage);
+$result_basketballpage = $conn->query($query_basketballpage);
+$result_wholevenuepage = $conn->query($query_wholevenuepage);
 
 
 // Fetch the counts
@@ -59,6 +71,8 @@ $count_picklepage = $result_picklepage->fetch_assoc()['count'];
 $count_sepaktakrawpage = $result_sepaktakrawpage->fetch_assoc()['count'];
 $count_tabletennispage = $result_tabletennispage->fetch_assoc()['count'];
 $count_taekwondopage = $result_taekwondopage->fetch_assoc()['count'];
+$count_basketballpage = $result_basketballpage->fetch_assoc()['count'];
+$count_wholevenuepage = $result_wholevenuepage->fetch_assoc()['count'];
 
 // Close connection
 $conn->close();
@@ -286,7 +300,7 @@ $conn->close();
     <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
     <div class="card__students d-flex flex-column gap-2 mt-3">
     <i class="fas fa-bowling-ball"></i>
-            <span>Pickle Ball.Approved</span>
+            <span>PickleBall.Approved</span>
         </div>
         <div class="card__nbr-players">
             <span><?php echo $count_picklepage; ?></span>
@@ -304,7 +318,7 @@ $conn->close();
     <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
     <div class="card__students d-flex flex-column gap-2 mt-3">
     <i class="fas fa-table-tennis"></i>
-            <span>Table Tennis.Approved</span>
+            <span>TableTennis.Approved</span>
         </div>
         <div class="card__nbr-players">
             <span><?php echo $count_tabletennispage; ?></span>
@@ -319,8 +333,27 @@ $conn->close();
             <span><?php echo $count_taekwondopage; ?></span>
         </div>
     </div>
+    <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
+    <div class="card__students d-flex flex-column gap-2 mt-3">
+    <i class="fas fa-basketball-ball"></i>
+            <span>Basketball.Approved</span>
+        </div>
+        <div class="card__nbr-players">
+            <span><?php echo $count_basketballpage; ?></span>
+        </div>
+    </div>
+    <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
+    <div class="card__students d-flex flex-column gap-2 mt-3">
+    <i class="fas fa-map-marker-alt"></i>
+            <span>WholeVenue.Approved</span>
+        </div>
+        <div class="card__nbr-players">
+            <span><?php echo $count_wholevenuepage; ?></span>
+        </div>
+    </div>
 
             </div>
+            
             
         </div>
         <!-- end content page -->

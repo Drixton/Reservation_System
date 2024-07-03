@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: ../userlog/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
