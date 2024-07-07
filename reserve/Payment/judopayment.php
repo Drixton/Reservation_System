@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if (isset($_SESSION['status']) && $_SESSION['status'] === 'valid') {
@@ -69,6 +70,7 @@ $result_maya = $conn->query($sql_maya);
 
 $sql_union = "SELECT * FROM union_qr_images";
 $result_union = $conn->query($sql_union);
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -194,7 +196,7 @@ $conn->close();
                     <h2>Reservation Details</h2>
                     <div class="detail-item">
                         <label for="sport">Sport:</label>
-                        <input type="text" id="sport" name="sport" value="Billiard" readonly>
+                        <input type="text" id="sport" name="sport" value="Judo" readonly>
                     </div>
                     <div class="detail-item">
                         <label for="date">Date:</label>
@@ -205,7 +207,7 @@ $conn->close();
                         <input type="text" id="time" name="time" readonly>
                     </div>
                     <div class="detail-item">
-                        <label for="court_number">Board Number:</label>
+                        <label for="court_number">Court Number:</label>
                         <input type="text" id="court_number" name="court_number" readonly>
                     </div>
                     <div class="detail-item">
@@ -224,7 +226,7 @@ $conn->close();
                         <input type="text" id="reference-no" name="reference-no" placeholder="Enter reference number">
                     </div>
                     <div class="detail-item">
-                        <label for="gcash-qrcode">Upload Proof or Screenshot of payment:</label>
+                        <label for="gcash-qrcode">Upload Proof or   Screenshot of payment:</label>
                         <input type="file" id="gcash-qrcode" name="gcash-qrcode" accept="image/*">
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
@@ -327,7 +329,7 @@ $conn->close();
             </div>
             <div class="section">
                 <button type="submit" class="pay-button">Confirm</button>
-                <button type="button" class="back-button" onclick="window.location.href='../calendar/chess.php'">Back</button>
+                <button type="button" class="back-button" onclick="window.location.href='../calendar/judo.php'">Back</button>
             </div>
         </form>
     </div>
@@ -373,7 +375,7 @@ $conn->close();
                 if (duration === '2 hours') {
                     total = 100;
                 } else if (duration === '3 hours') {
-                    total = 200;
+                    total = 150;
                 }  else if (duration === 'Open hours') {
                     total = 100;
                 }
@@ -408,6 +410,7 @@ $conn->close();
                 }
             });
         });
+        
     </script>
 </body>
 </html>

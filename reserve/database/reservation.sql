@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2024 at 05:36 AM
+-- Generation Time: Jul 07, 2024 at 05:55 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -120,7 +120,7 @@ CREATE TABLE `bank_qr_images` (
 --
 
 INSERT INTO `bank_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/QR_code_for_mobile_English_Wikipedia.svg');
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -142,24 +142,6 @@ CREATE TABLE `basketballpage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bdo_qr_images`
---
-
-CREATE TABLE `bdo_qr_images` (
-  `id` int(11) NOT NULL,
-  `image_path` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bdo_qr_images`
---
-
-INSERT INTO `bdo_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/QR_code_for_mobile_English_Wikipedia.svg');
 
 -- --------------------------------------------------------
 
@@ -275,7 +257,35 @@ CREATE TABLE `gcash_qr_images` (
 --
 
 INSERT INTO `gcash_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/QR_code_for_mobile_English_Wikipedia.svg');
+(1, '../assets/img/asdasd.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `judopage`
+--
+
+CREATE TABLE `judopage` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `time` time NOT NULL,
+  `court_number` varchar(255) NOT NULL,
+  `duration` varchar(255) NOT NULL,
+  `promo_code` varchar(255) NOT NULL,
+  `reference_no` varchar(255) NOT NULL,
+  `gcash_qrcode` varchar(255) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `judopage`
+--
+
+INSERT INTO `judopage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
+(36, 'xirdreme', 'Judo', '6 July 2024', '09:30:00', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-05-21 155736.png', '100.00', '2024-07-07 15:28:14');
 
 -- --------------------------------------------------------
 
@@ -293,7 +303,7 @@ CREATE TABLE `maya_qr_images` (
 --
 
 INSERT INTO `maya_qr_images` (`id`, `image_path`) VALUES
-(1, '../assets/img/QR_code_for_mobile_English_Wikipedia.svg');
+(1, '../assets/img/asdasd.png');
 
 -- --------------------------------------------------------
 
@@ -434,6 +444,24 @@ CREATE TABLE `taekwondopage` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `union_qr_images`
+--
+
+CREATE TABLE `union_qr_images` (
+  `id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `union_qr_images`
+--
+
+INSERT INTO `union_qr_images` (`id`, `image_path`) VALUES
+(1, '../assets/img/asdasd.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -512,12 +540,6 @@ ALTER TABLE `bank_qr_images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bdo_qr_images`
---
-ALTER TABLE `bdo_qr_images`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `billiardpage`
 --
 ALTER TABLE `billiardpage`
@@ -545,6 +567,12 @@ ALTER TABLE `dartpage`
 -- Indexes for table `gcash_qr_images`
 --
 ALTER TABLE `gcash_qr_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `judopage`
+--
+ALTER TABLE `judopage`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -584,9 +612,21 @@ ALTER TABLE `taekwondopage`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `union_qr_images`
+--
+ALTER TABLE `union_qr_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wholevenuepage`
+--
+ALTER TABLE `wholevenuepage`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -603,19 +643,13 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `arnispage`
 --
 ALTER TABLE `arnispage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `badmintonpage`
 --
 ALTER TABLE `badmintonpage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `bdo_qr_images`
---
-ALTER TABLE `bdo_qr_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `billiardpage`
@@ -657,7 +691,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`
@@ -678,10 +712,16 @@ ALTER TABLE `taekwondopage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `union_qr_images`
+--
+ALTER TABLE `union_qr_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

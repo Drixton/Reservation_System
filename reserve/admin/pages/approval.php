@@ -238,6 +238,9 @@ if ($_SESSION['status'] != 'valid') {
                             case 'Basketball (Half Court)':
                                 $moveQuery = "INSERT INTO basketballpage SELECT * FROM reservation_payments WHERE id = $id";
                                 break;
+                                case 'Judo':
+                                    $moveQuery = "INSERT INTO judopage SELECT * FROM reservation_payments WHERE id = $id";
+                                    break;
                             case 'Events':
                                 $moveQuery = "INSERT INTO wholevenuepage SELECT * FROM reservation_payments WHERE id = $id";
                                 break;

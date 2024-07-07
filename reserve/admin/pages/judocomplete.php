@@ -178,7 +178,7 @@ if ($_SESSION['status'] != 'valid') {
                 </div>
             </div>
           
-            <h1>Dart Reservation</h1>
+            <h1>Judo Reservation</h1>
             <table id="sportTable">
                 <thead>
                     <tr>
@@ -187,7 +187,7 @@ if ($_SESSION['status'] != 'valid') {
                         <th>Sports</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Board Number</th>
+                        <th>Court Number</th>
                         <th>Duration</th>
                         <th>Promo Code</th>
                         <th>Reference No</th>
@@ -217,7 +217,7 @@ if ($_SESSION['status'] != 'valid') {
                     if (isset($_POST['delete_submit'])) {
                         // Prepare SQL to delete row based on id
                         $delete_id = $_POST['delete_id'];
-                        $sql_select = "SELECT * FROM dartpage WHERE id = $delete_id";
+                        $sql_select = "SELECT * FROM judopage WHERE id = $delete_id";
                         $result_select = $conn->query($sql_select);
 
                         if ($result_select->num_rows > 0) {
@@ -225,7 +225,7 @@ if ($_SESSION['status'] != 'valid') {
                             $gcash_qrcode = $row['gcash_qrcode'];
 
                             // Delete row from database
-                            $delete_sql = "DELETE FROM dartpage WHERE id = $delete_id";
+                            $delete_sql = "DELETE FROM judopage WHERE id = $delete_id";
                             if ($conn->query($delete_sql) === TRUE) {
                                 echo "<script>alert('Record deleted successfully');</script>";
 
@@ -247,7 +247,7 @@ if ($_SESSION['status'] != 'valid') {
                     }
 
                     // Fetch data from the database
-                    $sql = "SELECT * FROM dartpage";
+                    $sql = "SELECT * FROM judopage";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

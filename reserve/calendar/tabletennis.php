@@ -272,7 +272,6 @@ if ($_SESSION['status'] != 'valid') {
 
                             <div class="additional-options-container mt-3">
                                 <div class="duration-text">DURATION</div>
-                                <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
                                 <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
                                 <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
                                 <div class="additional-option" onclick="selectDuration(this)">Open hours</div>

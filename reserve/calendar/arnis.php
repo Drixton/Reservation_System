@@ -267,7 +267,7 @@ if ($_SESSION['status'] != 'valid') {
                             </select>
                             <div class="duration-text">SPORT SELECTION</div>
                             <select id="sportSelection" class="form-select" onchange="updateSport(this)">
-    <option value="arnis">Arnis</option>
+    <option value="Arnis">Arnis</option>
 <!-- Add more sports as needed -->
 </select>
 

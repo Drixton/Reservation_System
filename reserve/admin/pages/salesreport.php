@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 $sportsData = [];
 
 // Fetch data for each sport grouped by day, week, and month
-$sports = ['arnispage', 'badmintonpage', 'billiardpage', 'basketballpage','wholevenuepage','cornholepage','tabletennispage', 'chesspage', 'dartpage', 'picklepage', 'sepaktakrawpage', 'taekwondopage'];
+$sports = ['arnispage', 'badmintonpage', 'billiardpage','judopage', 'basketballpage','wholevenuepage','cornholepage','tabletennispage', 'chesspage', 'dartpage', 'picklepage', 'sepaktakrawpage', 'taekwondopage'];
 
 foreach ($sports as $sport) {
     $sql = "SELECT DATE(created_at) AS date, 
@@ -247,6 +247,7 @@ $conn->close();
                         <th>Chess</th>
                         <th>Cornhole</th>
                         <th>Basketball</th>
+                        <th>Judo</th>
                         <th>Whole Venue</th>
 
                         <th>Total</th>
@@ -310,6 +311,7 @@ $conn->close();
                 <td>₱${data[period]['chesspage']}</td>
                      <td>₱${data[period]['cornholepage']}</td>
                           <td>₱${data[period]['basketballpage']}</td>
+                             <td>₱${data[period]['judopage']}</td>
                                <td>₱${data[period]['wholevenuepage']}</td>
                 <td>₱${data[period]['total_sales']}</td>
             `;

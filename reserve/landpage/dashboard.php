@@ -25,7 +25,7 @@ if ($_SESSION['status'] != 'valid') {
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, white, #008000);
-            height: 100%; /* Changed to 100% */
+            height: 110%; /* Changed to 100% */
         }
         .main {
             display: flex;
@@ -239,6 +239,11 @@ if ($_SESSION['status'] != 'valid') {
             <div class="random-text">Basketball</div>
             <img src="../assets/img/basketball.jpg" alt="Cornhole">
             <a href="../calendar/basketball.php" class="button-slide">Click Here</a>
+        </div>
+        <div class="container1">
+            <div class="random-text">Judo</div>
+            <img src="../assets/img/judo.jpg" alt="Cornhole">
+            <a href="../calendar/judo.php" class="button-slide">Click Here</a>
         </div>
         <div class="container1">
             <div class="random-text">Whole Venue</div>

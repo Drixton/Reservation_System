@@ -36,6 +36,7 @@ $query_tabletennispage = "SELECT COUNT(*) as count FROM tabletennispage";
 $query_taekwondopage = "SELECT COUNT(*) as count FROM taekwondopage";
 $query_basketballpage = "SELECT COUNT(*) as count FROM basketballpage";
 $query_wholevenuepage = "SELECT COUNT(*) as count FROM wholevenuepage";
+$query_judopage = "SELECT COUNT(*) as count FROM judopage";
 
 
 
@@ -55,6 +56,7 @@ $result_tabletennispage = $conn->query($query_tabletennispage);
 $result_taekwondopage = $conn->query($query_taekwondopage);
 $result_basketballpage = $conn->query($query_basketballpage);
 $result_wholevenuepage = $conn->query($query_wholevenuepage);
+$result_judopage = $conn->query($query_judopage);
 
 
 // Fetch the counts
@@ -73,6 +75,7 @@ $count_tabletennispage = $result_tabletennispage->fetch_assoc()['count'];
 $count_taekwondopage = $result_taekwondopage->fetch_assoc()['count'];
 $count_basketballpage = $result_basketballpage->fetch_assoc()['count'];
 $count_wholevenuepage = $result_wholevenuepage->fetch_assoc()['count'];
+$count_judopage = $result_judopage->fetch_assoc()['count'];
 
 // Close connection
 $conn->close();
@@ -340,6 +343,15 @@ $conn->close();
         </div>
         <div class="card__nbr-players">
             <span><?php echo $count_basketballpage; ?></span>
+        </div>
+    </div>
+     <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">
+    <div class="card__students d-flex flex-column gap-2 mt-3">
+         <i class="fas fa-hand-paper"></i> 
+            <span>Judo.Approved</span>
+        </div>
+        <div class="card__nbr-players">
+            <span><?php echo $count_judopage; ?></span>
         </div>
     </div>
     <div class="card card__items card__items--blue col-md-3 position-relative animated fadeInUp">

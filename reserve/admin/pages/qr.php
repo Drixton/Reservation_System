@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Determine table name based on qr_type
-        if ($_POST['qr_type'] == 'maya' || $_POST['qr_type'] == 'bdo') {
-            $table_name = ($_POST['qr_type'] == 'maya') ? 'maya_qr_images' : 'bdo_qr_images';
+        if ($_POST['qr_type'] == 'maya' || $_POST['qr_type'] == 'union') {
+            $table_name = ($_POST['qr_type'] == 'maya') ? 'maya_qr_images' : 'union_qr_images';
         } else {
             $table_name = ($_POST['qr_type'] == 'gcash') ? 'gcash_qr_images' : 'bank_qr_images';
         }
@@ -169,7 +169,7 @@ $conn->close();
                     <label for="qr_type">Select QR Type:</label>
                     <select name="qr_type" id="qr_type">
                         <option value="maya">PayMaya</option>
-                        <option value="bdo">BDO</option>
+                        <option value="union">UnionBank</option>
                         <option value="gcash">Gcash</option>
                         <option value="bank">LandBank</option>
                     </select>

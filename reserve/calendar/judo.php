@@ -9,7 +9,7 @@ if ($_SESSION['status'] != 'valid') {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Cornhole</title>
+            <title>Judo Reservation</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
         body {
@@ -197,14 +197,14 @@ if ($_SESSION['status'] != 'valid') {
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Cornhole Reservation</a>
+                <a class="navbar-brand" href="#">Judo Reservation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                        <a class="nav-link" href="../index.php">Home</a>
+                            <a class="nav-link" href="../index.php">Home</a>
                         </li>
                         <!-- Add more navbar links as needed -->
                     </ul>
@@ -254,24 +254,20 @@ if ($_SESSION['status'] != 'valid') {
                     </div>
                     <!-- Court Selection -->
                         <div class="court-selection-container mt-3">
-                            <div class="duration-text">FACILITY SELECTION</div>
+                            <div class="duration-text">COURT SELECTION</div>
                             <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
-                                <option value="Court 1">Court 1</option>
-                                <option value="Court 2">Court 2</option>
-                                <option value="Court 3">Court 3</option>
-                                <option value="Court 4">Court 4</option>
-                                <option value="Court 5">Court 5</option>
-                                <option value="Court 6">Court 6</option>
-                                <option value="Court 7">Court 7</option>
-                                <option value="Court 8">Court 8</option>
-                                <option value="Table 1">Table 1</option>
-                      
-
+                                <option value="court 1">Court 1</option>
+                                <option value="court 2">Court 2</option>
+                                <option value="court 3">Court 4</option>
+                                <option value="court 3">Court 5</option>
+                                <option value="court 3">Court 6</option>
+                                <option value="court 3">Court 7</option>
+                                <option value="court 3">Court 8</option>
                                 <!-- Add more courts as needed -->
                             </select>
                             <div class="duration-text">SPORT SELECTION</div>
                             <select id="sportSelection" class="form-select" onchange="updateSport(this)">
-    <option value="Cornhole">Cornhole</option>
+    <option value="Judo">Judo</option>
 <!-- Add more sports as needed -->
 </select>
 
@@ -461,7 +457,7 @@ function goToPayment() {
                 alert('The selected reservation already exists in the database.');
             } else {
                 // Proceed to payment page
-                window.location.href = "../Payment/cornholepayment.php" +
+                window.location.href = "../Payment/judopayment.php" +
                     "?date=" + encodeURIComponent(selectedDate) +
                     "&time=" + encodeURIComponent(selectedTime) +
                     "&duration=" + encodeURIComponent(selectedDuration) +
@@ -619,7 +615,7 @@ function selectTime(button) {
                 alert('The selected reservation already exists in the database.');
             } else {
                 // Proceed to payment page
-                window.location.href = "../Payment/cornholepayment.php" +
+                window.location.href = "../Payment/judopayment.php" +
                     "?date=" + encodeURIComponent(selectedDate) +
                     "&time=" + encodeURIComponent(selectedTime) +
                     "&duration=" + encodeURIComponent(selectedDuration) +
@@ -651,6 +647,8 @@ function selectTime(button) {
             // Redirect based on selected court
            
         }
+        
+        
  
 </script>
 

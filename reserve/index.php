@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>AEP Reservation Page</title>
     <link rel="icon" href="/Reservation_System/reserve/assets/icons/titleicon.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/landpage.css">     
     <style>
@@ -162,7 +162,7 @@
 
 
     <p >Your ultimate destination for all things sports</p>
-    <a href="userlog/index.php" class="btn btn-primary">Explore Now</a>
+    <a href="userlog/index.php" class="btn btn-primary">Reserve Now!</a>
 </div>
 
 

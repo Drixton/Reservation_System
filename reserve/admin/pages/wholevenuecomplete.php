@@ -172,6 +172,7 @@ if ($_SESSION['status'] != 'valid') {
                         <option value="/reservation_system/reserve/admin/pages/taekwondocomplete.php">TAEKWONDO</option>
                         <option value="/reservation_system/reserve/admin/pages/cornholecomplete.php">CORNHOLE</option>
                         <option value="/reservation_system/reserve/admin/pages/basketballcomplete.php">BASKETBALL</option>
+                        <option value="/reservation_system/reserve/admin/pages/judocomplete.php">JUDO</option>
                         <option value="/reservation_system/reserve/admin/pages/wholevenuecomplete.php">WHOLE VENUE</option>
                     </select>
                 </div>

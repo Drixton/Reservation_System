@@ -68,8 +68,8 @@ $result_bank = $conn->query($sql_bank);
 $sql_maya = "SELECT * FROM maya_qr_images";
 $result_maya = $conn->query($sql_maya);
 
-$sql_bdo = "SELECT * FROM bdo_qr_images";
-$result_bdo = $conn->query($sql_bdo);
+$sql_union = "SELECT * FROM union_qr_images";
+$result_union = $conn->query($sql_union);
 
 $conn->close();
 ?>
@@ -279,11 +279,11 @@ $conn->close();
             </div>
             <div class="image-container">
                 <div class="section">
-                    <h2>BDO QR Code</h2>
+                    <h2>UnionBank QR Code</h2>
                     <div class="image-container">
                         <?php  
-                        if ($result_bdo->num_rows > 0) {
-                            while ($row = $result_bdo->fetch_assoc()) {
+                        if ($result_union->num_rows > 0) {
+                            while ($row = $result_union->fetch_assoc()) {
                                 $image_path = "../admin/assets/img/" . basename($row["image_path"]);
                                 if (file_exists($image_path)) {
                                     echo '<div class="image-preview">';
@@ -296,7 +296,7 @@ $conn->close();
                         }
                         ?>
                     </div>
-                    <h2>007670239783</h2>
+                    <h2>109323668660</h2>
                 </div>
                 <div class="section">
                     <h2>PayMaya QR Code</h2>
@@ -316,7 +316,7 @@ $conn->close();
                         }
                         ?>
                     </div>
-                    <h2>000969473909</h2>
+                    <h2>09053429588</h2>
                 </div>
             </div>
 
