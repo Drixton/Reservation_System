@@ -95,6 +95,7 @@ if ($_SESSION['status'] != 'valid') {
 .day:hover::before {
     opacity: 1; /* Show tooltip on hover */
 }
+
         .today {
             background-color: #add8e6; /* Green background for today's date */
             color: #fff; /* White text color for today's date */
@@ -219,7 +220,7 @@ if ($_SESSION['status'] != 'valid') {
     width: 60%;
     height: auto;
     border-radius: 10px; /* Optional: Add border radius for image */
-    margin-top: 170px;
+    margin-top: 130px;
     
 }
 
@@ -280,6 +281,7 @@ if ($_SESSION['status'] != 'valid') {
             <div class="row">
             <div class="col-lg-8">
     <div id="calendar"></div>
+    <p class="reservation-note" style="color: black;">Note: Reservations must be made at least one week in advance.</p>
     <div class="current-date-display mt-3">
         <p id="currentDateDisplay"></p>
     </div>
@@ -341,8 +343,8 @@ if ($_SESSION['status'] != 'valid') {
                         </div>
                         
                     </div>
-                    <!-- Court Selection -->
-                        <div class="court-selection-container mt-3">
+                      <!-- Court Selection -->
+                    <div class="court-selection-container mt-3">
                             <div class="duration-text">FACILITY SELECTION</div>
                             <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
                             <option value="Whole Venue">Whole Venue</option>           
@@ -505,18 +507,13 @@ calendarDiv.innerHTML = html;
     }
 
 
-         // Initialize the calendar with the current date
-document.addEventListener('DOMContentLoaded', function() {
-    const currentDate = new Date();
-    currentYear = currentDate.getFullYear();
-    currentMonth = currentDate.getMonth() + 1; // Advance by 1 month
-    if (currentMonth > 11) {
-        currentMonth -= 12;
-        currentYear++;
-    }
-    generateCalendar(currentYear, currentMonth);
-});
-
+            // Initialize the calendar with the current date
+            document.addEventListener('DOMContentLoaded', function() {
+                const currentDate = new Date();
+                currentYear = currentDate.getFullYear();
+                currentMonth = currentDate.getMonth();
+                generateCalendar(currentYear, currentMonth);
+            });
 
         
 
@@ -711,7 +708,7 @@ function selectTime(button) {
         if (this.readyState == 4 && this.status == 200) {
             const exists = JSON.parse(this.responseText);
             if (exists) {
-                alert('The selected reservation already exists. Please select another reservation date or time');
+                alert('The selected reservation already exists in the database.');
             } else {
                 // Proceed to payment page
                 window.location.href = "../Payment/wholevenuepayment.php" +
