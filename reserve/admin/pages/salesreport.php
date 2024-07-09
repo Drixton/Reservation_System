@@ -237,7 +237,7 @@ $conn->close();
                     <tr>
                         <th>Date</th>
                         <th>Badminton</th>
-                        <th>Billiards</th>
+                        <th>Billiard</th>
                         <th>Table Tennis</th>
                         <th>Pickle Ball</th>
                         <th>Sepak Takraw</th>

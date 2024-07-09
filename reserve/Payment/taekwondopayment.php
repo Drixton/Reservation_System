@@ -230,7 +230,7 @@ $conn->close();
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
                         </div>
-                        <p class="reservation-note" style="color: blue;">Note: Your payment covers 50% of the total. Please complete it at the front desk</p>
+                        <p class="reservation-note" style="color: blue;">Note: Your payment covers 50% of the total. The full payment should be made at the counter area at AEP, which is non-refundable.</p>
                     </div>
                 </div>
             </div>
@@ -367,14 +367,15 @@ $conn->close();
             document.getElementById('time').value = getUrlParameter('time');
             document.getElementById('court_number').value = getUrlParameter('court');
             document.getElementById('duration').value = getUrlParameter('duration');
-
             function updateTotal() {
                 const duration = document.getElementById('duration').value;
                 let total = 0;
-                if (duration === '2 hours') {
+                if (duration === '1 hour') {
+                    total = 50;
+                } else if (duration === '2 hours') {
                     total = 100;
                 } else if (duration === '3 hours') {
-                    total = 200;
+                    total = 150;
                 }  else if (duration === 'Open hours') {
                     total = 100;
                 }

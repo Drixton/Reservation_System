@@ -178,7 +178,9 @@ if ($_SESSION['status'] != 'valid') {
             text-align: center;
         }
         }
-      
+      li {
+        text-align: left;
+      }
     </style>
 </head>
 <body>
@@ -255,7 +257,7 @@ if ($_SESSION['status'] != 'valid') {
         <div class="modal-content">
             <h2>Terms and Conditions</h2>
             <ul>
-                        <li>Wear appropriate safety gear.</li>
+                        <li>Observe cleanliness and orderliness.</li>
                         <li>Follow all safety guidelines and rules.</li>
                         <li>Stay hydrated and take necessary breaks.</li>
                     </ul>

@@ -66,15 +66,35 @@ if ($_SESSION['status'] != 'valid') {
         }
 
         .day {
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background-color 0.3s ease;
-        }
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    position: relative; /* Ensure proper stacking context */
+}
 
-        .day:hover {
-            background-color: #009933; /* Light gray background on hover */
-        }
+.day:hover {
+    background-color: #009933; /* Light gray background on hover */
+}
 
+.day:hover::before {
+    content: attr(title); /* Display the title attribute content */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8); /* Background color for tooltip */
+    color: #fff; /* Text color for tooltip */
+    padding: 5px 10px; /* Padding for tooltip */
+    border-radius: 5px; /* Rounded corners for tooltip */
+    z-index: 1; /* Ensure tooltip is on top */
+    bottom: calc(100% + 5px); /* Position above the day */
+    left: 50%; /* Center align */
+    transform: translateX(-50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.2s ease; /* Smooth opacity transition */
+    pointer-events: none; /* Allow interaction with the day */
+}
+
+.day:hover::before {
+    opacity: 1; /* Show tooltip on hover */
+}
         .today {
             background-color: #add8e6; /* Green background for today's date */
             color: #fff; /* White text color for today's date */
@@ -186,6 +206,47 @@ if ($_SESSION['status'] != 'valid') {
         .back-button:hover {
             background-color: darkorange; /* Darker orange on hover */
         }
+        .image-placeholder-container img {
+    width: auto; /* Ensures the image is at its default size */
+    height: auto; /* Ensures the image aspect ratio is maintained */
+    max-width: 100%; /* Ensures the image doesn't exceed its container */
+    max-height: 100%; /* Ensures the image doesn't exceed its container */
+
+}
+
+
+.image-placeholder-container img {
+    width: 60%;
+    height: auto;
+    border-radius: 10px; /* Optional: Add border radius for image */
+    margin-top: 170px;
+    
+}
+
+@media (max-width: 992px) {
+    .image-placeholder-container img {
+    width: auto; /* Ensures the image is at its default size */
+    height: auto; /* Ensures the image aspect ratio is maintained */
+    max-width: 100%; /* Ensures the image doesn't exceed its container */
+    max-height: 100%; /* Ensures the image doesn't exceed its container */
+    margin-top: 40px;
+
+}
+}
+
+@media (max-width: 768px) {
+    .image-placeholder-container img {
+        border-radius: 3; /* Example: Remove border radius for smaller screens */
+    }
+}
+#sportSelection {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 1rem; /* Optional: add some right padding */
+    background-image: none; /* Remove any background image */
+}
+
     </style>
 
 
@@ -217,20 +278,24 @@ if ($_SESSION['status'] != 'valid') {
             <!-- Calendar -->
              
             <div class="row">
-                <div class="col-lg-8">
-                <p class="reservation-note" style="color: blue;">Note: Reservations must be made at least one month in advance.</p>
-                    <div id="calendar"></div>
-                    <div class="current-date-display mt-3">
-                        <p id="currentDateDisplay"></p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
+            <div class="col-lg-8">
+    <div id="calendar"></div>
+    <div class="current-date-display mt-3">
+        <p id="currentDateDisplay"></p>
+    </div>
+    <div class="image-placeholder-container">
+        <img src="../assets/img/overnight.jpg" alt="Image Placeholder" class="img-fluid">
+    </div>
+</div>
+<div class="col-lg-4">
                     <!-- Time buttons -->
                     <div class="time-buttons-container">
                     <h3>Time Selection</h3> 
                         <div class="row">
                             <div class="col">
                                 <div class="time-column">
+                                <button class="time-button" onclick="selectTime(this)">7:00 AM</button>
+                                <button class="time-button" onclick="selectTime(this)">7:30 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">8:00 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">8:30 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">9:00 AM</button>
@@ -238,10 +303,14 @@ if ($_SESSION['status'] != 'valid') {
                                     <button class="time-button" onclick="selectTime(this)">10:00 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">11:30 AM</button>
+                                    <button class="time-button" onclick="selectTime(this)">12:00 PM</button>
                                 </div>
                             </div>
+                            
                             <div class="col">
                                 <div class="time-column">
+                                <button class="time-button" onclick="selectTime(this)">12:30 PM</button>
                                     <button class="time-button" onclick="selectTime(this)">1:00 PM</button>
                                     <button class="time-button" onclick="selectTime(this)">1:30 PM</button>
                                     <button class="time-button" onclick="selectTime(this)">2:00 PM</button>
@@ -249,9 +318,28 @@ if ($_SESSION['status'] != 'valid') {
                                     <button class="time-button" onclick="selectTime(this)">3:00 PM</button>
                                     <button class="time-button" onclick="selectTime(this)">3:30 PM</button>
                                     <button class="time-button" onclick="selectTime(this)">4:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">4:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">5:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">5:30 PM</button>
                                 </div>
+                                
                             </div>
+                            <div class="col">
+                                <div class="time-column">
+                                    <button class="time-button" onclick="selectTime(this)">6:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">6:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">7:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">7:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">8:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">8:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">9:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">9:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">10:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">10:30 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">11:00 PM</button>
+                                </div>
                         </div>
+                        
                     </div>
                     <!-- Court Selection -->
                         <div class="court-selection-container mt-3">
@@ -270,7 +358,7 @@ if ($_SESSION['status'] != 'valid') {
 
                             <div class="additional-options-container mt-3">
                                 <div class="duration-text">DURATION</div>
-                                <div class="additional-option" onclick="selectDuration(this)">12 hour</div>
+                                <div class="additional-option" onclick="selectDuration(this)">12 hours</div>
                                 <div class="additional-option" onclick="selectDuration(this)">24 hours</div>
                              
                                 <button class="payment-option mt-3" onclick="goToPayment()">Go to payment</button>
@@ -292,76 +380,85 @@ if ($_SESSION['status'] != 'valid') {
             // Define global variables for current date
             let currentYear, currentMonth;
 
-            // Function to generate a calendar
-            function generateCalendar(year, month) {
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-                const firstDayOfMonth = new Date(year, month, 1).getDay();
-                const currentDate = new Date();
-                const todayYear = currentDate.getFullYear();
-                const todayMonth = currentDate.getMonth();
-                const currentDay = currentDate.getDate();
-                const calendarDiv = document.getElementById('calendar');
+// Function to generate a calendar
+function generateCalendar(year, month) {
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const firstDayOfMonth = new Date(year, month, 1).getDay();
+const currentDate = new Date();
+const todayYear = currentDate.getFullYear();
+const todayMonth = currentDate.getMonth();
+const currentDay = currentDate.getDate();
+const calendarDiv = document.getElementById('calendar');
 
-                // Define Philippine holidays
-                const philippineHolidays = [
-                    { month: 0, day: 1 }, // New Year's Day
-                    { month: 3, day: 9 }, // Araw ng Kagitingan
-                    { month: 4, day: 1 }, // Labor Day
-                    { month: 5, day: 12 }, // Independence Day
-                    { month: 6, day: 30 }, // National Heroes Day
-                    { month: 10, day: 30 }, // Bonifacio Day
-                    { month: 11, day: 25 }, // Christmas Day
-                    { month: 11, day: 30 }, // Rizal Day
-                    { month: 0, day: 23 }, // Chinese New Year
-                    { month: 2, day: 25 }, // EDSA People Power Revolution Anniversary
-                    { month: 6, day: 31 }, // Eid'l Fitr
-                    { month: 10, day: 1 }, // All Saints' Day
-                    { month: 10, day: 30 }, // All Souls' Day
-                    { month: 11, day: 8 }, // Feast of the Immaculate Conception of the Blessed Virgin Mary
-                    { month: 11, day: 31 }, // Last Day of the Year
-                    { month: 1, day: 25 }, // Chinese New Year
-                    { month: 11, day: 31 }, // Additional Special (Non-Working) Day
-                    { month: 8, day: 1 }, // Ninoy Aquino Day
-                    { month: 9, day: 27 }, // Eidul Adha
-                    { month: 11, day: 30 } // Christmas Eve
-                ];
+// Define Philippine holidays
+const philippineHolidays = [
+{ month: 0, day: 1, name: "New Year's Day" },
+{ month: 1, day: 10, name: "Chinese New Year" },
+{ month: 2, day: 28, name: "Maundy Thursday" },
+{ month: 2, day: 29, name: "Good Friday" },
+{ month: 2, day: 30, name: "Black Saturday" },
+{ month: 3, day: 9, name: "Araw ng Kagitingan" },
+{ month: 4, day: 1, name: "Labor Day" },
+{ month: 5, day: 12, name: "Independence Day" },
+{ month: 6, day: 21, name: "Ninoy Aquino Day" },
+{ month: 6, day: 26, name: "National Heroes Day" },
+{ month: 10, day: 30, name: "Bonifacio Day" },
+{ month: 11, day: 25, name: "Christmas Day" },
+{ month: 11, day: 30, name: "Rizal Day" },
+{ month: 0, day: 23, name: "Chinese New Year" },
+{ month: 2, day: 25, name: "EDSA People Power Revolution Anniversary" },
+{ month: 10, day: 1, name: "All Saints' Day" },
+{ month: 10, day: 2, name: "All Souls’ Day" },
+{ month: 10, day: 30, name: "All Souls' Day" },
+{ month: 11, day: 8, name: "Feast of the Immaculate Conception of the Blessed Virgin Mary" },
+{ month: 11, day: 31, name: "Last Day of the Year" },
+{ month: 1, day: 25, name: "Chinese New Year" },
+{ month: 11, day: 31, name: "Additional Special (Non-Working) Day" },
+{ month: 8, day: 1, name: "Ninoy Aquino Day" },
+{ month: 11, day: 30, name: "Christmas Eve" }
+];
 
-                let html = '<h2>';
-              
-                html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
-                html += '<div onclick="nextMonth()" style="cursor: pointer;">▶</div>'; // Next month button
-                html += '</h2>';
-                html += '</h2>';
-                html += '<table>';
-                html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+// Add other holidays here
+    let html = '<h2>';
+html += '<div onclick="previousMonth()" style="cursor: pointer;">◀</div>'; // Previous month button
+html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
+html += '<div onclick="nextMonth()" style="cursor: pointer;">▶</div>'; // Next month button
+html += '</h2>';
+html += '<table>';
+html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
 
-                let dayCounter = 1;
-                for (let i = 0; i < 6; i++) {
-                    html += '<tr>';
-                    for (let j = 0; j < 7; j++) {
-                        if (i === 0 && j < firstDayOfMonth) {
-                            html += '<td></td>';
-                        } else if (dayCounter > daysInMonth) {
-                            html += '<td></td>';
-                        } else {
-                            let isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
-                            let classNames = 'day';
-                            if (isHoliday) {
-                                classNames += ' holiday';
-                            }
-                            if (year === todayYear && month === todayMonth && dayCounter === currentDay) {
-                                classNames += ' today';
-                            }
-                            html += `<td class="${classNames}" onclick="selectDate(${year}, ${month}, ${dayCounter})">${dayCounter}</td>`;
-                            dayCounter++;
-                        }
-                    }
-                    html += '</tr>';
-                }
-                html += '</table>';
+let dayCounter = 1;
+for (let i = 0; i < 6; i++) {
+html += '<tr>';
+for (let j = 0; j < 7; j++) {
+if (i === 0 && j < firstDayOfMonth) {
+    html += '<td></td>';
+} else if (dayCounter > daysInMonth) {
+    html += '<td></td>';
+} else {
+    let isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
+    let classNames = 'day';
+    if (isHoliday) {
+        classNames += ' holiday';
+    }
+    if (year === todayYear && month === todayMonth && dayCounter === currentDay) {
+        classNames += ' today';
+    }
+    // Add title attribute to show holiday name on hover
+    let holidayName = '';
+    if (isHoliday) {
+        holidayName = philippineHolidays.find(holiday => holiday.month === month && holiday.day === dayCounter).name;
+    }
+    html += `<td class="${classNames}" onclick="selectDate(${year}, ${month}, ${dayCounter})" title="${holidayName}">${dayCounter}</td>`;
+    dayCounter++;
+}
+}
+html += '</tr>';
+}
+html += '</table>';
 
-                calendarDiv.innerHTML = html;
-            }
+calendarDiv.innerHTML = html;
+}
 
             // Function to go to the previous month
             function previousMonth() {
@@ -456,7 +553,7 @@ function goToPayment() {
         if (this.readyState == 4 && this.status == 200) {
             const exists = JSON.parse(this.responseText);
             if (exists) {
-                alert('The selected reservation already exists in the database.');
+                alert('The selected reservation already exists. Please select another reservation date or time');
             } else {
                 // Proceed to payment page
                 window.location.href = "../Payment/wholevenuepayment.php" +
@@ -614,7 +711,7 @@ function selectTime(button) {
         if (this.readyState == 4 && this.status == 200) {
             const exists = JSON.parse(this.responseText);
             if (exists) {
-                alert('The selected reservation already exists in the database.');
+                alert('The selected reservation already exists. Please select another reservation date or time');
             } else {
                 // Proceed to payment page
                 window.location.href = "../Payment/wholevenuepayment.php" +
