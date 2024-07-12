@@ -195,6 +195,7 @@ $conn->close();
             font-size: 24px;
             font-weight: bold;
         }
+        
     </style>
 </head>
 

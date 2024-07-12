@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2024 at 04:20 AM
+-- Generation Time: Jul 12, 2024 at 09:59 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -67,14 +67,6 @@ CREATE TABLE `arnispage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `arnispage`
---
-
-INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(29, '12323', '123123', '2024-07-09', '00:47:00', '12312', '123123', '123123', '123123', 'Screenshot 2024-05-20 153544.png', '200.00', '2024-06-29 00:17:32'),
-(34, 'xirdreme', 'Arnis', '1 July 2024', '08:00:00', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-07-02 213010.png', '100.00', '2024-07-08 13:49:51');
-
 -- --------------------------------------------------------
 
 --
@@ -95,15 +87,6 @@ CREATE TABLE `badmintonpage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `badmintonpage`
---
-
-INSERT INTO `badmintonpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(26, 'xirdreme', 'Badminton', '1 June 2024', '08:30:00', '0', '1', '', '123123', 'asdasd.png', '250.00', '2024-06-27 03:55:32'),
-(27, 'xirdreme', 'Badminton', '14 June 2024', '09:30:00', 'Court 1', '1 hour', '', '123123', 'photo1713252020-removebg-preview (1).png', '250.00', '2024-06-27 04:42:41'),
-(28, 'xirdreme', 'Badminton', '14 June 2024', '09:30:00', 'Court 1', '2 hours', '', '123123', 'photo1713252020-removebg-preview (1).png', '500.00', '2024-06-27 04:44:17');
 
 -- --------------------------------------------------------
 
@@ -165,13 +148,6 @@ CREATE TABLE `billiardpage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `billiardpage`
---
-
-INSERT INTO `billiardpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(50, 'phosclay', 'Billiard', '8 June 2024', '02:30:00', '0', '1', '', 'asd', 'dart.jpg', '100.00', '2024-06-14 06:23:30');
-
 -- --------------------------------------------------------
 
 --
@@ -213,13 +189,6 @@ CREATE TABLE `cornholepage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cornholepage`
---
-
-INSERT INTO `cornholepage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(20, 'phosclay', 'Cornhole', '21 June 2024', '09:00:00', '0', '1', '', '123', '', '100.00', '2024-06-12 08:42:56');
 
 -- --------------------------------------------------------
 
@@ -281,13 +250,6 @@ CREATE TABLE `judopage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `judopage`
---
-
-INSERT INTO `judopage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(36, 'xirdreme', 'Judo', '6 July 2024', '09:30:00', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-05-21 155736.png', '100.00', '2024-07-07 15:28:14');
-
 -- --------------------------------------------------------
 
 --
@@ -327,13 +289,6 @@ CREATE TABLE `picklepage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `picklepage`
---
-
-INSERT INTO `picklepage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(15, 'phosclay', 'Pickle ball', '14 June 2024', '09:30:00', '0', '1', '', '123123', '', '100.00', '2024-06-12 08:15:23');
-
 -- --------------------------------------------------------
 
 --
@@ -354,16 +309,6 @@ CREATE TABLE `reservation_payments` (
   `total` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reservation_payments`
---
-
-INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(30, 'xirdreme', 'Arnis', '1 June 2024', '8:30 AM', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-05-20 153901.png', 0, '2024-06-29 01:18:07'),
-(31, 'xirdreme', 'Arnis', '15 June 2024', '3:30 PM', 'court 1', '2 hours', '', '12323', 'Screenshot 2024-05-21 123752.png', 0, '2024-06-29 01:42:28'),
-(32, 'xirdreme', 'Arnis', '15 June 2024', '10:30 AM', 'court 1', '2 hours', '', '12313', 'Screenshot 2024-05-21 113156.png', 100, '2024-06-29 02:37:25'),
-(35, 'xirdreme', 'Arnis', '1 July 2024', '7:00 AM', 'court 1', '2 hours', '', '12313', 'Screenshot 2024-05-20 153544.png', 100, '2024-07-08 23:02:12');
 
 -- --------------------------------------------------------
 
@@ -386,13 +331,6 @@ CREATE TABLE `sepaktakrawpage` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sepaktakrawpage`
---
-
-INSERT INTO `sepaktakrawpage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(17, 'phosclay', 'Sepak Takraw', '7 June 2024', '03:00:00', '0', '0', '', 'asdasd', '', '400.00', '2024-06-12 08:20:05');
-
 -- --------------------------------------------------------
 
 --
@@ -413,13 +351,6 @@ CREATE TABLE `tabletennispage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabletennispage`
---
-
-INSERT INTO `tabletennispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(19, 'phosclay', 'Table Tennis', '14 June 2024', '03:00:00', '0', '2', '', '123', '', '200.00', '2024-06-12 08:30:52');
 
 -- --------------------------------------------------------
 
@@ -504,13 +435,6 @@ CREATE TABLE `wholevenuepage` (
   `total` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `wholevenuepage`
---
-
-INSERT INTO `wholevenuepage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(1, 'xirdreme', 'Events', '1 June 2024', '08:00:00', 'Whole Venue', '24', '', '123123', 'Screenshot 2024-05-20 155917.png', '10000.00', '2024-06-25 03:12:14');
 
 --
 -- Indexes for dumped tables
@@ -692,7 +616,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`

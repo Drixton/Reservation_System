@@ -151,6 +151,20 @@ if ($_SESSION['status'] != 'valid') {
             text-decoration: none;
             cursor: pointer;
         }
+        .button {
+        cursor: pointer;
+        color: white;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        padding: 4px 16px;
+        margin-left: 10px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        width: 100px; /* Set the width to ensure both buttons are the same size */
+        text-align: center; /* Center text within the button */
+    }
     </style>
 </head>
 <body class="bg-content">

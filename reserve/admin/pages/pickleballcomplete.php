@@ -1,3 +1,9 @@
+<?php session_start();
+
+if ($_SESSION['status'] != 'valid') {
+    header("Location: http://localhost/reservation_system/reserve/admin/index.php");
+    exit();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,6 +151,20 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .button {
+        cursor: pointer;
+        color: white;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        padding: 4px 16px;
+        margin-left: 10px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        width: 100px; /* Set the width to ensure both buttons are the same size */
+        text-align: center; /* Center text within the button */
+    }
     </style>
 </head>
 <body class="bg-content">
@@ -211,7 +231,7 @@
                     if (isset($_POST['delete_submit'])) {
                         // Prepare SQL to delete row based on id
                         $delete_id = $_POST['delete_id'];
-                        $sql_select = "SELECT * FROM pickleballpage WHERE id = $delete_id";
+                        $sql_select = "SELECT * FROM picklepage WHERE id = $delete_id";
                         $result_select = $conn->query($sql_select);
 
                         if ($result_select->num_rows > 0) {
@@ -219,7 +239,7 @@
                             $gcash_qrcode = $row['gcash_qrcode'];
 
                             // Delete row from database
-                            $delete_sql = "DELETE FROM pickleballpage WHERE id = $delete_id";
+                            $delete_sql = "DELETE FROM picklepage WHERE id = $delete_id";
                             if ($conn->query($delete_sql) === TRUE) {
                                 echo "<script>alert('Record deleted successfully');</script>";
 
@@ -241,7 +261,7 @@
                     }
 
                     // Fetch data from the database
-                    $sql = "SELECT * FROM pickleballpage";
+                    $sql = "SELECT * FROM picklepage";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

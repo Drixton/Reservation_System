@@ -110,7 +110,40 @@ if ($_SESSION['status'] != 'valid') {
     border: 1px solid #ddd; /* Add border for clarity */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to the image */
 }
+.button {
+        cursor: pointer;
+        color: white;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        padding: 4px 16px;
+        margin-left: 10px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        font-size: 14px;
+        text-transform: uppercase;
+        display: inline-block;
+        width: 100px; /* Set the width to ensure both buttons are the same size */
+        text-align: center; /* Center text within the button */
+    }
 
+    .button-approve {
+        background-color: #007bff; /* Blue color for approve button */
+    }
+
+    .button-approve:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+    }
+
+    .button-delete {
+        background-color: #dc3545; /* Red color for delete button */
+    }
+
+    .button-delete:hover {
+        background-color: #c82333; /* Darker red color on hover */
+    }
+    button.button-delete
+    {
+        background-color: #dc3545; /* Red color for delete button */
+    }
 
 
         @media only screen and (max-width: 600px) {
@@ -308,13 +341,12 @@ if ($_SESSION['status'] != 'valid') {
                 echo "<td>";
                 echo "<form method='post'>";
                 echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
-                echo "<button type='submit' name='submit' class='button'>Approve</button>";
+                echo "<button type='submit' name='submit' class='button button-approve'>Approve</button>";
                 echo "</form>";
                 echo "<form method='post' onsubmit='return confirmDelete(\"" . $row["id"] . "\")'>";
                 echo "<input type='hidden' name='delete_id' value='" . $row["id"] . "'>";
-                echo "<button type='submit' name='delete_submit' class='button' style='background-color: red;'>Delete</button>";
+                echo "<button type='submit' name='delete_submit' class='button button-delete'>Delete</button>";
                 echo "</form>";
-                
                 echo "</td>";
 
                 echo "</tr>";
