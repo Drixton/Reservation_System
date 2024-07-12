@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2024 at 05:55 PM
+-- Generation Time: Jul 09, 2024 at 04:20 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -44,7 +44,7 @@ CREATE TABLE `adminlogs` (
 
 INSERT INTO `adminlogs` (`id`, `full_name`, `email`, `time_in`, `password`, `time_out`, `profile_pictures`) VALUES
 (4, 'DUMDUM', 'dumdum@gmail.com', '0000-00-00 00:00:00', '$2y$10$iMLoTIfG6XN5ahJy30nlU.uHA.N/jLEY20Ij9Yd9HmdYL5jtCzztu', '2024-07-03 05:25:27', 'profile_pictures/Screenshot 2024-05-20 160236.png'),
-(5, 'AEP', 'aep@gmail.com', '0000-00-00 00:00:00', '$2y$10$hMG2ZeJGiioJHT8ds..aheC369eWFwfIhWchQo23dAgjv3XJxsOR.', '2024-07-03 05:36:19', 'profile_pictures/photo1712557113.jpeg');
+(5, 'AEP', 'aep@gmail.com', '0000-00-00 00:00:00', '$2y$10$hMG2ZeJGiioJHT8ds..aheC369eWFwfIhWchQo23dAgjv3XJxsOR.', '2024-07-08 15:57:43', 'profile_pictures/photo1712557113.jpeg');
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,8 @@ CREATE TABLE `arnispage` (
 --
 
 INSERT INTO `arnispage` (`id`, `username`, `sports`, `date`, `time`, `court_number`, `duration`, `promo_code`, `reference_no`, `gcash_qrcode`, `total`, `created_at`) VALUES
-(29, '12323', '123123', '2024-07-09', '00:47:00', '12312', '123123', '123123', '123123', 'Screenshot 2024-05-20 153544.png', '200.00', '2024-06-29 00:17:32');
+(29, '12323', '123123', '2024-07-09', '00:47:00', '12312', '123123', '123123', '123123', 'Screenshot 2024-05-20 153544.png', '200.00', '2024-06-29 00:17:32'),
+(34, 'xirdreme', 'Arnis', '1 July 2024', '08:00:00', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-07-02 213010.png', '100.00', '2024-07-08 13:49:51');
 
 -- --------------------------------------------------------
 
@@ -362,7 +363,7 @@ INSERT INTO `reservation_payments` (`id`, `username`, `sports`, `date`, `time`, 
 (30, 'xirdreme', 'Arnis', '1 June 2024', '8:30 AM', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-05-20 153901.png', 0, '2024-06-29 01:18:07'),
 (31, 'xirdreme', 'Arnis', '15 June 2024', '3:30 PM', 'court 1', '2 hours', '', '12323', 'Screenshot 2024-05-21 123752.png', 0, '2024-06-29 01:42:28'),
 (32, 'xirdreme', 'Arnis', '15 June 2024', '10:30 AM', 'court 1', '2 hours', '', '12313', 'Screenshot 2024-05-21 113156.png', 100, '2024-06-29 02:37:25'),
-(33, 'xirdreme', 'Arnis', '6 July 2024', '8:00 AM', 'court 1', '2 hours', '', '123123', 'Screenshot 2024-07-02 180026.png', 100, '2024-07-02 10:01:50');
+(35, 'xirdreme', 'Arnis', '1 July 2024', '7:00 AM', 'court 1', '2 hours', '', '12313', 'Screenshot 2024-05-20 153544.png', 100, '2024-07-08 23:02:12');
 
 -- --------------------------------------------------------
 
@@ -643,7 +644,7 @@ ALTER TABLE `adminlogs`
 -- AUTO_INCREMENT for table `arnispage`
 --
 ALTER TABLE `arnispage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `badmintonpage`
@@ -691,7 +692,7 @@ ALTER TABLE `picklepage`
 -- AUTO_INCREMENT for table `reservation_payments`
 --
 ALTER TABLE `reservation_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sepaktakrawpage`
