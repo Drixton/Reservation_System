@@ -355,14 +355,14 @@ if ($_SESSION['status'] != 'valid') {
     <div class="court-selection-container mt-3">
         <div class="duration-text">COURT SELECTION</div>
         <select id="courtSelection" class="form-select" onchange="updateCourtNumber(this)">
-            <option value="court 1">Court 1</option>
-            <option value="court 2">Court 2</option>
-            <option value="court 3">Court 3</option>
-            <option value="court 4">Court 4</option>
-            <option value="court 5">Court 5</option>
-            <option value="court 6">Court 6</option>
-            <option value="court 7">Court 7</option>
-            <option value="court 8">Court 8</option>
+            <option value="Court 1">Court 1</option>
+            <option value="Court 2">Court 2</option>
+            <option value="Court 3">Court 3</option>
+            <option value="Court 4">Court 4</option>
+            <option value="Court 5">Court 5</option>
+            <option value="Court 6">Court 6</option>
+            <option value="Court 7">Court 7</option>
+            <option value="Court 8">Court 8</option>
         </select>
         <div class="duration-text">SPORT SELECTION</div>
         <select id="sportSelection" class="form-select" onchange="updateSport(this)">
