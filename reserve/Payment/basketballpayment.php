@@ -81,7 +81,7 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, black, green);
+            background: linear-gradient(to bottom, green, white) no-repeat fixed;
             display: flex;
             justify-content: center;
             align-items: center;

@@ -82,7 +82,7 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, black, green);
+            background: linear-gradient(to bottom, green, white) no-repeat fixed;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -236,9 +236,9 @@ $conn->close();
                 </div>
             </div>
             <div class="image-container">
-                <div class="section">
-                    <h2>GCash QR Code</h2>
-                    <div class="image-container">
+            <div class="section">
+    <h2><img src="../assets/icons/gcash.png" alt="" style="height: 25px; vertical-align: middle; margin-right: 10px;">GCash QR</h2>
+    <div class="image-container">
                         <?php  
                         if ($result_gcash->num_rows > 0) {
                             while ($row = $result_gcash->fetch_assoc()) {
@@ -257,8 +257,8 @@ $conn->close();
                     <h2>09238713111</h2>
                 </div>
                 <div class="section">
-                    <h2>LandBank QR Code</h2>
-                    <div class="image-container">
+    <h2><img src="../assets/icons/landbank.png" alt="" style="height: 25px; vertical-align: middle; margin-right: -10px;">LandBank QR</h2>
+    <div class="image-container">
                         <?php
                         if ($result_bank->num_rows > 0) {
                             while ($row = $result_bank->fetch_assoc()) {
@@ -278,9 +278,9 @@ $conn->close();
                 </div>
             </div>
             <div class="image-container">
-                <div class="section">
-                    <h2>UnionBank QR Code</h2>
-                    <div class="image-container">
+            <div class="section">
+    <h2><img src="../assets/icons/unionbank.png" alt="" style="height: 30px; vertical-align: middle; margin-right: 1px;">UnionBank QR</h2>
+    <div class="image-container">
                         <?php  
                         if ($result_union->num_rows > 0) {
                             while ($row = $result_union->fetch_assoc()) {
@@ -299,8 +299,8 @@ $conn->close();
                     <h2>109323668660</h2>
                 </div>
                 <div class="section">
-                    <h2>PayMaya QR Code</h2>
-                    <div class="image-container">
+    <h2><img src="../assets/icons/paymaya.png" alt="" style="height: 30px; vertical-align: middle; margin-right: 1px;">PayMaya QR</h2>
+    <div class="image-container">
                         <?php
                         if ($result_maya->num_rows > 0) {
                             while ($row = $result_maya->fetch_assoc()) {

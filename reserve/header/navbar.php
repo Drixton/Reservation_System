@@ -129,7 +129,7 @@
 <body>
 
     <header>
-        <a href="/reservation_system/reserve/index.php">
+        <a href="">
             <img src="../assets/img/logo.png" alt="Logo">
         </a>
         <div class="dropdown">
