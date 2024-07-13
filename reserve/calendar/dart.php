@@ -285,6 +285,7 @@ if ($_SESSION['status'] != 'valid') {
             <div class="row">
             <div class="col-lg-8">
     <div id="calendar"></div>
+    <p class="reservation-note" style="color: black;">Note: Reservations must be made at least one week in advance.</p>
     <div class="current-date-display mt-3">
         <p id="currentDateDisplay"></p>
     </div>
@@ -309,7 +310,7 @@ if ($_SESSION['status'] != 'valid') {
                                     <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">11:30 AM</button>
-                                    <button class="time-button" onclick="selectTime(this)">12:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">12:00 NN</button>
                                 </div>
                             </div>
                             
@@ -367,7 +368,7 @@ if ($_SESSION['status'] != 'valid') {
                                 <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
                                 <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
                                 <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
-                                <div class="additional-option" onclick="selectDuration(this)">Open hours</div>
+                                <div class="additional-option" onclick="selectDuration(this)">4 hours</div>
                                 <button class="payment-option mt-3" onclick="goToPayment()">Go to payment</button>
                                 <button class="back-button" onclick="goBack()">Back</button>
                             </div>
@@ -385,87 +386,134 @@ if ($_SESSION['status'] != 'valid') {
             // JavaScript function to go back
            
             // Define global variables for current date
-            let currentYear, currentMonth;
+          // Define global variables for current date
+let currentYear, currentMonth;
 
 // Function to generate a calendar
 function generateCalendar(year, month) {
-const daysInMonth = new Date(year, month + 1, 0).getDate();
-const firstDayOfMonth = new Date(year, month, 1).getDay();
-const currentDate = new Date();
-const todayYear = currentDate.getFullYear();
-const todayMonth = currentDate.getMonth();
-const currentDay = currentDate.getDate();
-const calendarDiv = document.getElementById('calendar');
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const currentDate = new Date();
+    const todayYear = currentDate.getFullYear();
+    const todayMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    const calendarDiv = document.getElementById('calendar');
 
-// Define Philippine holidays
-const philippineHolidays = [
-{ month: 0, day: 1, name: "New Year's Day" },
-{ month: 1, day: 10, name: "Chinese New Year" },
-{ month: 2, day: 28, name: "Maundy Thursday" },
-{ month: 2, day: 29, name: "Good Friday" },
-{ month: 2, day: 30, name: "Black Saturday" },
-{ month: 3, day: 9, name: "Araw ng Kagitingan" },
-{ month: 4, day: 1, name: "Labor Day" },
-{ month: 5, day: 12, name: "Independence Day" },
-{ month: 6, day: 21, name: "Ninoy Aquino Day" },
-{ month: 6, day: 26, name: "National Heroes Day" },
-{ month: 10, day: 30, name: "Bonifacio Day" },
-{ month: 11, day: 25, name: "Christmas Day" },
-{ month: 11, day: 30, name: "Rizal Day" },
-{ month: 0, day: 23, name: "Chinese New Year" },
-{ month: 2, day: 25, name: "EDSA People Power Revolution Anniversary" },
-{ month: 10, day: 1, name: "All Saints' Day" },
-{ month: 10, day: 2, name: "All Souls’ Day" },
-{ month: 10, day: 30, name: "All Souls' Day" },
-{ month: 11, day: 8, name: "Feast of the Immaculate Conception of the Blessed Virgin Mary" },
-{ month: 11, day: 31, name: "Last Day of the Year" },
-{ month: 1, day: 25, name: "Chinese New Year" },
-{ month: 11, day: 31, name: "Additional Special (Non-Working) Day" },
-{ month: 8, day: 1, name: "Ninoy Aquino Day" },
-{ month: 11, day: 30, name: "Christmas Eve" }
-];
+    // Function to get the last Monday of August
+    function getLastMondayOfAugust(year) {
+        const date = new Date(year, 7, 31); // August 31
+        const day = date.getDay(); // Day of the week (0-6)
+        const offset = day === 0 ? -6 : 1 - day; // Calculate offset to get the last Monday
+        date.setDate(date.getDate() + offset);
+        return date;
+    }
 
-// Add other holidays here
+    // Define Philippine holidays
+    const philippineHolidays = [
+        { month: 0, day: 1, name: "New Year's Day" },
+        { month: 1, day: 10, name: "Chinese New Year" },
+        { month: 2, day: 28, name: "Maundy Thursday" },
+        { month: 2, day: 29, name: "Good Friday" },
+        { month: 2, day: 22, name: "Cavite Day" },
+        { month: 2, day: 30, name: "Black Saturday" },
+        { month: 3, day: 9, name: "Araw ng Kagitingan" },
+        { month: 4, day: 1, name: "Labor Day" },
+        { month: 5, day: 12, name: "Independence Day" },
+        { month: 7, day: 21, name: "Ninoy Aquino Day" },
+        { month: 10, day: 30, name: "Bonifacio Day" },
+        { month: 11, day: 25, name: "Christmas Day" },
+        { month: 11, day: 30, name: "Rizal Day" },
+        { month: 0, day: 23, name: "Chinese New Year" },
+        { month: 2, day: 25, name: "EDSA People Power Revolution Anniversary" },
+        { month: 10, day: 1, name: "All Saints' Day" },
+        { month: 10, day: 2, name: "All Souls’ Day" },
+        { month: 10, day: 30, name: "All Souls' Day" },
+        { month: 11, day: 8, name: "Feast of the Immaculate Conception of the Blessed Virgin Mary" },
+        { month: 11, day: 31, name: "Last Day of the Year" },
+        { month: 1, day: 25, name: "Chinese New Year" },
+        { month: 11, day: 31, name: "Additional Special (Non-Working) Day" },
+        { month: 8, day: 1, name: "Ninoy Aquino Day" },
+        { month: 11, day: 30, name: "Christmas Eve" }
+    ];
+
+    // Add dynamically calculated National Heroes Day
+    const lastMondayOfAugust = getLastMondayOfAugust(year);
+    philippineHolidays.push({
+        month: lastMondayOfAugust.getMonth(),
+        day: lastMondayOfAugust.getDate(),
+        name: "National Heroes Day"
+    });
+
     let html = '<h2>';
-html += '<div onclick="previousMonth()" style="cursor: pointer;">◀</div>'; // Previous month button
-html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
-html += '<div onclick="nextMonth()" style="cursor: pointer;">▶</div>'; // Next month button
-html += '</h2>';
-html += '<table>';
-html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
+    html += '<div onclick="previousMonth()" style="cursor: pointer;">◀</div>'; // Previous month button
+    html += '<div class="month-nav">' + new Date(year, month).toLocaleString('default', { month: 'long' }) + ' ' + year + '</div>'; // Month title
+    html += '<div onclick="nextMonth()" style="cursor: pointer;">▶</div>'; // Next month button
+    html += '</h2>';
+    html += '<table>';
+    html += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
 
-let dayCounter = 1;
-for (let i = 0; i < 6; i++) {
-html += '<tr>';
-for (let j = 0; j < 7; j++) {
-if (i === 0 && j < firstDayOfMonth) {
-    html += '<td></td>';
-} else if (dayCounter > daysInMonth) {
-    html += '<td></td>';
-} else {
-    let isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
-    let classNames = 'day';
-    if (isHoliday) {
-        classNames += ' holiday';
+    let dayCounter = 1;
+    for (let i = 0; i < 6; i++) {
+        html += '<tr>';
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDayOfMonth) {
+                html += '<td></td>';
+            } else if (dayCounter > daysInMonth) {
+                html += '<td></td>';
+            } else {
+                let isHoliday = philippineHolidays.some(holiday => holiday.month === month && holiday.day === dayCounter);
+                let classNames = 'day';
+                if (isHoliday) {
+                    classNames += ' holiday';
+                }
+                if (year === todayYear && month === todayMonth && dayCounter === currentDay) {
+                    classNames += ' today';
+                }
+                // Add title attribute to show holiday name on hover
+                let holidayName = '';
+                if (isHoliday) {
+                    holidayName = philippineHolidays.find(holiday => holiday.month === month && holiday.day === dayCounter).name;
+                }
+                html += `<td class="${classNames}" onclick="selectDate(${year}, ${month}, ${dayCounter})" title="${holidayName}">${dayCounter}</td>`;
+                dayCounter++;
+            }
+        }
+        html += '</tr>';
     }
-    if (year === todayYear && month === todayMonth && dayCounter === currentDay) {
-        classNames += ' today';
-    }
-    // Add title attribute to show holiday name on hover
-    let holidayName = '';
-    if (isHoliday) {
-        holidayName = philippineHolidays.find(holiday => holiday.month === month && holiday.day === dayCounter).name;
-    }
-    html += `<td class="${classNames}" onclick="selectDate(${year}, ${month}, ${dayCounter})" title="${holidayName}">${dayCounter}</td>`;
-    dayCounter++;
-}
-}
-html += '</tr>';
-}
-html += '</table>';
+    html += '</table>';
 
-calendarDiv.innerHTML = html;
+    calendarDiv.innerHTML = html;
 }
+
+// Define functions to navigate between months
+function previousMonth() {
+    if (currentMonth === 0) {
+        currentMonth = 11;
+        currentYear--;
+    } else {
+        currentMonth--;
+    }
+    generateCalendar(currentYear, currentMonth);
+}
+
+function nextMonth() {
+    if (currentMonth === 11) {
+        currentMonth = 0;
+        currentYear++;
+    } else {
+        currentMonth++;
+    }
+    generateCalendar(currentYear, currentMonth);
+}
+
+// Initialize the calendar
+document.addEventListener('DOMContentLoaded', function() {
+    const now = new Date();
+    currentYear = now.getFullYear();
+    currentMonth = now.getMonth();
+    generateCalendar(currentYear, currentMonth);
+});
+
 
             // Function to go to the previous month
             function previousMonth() {

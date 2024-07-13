@@ -305,7 +305,7 @@ if ($_SESSION['status'] != 'valid') {
                                     <button class="time-button" onclick="selectTime(this)">10:30 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">11:00 AM</button>
                                     <button class="time-button" onclick="selectTime(this)">11:30 AM</button>
-                                    <button class="time-button" onclick="selectTime(this)">12:00 PM</button>
+                                    <button class="time-button" onclick="selectTime(this)">12:00 NN</button>
                                 </div>
                             </div>
                             
@@ -369,7 +369,7 @@ if ($_SESSION['status'] != 'valid') {
                                 <div class="additional-option" onclick="selectDuration(this)">1 hour</div>
                                 <div class="additional-option" onclick="selectDuration(this)">2 hours</div>
                                 <div class="additional-option" onclick="selectDuration(this)">3 hours</div>
-                                <div class="additional-option" onclick="selectDuration(this)">Open hours</div>
+                                <div class="additional-option" onclick="selectDuration(this)">4 hours</div>
                                 <button class="payment-option mt-3" onclick="goToPayment()">Go to payment</button>
                                 <button class="back-button" onclick="goBack()">Back</button>
                             </div>

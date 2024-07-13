@@ -249,7 +249,7 @@ if ($_SESSION['status'] != 'valid') {
         </div>
         <div class="container1">
             <div class="random-text">Whole Venue</div>
-            <img src="../assets/img/overnight.jpg" alt="Basketball">
+            <img src="../assets/img/wholevenue.jpg" alt="Basketball">
             <a href="../calendar/wholevenue.php" class="button-slide">Click Here</a>
         </div>
     </div>

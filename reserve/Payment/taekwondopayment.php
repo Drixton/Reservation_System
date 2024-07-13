@@ -230,7 +230,7 @@ $conn->close();
                         <div class="image-preview" id="image-preview">
                             <div class="image-title">Gcash QR Code</div>
                         </div>
-                        <p class="reservation-note" style="color: blue;">Note: Your payment covers 50% of the total. The full payment should be made at the counter area at AEP, which is non-refundable.</p>
+                        <p class="reservation-note" style="color: blue;">Note: Your payment must cover at least 50 Total amount for the reservation fee, which is not refundable. The full payment should be made at the counter area at AEP.</p>
                     </div>
                 </div>
             </div>
