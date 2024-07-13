@@ -370,10 +370,23 @@ $conn->close();
             function updateTotal() {
                 const duration = document.getElementById('duration').value;
                 let total = 0;
-                if (duration === '12 hour') {
+                if (duration === '4 hours') {
+                    total = 1000;
+                } 
+                else if (duration === '8 hours') {
+                    total = 2000;
+                } 
+                else if (duration === '12 hours') {
+                    total = 3000;
+                } 
+                else if (duration === '16 hours') {
+                    total = 4000;
+                } 
+                else if (duration === '20 hours') {
                     total = 5000;
-                } else if (duration === '24 hours') {
-                    total = 10000;
+                } 
+                else if (duration === '24 hours') {
+                    total = 6000;
                 } 
                 document.getElementById('total').value = total;
             }

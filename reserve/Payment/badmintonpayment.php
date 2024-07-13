@@ -374,9 +374,9 @@ $conn->close();
                     total = 125;
                 } else if (duration === '2 hours') {
                     total = 250;
-                } else if (duration === '3  hours') {
+                } else if (duration === '3 hours') {
                     total = 375;
-                }  else if (duration === 'Open hours') {
+                }  else if (duration === '4 hours') {
                     total = 250;
                 }
                 document.getElementById('total').value = total;
