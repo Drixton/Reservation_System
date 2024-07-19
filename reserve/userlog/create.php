@@ -15,7 +15,7 @@
         }
 
         .bg-sign-in {
-            background-image: url('../assets/img/logbg.jpg');
+            background: linear-gradient(to right, black, #008000);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;

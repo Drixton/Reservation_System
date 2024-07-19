@@ -210,7 +210,8 @@
         animation: fadeIn 0.5s ease; /* Apply the animation */
     }
     .text {
-        color: white; /* Change color of "Sign In" */
+        color: white; 
+        text-align: justify;/* Change color of "Sign In" */
     }
     /* Reserve now button */
     .reserve-now {
@@ -339,20 +340,26 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="sportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Available sports</a>
                         <ul class="dropdown-menu" aria-labelledby="sportsDropdown">
-                            <li><a class="dropdown-item" href="#">Arnis</a></li>
-                            <li><a class="dropdown-item" href="#">badminton</a></li>
-                            <li><a class="dropdown-item" href="#">Billiard</a></li>
-                            <li><a class="dropdown-item" href="#">Cornhole</a></li>
-                            <li><a class="dropdown-item" href="#">Chess</a></li>
-                            <li><a class="dropdown-item" href="#">Dart</a></li>
-                            <li><a class="dropdown-item" href="#">Pickle Ball</a></li>
-                            <li><a class="dropdown-item" href="#">Sepak takraw</a></li>
-                            <li><a class="dropdown-item" href="#">Table tennis</a></li>   
-                            <li><a class="dropdown-item" href="#">Taekwondo</a></li>  
+                            <li><a class="dropdown-item" href="userlog/index.php">Arnis</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">badminton</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Billiard</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Cornhole</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Chess</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Dart</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Pickle Ball</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Sepak takraw</a></li>
+                            <li><a class="dropdown-item" href="userlog/index.php">Table tennis</a></li>   
+                            <li><a class="dropdown-item" href="userlog/index.php">Taekwondo</a></li>  
                         </ul>
                     </li>
                
-                    <li><a href="#">Support</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Connect With Us</a>
+                        <ul class="dropdown-menu" aria-labelledby="locationDropdown">
+                            <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=61555489671807">Facebook Page</a></li>
+                            <!-- Add more locations here -->
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our location</a>
                         <ul class="dropdown-menu" aria-labelledby="locationDropdown">
@@ -361,7 +368,7 @@
                             <!-- Add more locations here -->
                         </ul>
                     </li>
-                    <li><a href="/reservation_system/reserve/userlog/create.php">Sign up</a></li>
+                    <li><a href="userlog/create.php">Sign up</a></li>
                     <li><a href="#" class="login-button">Log In</a></li>
                 </ul>
             </nav>
@@ -395,7 +402,11 @@
         <div class="gray-container" id="grayContainer"> 
         <img src="assets/icons/speakericon.gif" class="speaker-icon" alt="Speaker Icon"> <!-- Gray container -->
             <i class="fas fa-volume-up audio-icon"></i> <!-- Audio icon -->
-            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi impedit quam ipsam repudiandae, ab maxime provident? Quo porro voluptates saepe atque optio reiciendis facilis, tempore nam laboriosam et officiis quis expedita non ut doloribus aliquid molestias iure quae temporibus consequatur nihil. Aliquam sunt temporibus animi adipisci quae illo distinctio quisquam!.</p>
+            <p class="text">Welcome to Athlete Event Place!
+
+Looking for the perfect venue for your next sports event? Look no further! At Athlete Event Place, we offer state-of-the-art facilities to cater to all your athletic needs. Whether you're planning a tournament, a training session, or a casual game with friends, our venues are equipped to provide an exceptional experience.
+
+Don't miss out on the opportunity to reserve your spot at our premium facilities. Click the button below to book your venue today and elevate your sports events to the next level!.</p>
             <audio id="audioPlayer" controls autoplay loop>
                 <source src="assets/audio/aepsong.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
