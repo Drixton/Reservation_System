@@ -1,7 +1,7 @@
 <?php
 session_start();
 $id = $_SESSION['id'];
-include 'conixion.php';
+include '../conixion.php';
 if (isset($_POST['submit'])){
     $Name = $_POST['Name'];
     $Email = $_POST['Email'];

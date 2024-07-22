@@ -1,20 +1,6 @@
 <?php
 // Check if POST data is received
-if (isset($_POST['date']) && isset($_POST['time'])) {
-    // Database connection
-    $servername = "your_servername";
-    $username = "root";
-    $password = "";
-    $dbname = "reservation"; // Your database name
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
+include '../admin/conixion.php';
     // Escape user inputs for security (not shown here, but recommended)
     $date = $_POST['date'];
     $time = $_POST['time'];

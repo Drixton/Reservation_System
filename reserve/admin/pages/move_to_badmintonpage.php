@@ -1,17 +1,6 @@
 <?php
 // Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../conixion.php';
 
 // Check if the AJAX request data is set and not empty
 if (isset($_POST['rowData']) && !empty($_POST['rowData'])) {

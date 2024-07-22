@@ -178,19 +178,8 @@ if ($_SESSION['status'] != 'valid') {
             <h1>Reservation Approval</h1>
 
             <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "reservation";
+         include '../conixion.php';
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
 
             // Handle delete submission
             if (isset($_POST['delete_submit'])) {

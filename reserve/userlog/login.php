@@ -8,14 +8,7 @@ echo $_SESSION['status'];
 if($_SESSION['status']=='valid'){
     echo "<script> alert('You are already logged in');window.history.back() ;</script>";
 }
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "reservation";
-$conn = new mysqli($servername, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../admin/conixion.php';
 if(isset($_POST['submit'])) {
 
     $email = $_POST['email'];

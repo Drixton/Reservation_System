@@ -10,7 +10,7 @@ if ($_SESSION['status'] != 'valid') {
     exit();
 }
 
-include 'connection.php';
+include '../admin/conixion.php';
 
 // Fetch the most recent reservation for the logged-in user
 $sql = "SELECT username, date, time, sports, court_number, duration, total FROM reservation_payments WHERE username = ? ORDER BY id DESC LIMIT 1";

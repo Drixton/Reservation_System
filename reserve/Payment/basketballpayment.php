@@ -10,7 +10,7 @@ if ($_SESSION['status'] != 'valid') {
     exit();
 }
 
-include 'connection.php';
+include '../admin/conixion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data

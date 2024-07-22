@@ -1,5 +1,5 @@
 <?php
-require("../connection/conn.php");
+require("../admin/conixion.php");
 session_start();
 if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';

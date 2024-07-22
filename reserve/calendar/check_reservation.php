@@ -1,17 +1,6 @@
 <?php
 // Assuming you have a database connection established already
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "reservation"; // Your database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../admin/conixion.php';
 
 // Function to sanitize inputs
 function sanitize_input($input) {

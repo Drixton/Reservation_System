@@ -1,4 +1,4 @@
-<?php session_start();
+    <?php session_start();
 
 if ($_SESSION['status'] != 'valid') {
     header("Location: http://localhost/reservation_system/reserve/admin/index.php");

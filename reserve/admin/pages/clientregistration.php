@@ -87,16 +87,8 @@ if ($_SESSION['status'] != 'valid') {
             <!-- start student list table -->
 
             <?php
-$host = "localhost";  // Your MySQL host
-$username = "root";  // Your MySQL username
-$password = "";  // Your MySQL password
-$database = "reservation";  // Your database name
+   include '../conixion.php';
 
-$conn = mysqli_connect($host, $username, $password, $database);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 $full_name = $email = $password = $user_type = "";
 $success_message = "";

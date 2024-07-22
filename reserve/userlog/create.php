@@ -109,18 +109,7 @@
         <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "reservation";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include '../admin/conixion.php';
 
     // Retrieve username, email, and password from form
     $username = $_POST['username'];

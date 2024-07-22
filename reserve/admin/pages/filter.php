@@ -1,5 +1,5 @@
 <?php
-include 'conixion.php';
+include '../conixion.php';
 
 if(isset($_POST['start-date'])) {
     $start_date = $_POST['start-date'];

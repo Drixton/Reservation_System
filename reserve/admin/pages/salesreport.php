@@ -6,17 +6,8 @@ if ($_SESSION['status'] != 'valid') {
 }?>
 <?php
 // Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "reservation";
+include '../conixion.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Initialize an array to store the data
 $sportsData = [];

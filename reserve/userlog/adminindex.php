@@ -1,7 +1,6 @@
 <?php
-require("../connection/conn.php"); // Adjust the path as necessary
+require("../admin/conixion.php"); // Adjust the path as necessary
 session_start();
-
 if (empty($_SESSION['status'])) {
     $_SESSION['status'] = 'invalid';
 }

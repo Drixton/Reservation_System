@@ -135,17 +135,7 @@ if ($_SESSION['status'] != 'valid') {
                 <tbody>
                     <?php
                     // Connect to the database
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "reservation";
-
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    include '../conixion.php';
 
                     // Fetch data from the database
                     $sql = "SELECT * FROM adminlogs";

@@ -1,5 +1,5 @@
 <?php 
-    include 'conixion.php';
+    include '../conixion.php';
     $id = $_GET['Id'];
 
     if(isset($id)){

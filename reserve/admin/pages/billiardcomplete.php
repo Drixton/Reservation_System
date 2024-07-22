@@ -214,18 +214,8 @@ if ($_SESSION['status'] != 'valid') {
                 </thead>
                 <tbody>
                     <?php
-                    // Connect to the database
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "reservation";
+               include '../conixion.php';
 
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
 
                     // Check if the delete form is submitted
                     if (isset($_POST['delete_submit'])) {
